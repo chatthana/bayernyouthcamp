@@ -1,0 +1,23 @@
+#teaser {
+  position:relative;
+}
+
+#teaser .left {
+  position:relative;
+  float:left;
+  /*height:100%;*/
+  width:50%;
+  overflow:hidden;
+}
+
+#teaser .left img {
+  height:100%;
+  width:auto;
+}
+
+#teaser .right {
+  position:relative;
+  float:right;
+  padding:50px;
+  width:50%;
+}
