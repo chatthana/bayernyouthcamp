@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import url('https://fonts.googleapis.com/css?family=Kanit:100,100i,200,200i,300,300i,400,400i,500,500i,600,700,800,900');
 
 html,body {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Kanit', sans-serif;
   height:100%;
   font-size:100%;
 }
@@ -77,6 +77,37 @@ p {
   background-color:#961933;
 }
 
+input[type=text], input[type=password] {
+  border:1px solid #dadada;
+  padding:10px 17px;
+  width:100%;
+  color:#000;
+  outline:0 none;
+  border-radius:3px;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  border-color:#000;
+}
+
+form ul > li {
+  margin-top:10px;
+}
+
+form label {
+  display:block;
+  margin-bottom:5px;
+}
+
+form label + input[type=text], form label + input[type=password] {
+  margin-bottom:10px;
+}
+
+form .help-block {
+  /*margin-bottom:20px;*/
+  color:red;
+}
+
 .pulse {
   animation: pulse 1s infinite ease;
 }
@@ -98,7 +129,7 @@ header {
   color:#fff;
   padding:10px;
   line-height:60px;
-  border-bottom:1px solid #dadada;
+  /*border-bottom:1px solid #dadada;*/
   z-index:10;
 }
 

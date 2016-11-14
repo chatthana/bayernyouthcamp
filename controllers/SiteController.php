@@ -126,6 +126,6 @@ class SiteController extends Controller
 
     public function actionRegister() {
       $model = new RegistrationForm();
-      return $this->render('register');
+      return $this->render('register', ['model'=>$model]);
     }
 }

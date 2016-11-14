@@ -24,7 +24,7 @@ class RegistrationForm extends Model {
       'lastname' => 'นามสกุล',
       'email' => 'อีเมล์',
       'telephone' => 'เบอร์โทรศัพท์ที่ติดต่อได้'
-    ]
+    ];
   }
 
 }

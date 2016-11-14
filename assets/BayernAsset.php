@@ -29,6 +29,7 @@ class RequiredAsset extends AssetBundle {
   ];
   public $js = [
     "jquery/dist/jquery.min.js",
+    "scrollreveal/dist/scrollreveal.min.js"
   ];
   public $jsOptions = ["position" => \yii\web\View::POS_HEAD];
 }
