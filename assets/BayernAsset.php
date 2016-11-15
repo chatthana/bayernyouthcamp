@@ -12,7 +12,7 @@ class BayernAsset extends AssetBundle {
     "css/bayern.css"
   ];
   public $js = [
-    "js/bayern.js"
+    // "js/bayern.js"
   ];
   public $jsOptions = ["position" => \yii\web\View::POS_HEAD];
   public $depends = [

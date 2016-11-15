@@ -52,6 +52,148 @@
 
 #registration-content #registration-form-container {
   position:relative;
-  width:45%;
+  width:100%;
   margin:0 auto;
+}
+
+#registration-content #registration-form-container #registration-form-header {
+  position:relative;
+  padding:30px 0;
+}
+
+#registration-content #registration-form-container #registration-form-header .bayern-vertical-logo {
+  position:absolute;
+  width:120px;
+  left:0;
+  top:-12px;
+}
+
+#registration-content #registration-form-container #registration-form-header .bayern-wangkanai {
+  position:relative;
+  text-align:center;
+}
+
+#registration-content #registration-form-container #registration-form-header .bayern-wangkanai img {
+  width:230px;
+  height:auto;
+}
+
+#registration-content #registration-form-container #registration-form-header img {
+  width:100%;
+}
+
+#registration-form {
+  position:relative;
+  padding:50px 0 100px;
+}
+
+#registration-form ul > li {
+  position:relative;
+  margin-top:20px;
+}
+
+#registration-form ul > li .form-group {
+  position:relative;
+  float:left;
+  width:100%;
+  padding:0 20px;
+}
+
+#registration-form ul > li.col-2 .form-group {
+  width:calc(100%/2);
+}
+
+#registration-form ul > li.col-3 .form-group {
+  width:calc(100%/3);
+}
+
+#registration-form ul > li.col-4 .form-group {
+  width:calc(100%/4);
+}
+
+#registration-form ul > li .form-group:first-child {
+  padding-left:0;
+}
+
+#registration-form ul > li .form-group:last-child {
+  padding-right:0;
+}
+
+#registration-form .form-group.span-1-6 {
+  width:calc(100%/6);
+}
+
+#registration-form .form-group.span-2-6 {
+  width:calc((100%/6)*2);
+}
+
+#registration-form .form-group.span-3-6 {
+  width:calc((100%/6)*3);
+}
+
+#registration-form .form-group.span-4-6 {
+  width:calc((100%/6)*4);
+}
+
+#registration-form .form-group.span-5-6 {
+  width:calc((100%/6)*5);
+}
+
+#registration-form .form-group.span-6-6 {
+  width:calc((100%/6)*6);
+}
+
+#registration-form input[type=text], #registration-form input[type=date] {
+  border-radius:25px;
+  padding:8px 16px;
+  background-color:#f3f3f3;
+  border:0;
+}
+
+#registration-form input[type=date] {
+   width:100%;
+   outline:0 none;
+}
+
+#registration-form .id-card-uploader {
+  position:relative;
+  overflow:hidden;
+  margin:10px;
+  border-radius:30px;
+  background-color:#961933;
+}
+
+#registration-form .id-card-uploader input[type=file] {
+  position:absolute;
+  top:0;
+  right:0;
+  margin:0;
+  padding:0;
+  font-size:20px;
+  cursor:pointer;
+  opacity:0;
+  filter:alpha(opacity=0);
+}
+
+#registration-form #registration-form-arenas ul > li .form-group {
+  position:relative;
+  vertical-align:middle;
+  color:#a5a5a5;
+}
+
+#registration-form #registration-form-arenas ul > li .form-group input[type=radio] {
+  display:block;
+  padding:2px;
+  float:left;
+}
+
+#registration-form #registration-form-arenas ul > li .form-group .radio-left {
+  display:block;
+  margin-left:10px;
+  float:left;
+}
+
+#registration-form #registration-form-arenas ul > li .form-group .radio-right {
+  display:block;
+  float:right;
 }

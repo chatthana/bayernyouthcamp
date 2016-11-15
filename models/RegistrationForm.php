@@ -3,18 +3,41 @@ namespace app\models;
 
 use Yii;
 use yii\base\Model;
+use yii\web\UploadedFile;
 
 class RegistrationForm extends Model {
 
   public $firstname;
   public $lastname;
-  public $email;
+  public $nickname;
+  public $birthdate;
+  public $age;
+  public $weight;
+  public $height;
+  public $school;
+  public $level;
+  public $address;
   public $telephone;
+  public $line_id;
+  public $facebook_link;
+  public $email;
+  public $foot;
+  public $preferred_position;
+  public $preferred_position_alternative;
+  public $guardian_name;
+  public $guardian_telephone;
+  public $arena;
+
+  // Image Upload
+  public $identity_card;
+
 
   public function rules() {
     return [
-      [['firstname', 'lastname', 'email', 'telephone'], 'required'],
+      [['firstname', 'lastname', 'nickname', 'birthdate', 'age', 'weight', 'height', 'school', 'level', 'address', 'telephone', 'line_id', 'facebook_link', 'email', 'foot', 'preferred_position', 'guardian_name', 'guardian_telephone', 'arena'], 'required', 'message' => '{attribute} ห้ามเป็นค่าว่าง'],
       ['email', 'email'],
+      [['telephone', 'guardian_telephone'], 'integer', 'message' => '{attribute} ต้องเป็นตัวเลขเท่านั้น'],
+      [['identity_card'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png,jpg']
     ];
   }
 
@@ -22,8 +45,22 @@ class RegistrationForm extends Model {
     return [
       'firstname' => 'ชื่อ',
       'lastname' => 'นามสกุล',
+      'nickname' => 'ชื่อเล่น',
+      'birthdate' => 'วันเกิด',
+      'age' => 'อายุ',
+      'weight' => 'น้ำหนัก',
+      'height' => 'ส่วนสูง',
+      'school' => 'โรงเรียน',
+      'level' => 'ชั้นปีที่',
+      'address' => 'ที่อยู่ปัจจุบัน',
+      'telephone' => 'เบอร์โทรศัพท์ที่ติดต่อได้',
+      'line_id' => 'Line ID',
+      'facebook_link' => 'Facebook Profile',
       'email' => 'อีเมล์',
-      'telephone' => 'เบอร์โทรศัพท์ที่ติดต่อได้'
+      'foot' => 'เท้าที่ถนัด',
+      'preferred_position' => 'ตำแหน่งที่ถนัด',
+      'guardian_name' => 'ชื่อ - นามสกุลผู้ปกครอง',
+      'guardian_telephone' => 'เบอร์โทรศัพท์ผู้ปกครอง'
     ];
   }
 

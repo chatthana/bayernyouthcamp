@@ -1,5 +1,6 @@
 <?php
 use yii\helpers\Html;
+use yii\helpers\Url;
 ?>
 <section id="teaser" class="clearfix">
   <div class="left">
@@ -12,7 +13,7 @@ use yii\helpers\Html;
         Fc Bayern Youth Cup Thailand 2017 รายการที่ค้นหา นักเตะอายุระหว่าง 14-15 ปี (พ.ศ.2544-2545) เข้ารับการคัดเลือกนักเตะที่ดีที่สุดจากทีมงานและผู้ฝึกสอนจาก Fc Bayern Munich ยอดทีมจากประเทศเยอรมัน
       </p>
       <div class="submit-operation">
-        <?php echo Html::a('สมัครเข้าร่วมกิจกรรม', '/', ['class'=>['button', 'bayern']]); ?>
+        <?php echo Html::a('สมัครเข้าร่วมกิจกรรม', Yii::$app->urlManager->createUrl('site/register'), ['class'=>['button', 'bayern']]); ?>
       </div>
     </div>
   </div>
