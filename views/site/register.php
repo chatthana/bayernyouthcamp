@@ -17,6 +17,7 @@ use yii\widgets\ActiveForm;
 
       <?php $form = ActiveForm::begin([
         "id"=>"registration-form",
+        // "enableClientValidation"=>false
       ]); ?>
 
       <ul>
@@ -39,7 +40,7 @@ use yii\widgets\ActiveForm;
           <?php echo $form->field($model, 'nickname', ['inputOptions' => ['placeholder' => $model->getAttributeLabel('nickname')]])->label(false); ?>
         </li>
         <li class="clearfix">
-          <?php echo $form->field($model, 'birthdate', ['options' => ['class' => 'form-group span-2-6'], 'inputOptions' => ['placeholder' => $model->getAttributeLabel('birthdate')]])->input('date')->label(false); ?>
+          <?php echo $form->field($model, 'birthdate', ['options' => ['class' => 'form-group span-2-6'], 'inputOptions' => ['class' => 'datepicker','placeholder' => $model->getAttributeLabel('birthdate')]])->label(false); ?>
           <?php echo $form->field($model, 'age', ['options' => ['class' => 'form-group span-2-6'], 'inputOptions' => ['placeholder' => $model->getAttributeLabel('age')]])->label(false); ?>
           <?php echo $form->field($model, 'weight', ['options' => ['class' => 'form-group span-1-6'], 'inputOptions' => ['placeholder' => $model->getAttributeLabel('weight')]])->label(false); ?>
           <?php echo $form->field($model, 'height', ['options' => ['class' => 'form-group span-1-6'], 'inputOptions' => ['placeholder' => $model->getAttributeLabel('height')]])->label(false); ?>
@@ -60,13 +61,12 @@ use yii\widgets\ActiveForm;
           <?php echo $form->field($model, 'email', ['inputOptions' => ['placeholder' => $model->getAttributeLabel('email')]])->label(false); ?>
           <?php echo $form->field($model, 'foot', ['inputOptions' => ['placeholder' => $model->getAttributeLabel('foot')]])->label(false); ?>
           <?php echo $form->field($model, 'preferred_position', ['inputOptions' => ['placeholder' => $model->getAttributeLabel('preferred_position')]])->label(false); ?>
-          <?php echo $form->field($model, 'preferred_position', ['inputOptions' => ['placeholder' => $model->getAttributeLabel('preferred_position')]])->label(false); ?>
+          <?php echo $form->field($model, 'preferred_position', ['inputOptions' => ['placeholder' => $model->getAttributeLabel('preferred_position_alternative')]])->label(false); ?>
         </li>
         <li class="col-2 clearfix">
           <?php echo $form->field($model, 'guardian_name', ['inputOptions' => ['placeholder' => $model->getAttributeLabel('guardian_name')]])->label(false); ?>
           <?php echo $form->field($model, 'guardian_telephone', ['inputOptions' => ['placeholder' => $model->getAttributeLabel('guardian_telephone')]])->label(false); ?>
         </li>
-        <li><?php echo Html::submitButton('ยืนยันการสมัคร', ['class'=>'button']) ?></li>
 
       </ul>
 
@@ -109,7 +109,29 @@ use yii\widgets\ActiveForm;
         </ul>
       </div>
 
+      <div id="remarks">
+        <h5>หมายเหตุ</h5>
+        <ul>
+          <li><strong>ผู้สมัคร รวมถึงครอบครัวแะลผู้ติดตามยินยอมให้บันทึกภาพ โดยทางรายการจะเป็นผู้พิจารณาภาพที่จะนำไปออกอากาศทั้งหมด</strong></li>
+          <li>หากมีการตรวจพบในภายหลังว่าหลักฐานและ/หรือข้อความที่ได้แจ้งไว้ในใบสมัครเป็นเท็จ หรือหลักฐานประกอบการสมัครเป็นเท็จหรือปลอม ผู้สมัครจะถูกเพิกถอนสิทธิในการรับคัดเลือกครั้งนี้ไม่ว่าผู้สมัครจะผ่านการคัดเลือกหรือไม่</li>
+        </ul>
+      </div>
+
+      <div id="acceptance">
+        <?php
+          echo $form->field($model, 'accepted')->radio(['label'=>'<div class="radio-left">ข้าพเจ้าขอรับรองว่า ข้อความข้างต้นเป็นความจริงทุกประการ</div>'])->label(false);
+        ?>
+      </div>
+
+      <div id="submit-button-container">
+        <?php echo Html::submitButton('สมัคร', ['class'=>'button']); ?>
+      </div>
+
       <?php ActiveForm::end(); ?>
+
     </div>
   </div>
 </section>
+<script type="text/javascript">
+  var $$ = jQuery.noConflict();
+</script>

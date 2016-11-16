@@ -31,13 +31,17 @@ class RegistrationForm extends Model {
   // Image Upload
   public $identity_card;
 
+  // Accept the form
+  public $accepted;
+
 
   public function rules() {
     return [
       [['firstname', 'lastname', 'nickname', 'birthdate', 'age', 'weight', 'height', 'school', 'level', 'address', 'telephone', 'line_id', 'facebook_link', 'email', 'foot', 'preferred_position', 'guardian_name', 'guardian_telephone', 'arena'], 'required', 'message' => '{attribute} ห้ามเป็นค่าว่าง'],
       ['email', 'email'],
       [['telephone', 'guardian_telephone'], 'integer', 'message' => '{attribute} ต้องเป็นตัวเลขเท่านั้น'],
-      [['identity_card'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png,jpg']
+      [['identity_card'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png,jpg'],
+      // ['accepted' => 1]
     ];
   }
 
@@ -58,7 +62,8 @@ class RegistrationForm extends Model {
       'facebook_link' => 'Facebook Profile',
       'email' => 'อีเมล์',
       'foot' => 'เท้าที่ถนัด',
-      'preferred_position' => 'ตำแหน่งที่ถนัด',
+      'preferred_position' => 'ตำแหน่งที่ถนัด (1)',
+      'preferred_position_alternative' => 'ตำแหน่งที่ถนัด (2)',
       'guardian_name' => 'ชื่อ - นามสกุลผู้ปกครอง',
       'guardian_telephone' => 'เบอร์โทรศัพท์ผู้ปกครอง'
     ];

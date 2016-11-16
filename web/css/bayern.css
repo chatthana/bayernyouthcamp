@@ -82,80 +82,80 @@
   width:100%;
 }
 
-#registration-form {
+#registration-content #registration-form-container #registration-form {
   position:relative;
   padding:50px 0 100px;
 }
 
-#registration-form ul > li {
+#registration-content #registration-form-container #registration-form ul > li {
   position:relative;
   margin-top:20px;
 }
 
-#registration-form ul > li .form-group {
+#registration-content #registration-form-container #registration-form ul > li .form-group {
   position:relative;
   float:left;
   width:100%;
   padding:0 20px;
 }
 
-#registration-form ul > li.col-2 .form-group {
+#registration-content #registration-form-container #registration-form ul > li.col-2 .form-group {
   width:calc(100%/2);
 }
 
-#registration-form ul > li.col-3 .form-group {
+#registration-content #registration-form-container #registration-form ul > li.col-3 .form-group {
   width:calc(100%/3);
 }
 
-#registration-form ul > li.col-4 .form-group {
+#registration-content #registration-form-container #registration-form ul > li.col-4 .form-group {
   width:calc(100%/4);
 }
 
-#registration-form ul > li .form-group:first-child {
+#registration-content #registration-form-container #registration-form ul > li .form-group:first-child {
   padding-left:0;
 }
 
-#registration-form ul > li .form-group:last-child {
+#registration-content #registration-form-container #registration-form ul > li .form-group:last-child {
   padding-right:0;
 }
 
-#registration-form .form-group.span-1-6 {
+#registration-content #registration-form-container #registration-form .form-group.span-1-6 {
   width:calc(100%/6);
 }
 
-#registration-form .form-group.span-2-6 {
+#registration-content #registration-form-container #registration-form .form-group.span-2-6 {
   width:calc((100%/6)*2);
 }
 
-#registration-form .form-group.span-3-6 {
+#registration-content #registration-form-container #registration-form .form-group.span-3-6 {
   width:calc((100%/6)*3);
 }
 
-#registration-form .form-group.span-4-6 {
+#registration-content #registration-form-container #registration-form .form-group.span-4-6 {
   width:calc((100%/6)*4);
 }
 
-#registration-form .form-group.span-5-6 {
+#registration-content #registration-form-container #registration-form .form-group.span-5-6 {
   width:calc((100%/6)*5);
 }
 
-#registration-form .form-group.span-6-6 {
+#registration-content #registration-form-container #registration-form .form-group.span-6-6 {
   width:calc((100%/6)*6);
 }
 
-#registration-form input[type=text], #registration-form input[type=date] {
+#registration-content #registration-form-container #registration-form input[type=text], #registration-form input[type=date] {
   border-radius:25px;
   padding:8px 16px;
   background-color:#f3f3f3;
   border:0;
 }
 
-#registration-form input[type=date] {
+#registration-content #registration-form-container #registration-form input[type=date] {
    width:100%;
    outline:0 none;
 }
 
-#registration-form .id-card-uploader {
+#registration-content #registration-form-container #registration-form .id-card-uploader {
   position:relative;
   overflow:hidden;
   margin:10px;
@@ -163,7 +163,7 @@
   background-color:#961933;
 }
 
-#registration-form .id-card-uploader input[type=file] {
+#registration-content #registration-form-container #registration-form .id-card-uploader input[type=file] {
   position:absolute;
   top:0;
   right:0;
@@ -175,25 +175,93 @@
   filter:alpha(opacity=0);
 }
 
-#registration-form #registration-form-arenas ul > li .form-group {
+#registration-content #registration-form-container #registration-form #registration-form-arenas {
+  position:relative;
+  margin-top:60px;
+}
+
+#registration-content #registration-form-container #registration-form #registration-form-arenas ul > li .form-group {
   position:relative;
   vertical-align:middle;
   color:#a5a5a5;
 }
 
-#registration-form #registration-form-arenas ul > li .form-group input[type=radio] {
+#registration-content #registration-form-container #registration-form #registration-form-arenas ul > li .form-group input[type=radio] {
   display:block;
   padding:2px;
   float:left;
 }
 
-#registration-form #registration-form-arenas ul > li .form-group .radio-left {
+#registration-content #registration-form-container #registration-form #registration-form-arenas ul > li .form-group .radio-left {
   display:block;
   margin-left:10px;
   float:left;
 }
 
-#registration-form #registration-form-arenas ul > li .form-group .radio-right {
+#registration-content #registration-form-container #registration-form #registration-form-arenas ul > li .form-group .radio-right {
   display:block;
   float:right;
+}
+
+#registration-content #registration-form-container #registration-form #remarks {
+  position:relative;
+  margin-top:50px;
+  color:#961933;
+}
+
+#registration-content #registration-form-container #registration-form #remarks h5 {
+  font-weight:400;
+}
+
+#registration-content #registration-form-container #registration-form #remarks ul > li {
+  margin-top:5px;
+  line-height:26px;
+}
+
+#registration-content #registration-form-container #registration-form #remarks ul > li strong {
+  font-weight:600;
+}
+
+#registration-content #registration-form-container #registration-form #remarks ul > li:before {
+  content:'- ';
+}
+
+#registration-content #registration-form-container #registration-form #remarks ul > li:first-child {
+  margin-top:0;
+}
+
+#registration-content #registration-form-container #registration-form #acceptance {
+  position:relative;
+  margin-top:50px;
+  text-align:center;
+}
+
+
+#registration-content #registration-form-container #registration-form #acceptance .form-group {
+  display:inline-block;
+}
+
+#registration-content #registration-form-container #registration-form #acceptance input[type=radio] {
+  display:block;
+  padding:2px;
+  float:left;
+}
+
+#registration-content #registration-form-container #registration-form #acceptance .radio-left {
+  float:left;
+  margin-left:5px;
+  font-size:1.25em;
+  color:#961933;
+}
+
+#registration-content #registration-form-container #registration-form #submit-button-container {
+  position:relative;
+  margin-top:50px;
+  text-align:center;
+}
+
+#registration-content #registration-form-container #registration-form #submit-button-container button {
+  border-radius:30px;
+  background-color:#961933;
+  cursor:pointer;
 }

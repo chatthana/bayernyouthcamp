@@ -12,9 +12,9 @@ class BayernAsset extends AssetBundle {
     "css/bayern.css"
   ];
   public $js = [
-    // "js/bayern.js"
+    "js/bayern.js"
   ];
-  public $jsOptions = ["position" => \yii\web\View::POS_HEAD];
+  // public $jsOptions = ["position" => \yii\web\View::POS_HEAD];
   public $depends = [
     "app\assets\RequiredAsset",
   ];
@@ -26,10 +26,13 @@ class RequiredAsset extends AssetBundle {
   public $sourcePath = "@bower";
   public $css = [
     "css-reset/reset.min.css",
+    "jquery-ui/themes/smoothness/jquery-ui.min.css"
   ];
   public $js = [
     "jquery/dist/jquery.min.js",
-    "scrollreveal/dist/scrollreveal.min.js"
+    "jquery-ui/jquery-ui.min.js",
+    "jquery-ui/ui/widgets/datepicker.js",
+    // "scrollreveal/dist/scrollreveal.min.js"
   ];
   public $jsOptions = ["position" => \yii\web\View::POS_HEAD];
 }

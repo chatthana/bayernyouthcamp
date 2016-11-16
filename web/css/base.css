@@ -71,6 +71,8 @@ p {
   color:#fff;
   border-radius:3px;
   background-color:#dadada;
+  cursor:pointer;
+  font-family:inherit;
 }
 
 .button.bayern {
