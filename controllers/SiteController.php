@@ -9,6 +9,7 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\RegistrationForm;
+use yii\web\UploadedFile;
 
 class SiteController extends Controller
 {
@@ -126,6 +127,16 @@ class SiteController extends Controller
 
     public function actionRegister() {
       $model = new RegistrationForm();
+      if (Yii::$app->request->post()) {
+        if ($model->load(Yii::$app->request->post())) {
+          $model->identity_card = UploadedFile::getInstance($model, 'identity_card');
+          if ($model->upload()) {
+            var_dump($model->attributes);
+            die();
+            return true;
+          }
+        }
+      }
       return $this->render('register', ['model'=>$model]);
     }
 }

@@ -72,38 +72,39 @@ use yii\widgets\ActiveForm;
 
       <div id="registration-form-arenas">
         <ul>
+          <?php $radioTemplate = '<div class="radio clearfix">{input}<div class="radio-label">{label}</div>{error}</div>'; ?>
           <li class="clearfix">
-            <?php echo $form->field($model, 'arena')->radio(['label'=>'<div class="radio-left">กรุงเทพมหานคร ณ สนามธรรมศาสตร์ รังสิต</div><div class="radio-right">วันที่ 23 มกราคม 2560</div>'])->label(false); ?>
+            <?php echo $form->field($model, 'arena', ['template' => $radioTemplate])->input('radio')->label('<div class="radio-left">กรุงเทพมหานคร ณ สนามกีฬาธรรมศาสตร์ รังสิต</div><div class="radio-right">วันที่ 23 มกราคม 2560</div>'); ?>
           </li>
           <li class="clearfix">
-            <?php echo $form->field($model, 'arena')->radio(['label'=>'<div class="radio-left">จังหวัดเชียงราย ณ สนามยูไนเต็ด สเตเดี้ยม</div><div class="radio-right">วันที่ 23 มกราคม 2560</div>'])->label(false); ?>
+            <?php echo $form->field($model, 'arena', ['template' => $radioTemplate])->input('radio')->label('<div class="radio-left">จังหวัดเชียงราย ณ สนามยูไนเต็ด สเตเดี้ยม</div><div class="radio-right">วันที่ 23 มกราคม 2560</div>'); ?>
           </li>
           <li class="clearfix">
-            <?php echo $form->field($model, 'arena')->radio(['label'=>'<div class="radio-left">จังหวัดภูเก็ต ณ สนามกีฬาสุระกุล</div><div class="radio-right">วันที่ 23 มกราคม 2560</div>'])->label(false); ?>
+            <?php echo $form->field($model, 'arena', ['template' => $radioTemplate])->input('radio')->label('<div class="radio-left">จังหวัดเชียงราย ณ สนามยูไนเต็ด สเตเดี้ยม</div><div class="radio-right">วันที่ 23 มกราคม 2560</div>'); ?>
           </li>
           <li class="clearfix">
-            <?php echo $form->field($model, 'arena')->radio(['label'=>'<div class="radio-left">จังหวัดนครราชสีมา ณ สนามราชสีมาวิทยาลัย</div><div class="radio-right">วันที่ 23 มกราคม 2560</div>'])->label(false); ?>
+            <?php echo $form->field($model, 'arena', ['template' => $radioTemplate])->input('radio')->label('<div class="radio-left">จังหวัดนครราชสีมา ณ สนามราชสีมาวิทยาลัย</div><div class="radio-right">วันที่ 23 มกราคม 2560</div>'); ?>
           </li>
           <li class="clearfix">
-            <?php echo $form->field($model, 'arena')->radio(['label'=>'<div class="radio-left">จังหวัดขอนแก่น ณ สนามวิทยาลัยบัณฑิตเอเชีย</div><div class="radio-right">วันที่ 23 มกราคม 2560</div>'])->label(false); ?>
+            <?php echo $form->field($model, 'arena', ['template' => $radioTemplate])->input('radio')->label('<div class="radio-left">จังหวัดขอนแก่น ณ สนามวิทยาลัยบัณฑิตเอเชีย</div><div class="radio-right">วันที่ 23 มกราคม 2560</div>'); ?>
           </li>
           <li class="clearfix">
-            <?php echo $form->field($model, 'arena')->radio(['label'=>'<div class="radio-left">จังหวัดนครสวรรค์ ณ สนามโรงเรียนกีฬาจังหวัดนครสวรรค์</div><div class="radio-right">วันที่ 23 มกราคม 2560</div>'])->label(false); ?>
+            <?php echo $form->field($model, 'arena', ['template' => $radioTemplate])->input('radio')->label('<div class="radio-left">จังหวัดนครสวรรค์ ณ สนามโรงเรียนกีฬาจังหวัดนครสวรรค์</div><div class="radio-right">วันที่ 23 มกราคม 2560</div>'); ?>
           </li>
           <li class="clearfix">
-            <?php echo $form->field($model, 'arena')->radio(['label'=>'<div class="radio-left">จังหวัดสุพรรณบุรี ณ สนามโรงเรียนกีฬาจังหวัดสุพรรณบุรี</div><div class="radio-right">วันที่ 23 มกราคม 2560</div>'])->label(false); ?>
+            <?php echo $form->field($model, 'arena', ['template' => $radioTemplate])->input('radio')->label('<div class="radio-left">จังหวัดสุพรรณบุรี ณ สนามโรงเรียนกีฬาจังหวัดสุพรรณบุรี</div><div class="radio-right">วันที่ 23 มกราคม 2560</div>'); ?>
           </li>
           <li class="clearfix">
-            <?php echo $form->field($model, 'arena')->radio(['label'=>'<div class="radio-left">จังหวัดเชียงใหม่ ณ สนามกีฬาเทศบาลเมืองเชียงใหม่</div><div class="radio-right">วันที่ 23 มกราคม 2560</div>'])->label(false); ?>
+            <?php echo $form->field($model, 'arena', ['template' => $radioTemplate])->input('radio')->label('<div class="radio-left">จังหวัดเชียงใหม่ ณ สนามกีฬาเทศบาลเมืองเชียงใหม่</div><div class="radio-right">วันที่ 23 มกราคม 2560</div>'); ?>
           </li>
           <li class="clearfix">
-            <?php echo $form->field($model, 'arena')->radio(['label'=>'<div class="radio-left">จังหวัดระยอง ณ สนามกีฬาพีทีทีสเตเดี้ยม</div><div class="radio-right">วันที่ 23 มกราคม 2560</div>'])->label(false); ?>
+            <?php echo $form->field($model, 'arena', ['template' => $radioTemplate])->input('radio')->label('<div class="radio-left">จังหวัดระยอง ณ สนามกีฬาพีทีทีสเตเดี้ยม</div><div class="radio-right">วันที่ 23 มกราคม 2560</div>'); ?>
           </li>
           <li class="clearfix">
-            <?php echo $form->field($model, 'arena')->radio(['label'=>'<div class="radio-left">จังหวัดราชบุรี ณ สนามค่ายภานุรังสี</div><div class="radio-right">วันที่ 23 มกราคม 2560</div>'])->label(false); ?>
+            <?php echo $form->field($model, 'arena', ['template' => $radioTemplate])->input('radio')->label('<div class="radio-left">จังหวัดราชบุรี ณ สนามค่ายภานุรังสี</div><div class="radio-right">วันที่ 23 มกราคม 2560</div>'); ?>
           </li>
           <li class="clearfix">
-            <?php echo $form->field($model, 'arena')->radio(['label'=>'<div class="radio-left">กรุงเทพมหานคร ณ สนามกีฬาธรรมศาสตร์ รังสิต</div><div class="radio-right">วันที่ 23 มกราคม 2560</div>'])->label(false); ?>
+            <?php echo $form->field($model, 'arena', ['template' => $radioTemplate])->input('radio', ['value' => 'thammasat2'])->label('<div class="radio-left">กรุงเทพมหานคร ณ สนามกีฬาธรรมศาสตร์ รังสิต</div><div class="radio-right">วันที่ 23 มกราคม 2560</div>'); ?>
           </li>
 
         </ul>
@@ -118,13 +119,15 @@ use yii\widgets\ActiveForm;
       </div>
 
       <div id="acceptance">
-        <?php
-          echo $form->field($model, 'accepted')->radio(['label'=>'<div class="radio-left">ข้าพเจ้าขอรับรองว่า ข้อความข้างต้นเป็นความจริงทุกประการ</div>'])->label(false);
-        ?>
+          <?php echo $form->field($model, 'accepted', ['template' => $radioTemplate])->input('radio', ['value' => 'accepted'])->label('<div class="radio-left">ข้าพเจ้าขอรับรองว่า ข้อความข้างต้นเป็นความจริงทุกประการ</div>'); ?>
       </div>
 
       <div id="submit-button-container">
         <?php echo Html::submitButton('สมัคร', ['class'=>'button']); ?>
+      </div>
+
+      <div class="test">
+        <?php echo $form->errorSummary($model); ?>
       </div>
 
       <?php ActiveForm::end(); ?>

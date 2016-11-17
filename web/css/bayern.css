@@ -188,8 +188,17 @@
 
 #registration-content #registration-form-container #registration-form #registration-form-arenas ul > li .form-group input[type=radio] {
   display:block;
-  padding:2px;
+  margin:3spx;
   float:left;
+}
+
+#registration-content #registration-form-container #registration-form #registration-form-arenas ul > li .form-group .radio-label .control-label:before {
+  content:'';
+  display:table;
+}
+
+#registration-content #registration-form-container #registration-form #registration-form-arenas ul > li .form-group .radio-label .control-label:after {
+  clear:both;
 }
 
 #registration-content #registration-form-container #registration-form #registration-form-arenas ul > li .form-group .radio-left {
@@ -241,9 +250,14 @@
   display:inline-block;
 }
 
+#registration-content #registration-form-container #registration-form #acceptance .form-group .radio-label {
+  position:relative;
+  float:left;
+}
+
 #registration-content #registration-form-container #registration-form #acceptance input[type=radio] {
   display:block;
-  padding:2px;
+  margin:3px;
   float:left;
 }
 
