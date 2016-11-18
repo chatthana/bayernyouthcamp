@@ -128,14 +128,9 @@ class SiteController extends Controller
     public function actionRegister() {
       $model = new RegistrationForm();
       if (Yii::$app->request->post()) {
-        if ($model->load(Yii::$app->request->post())) {
-          $model->identity_card = UploadedFile::getInstance($model, 'identity_card');
-          if ($model->upload()) {
-            var_dump($model->attributes);
-            die();
-            return true;
-          }
-        }
+        $model->load(Yii::$app->request->post());
+        var_dump($model->firstname);
+        die();
       }
       return $this->render('register', ['model'=>$model]);
     }

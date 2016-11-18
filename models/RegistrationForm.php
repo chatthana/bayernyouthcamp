@@ -37,9 +37,10 @@ class RegistrationForm extends Model {
 
   public function rules() {
     return [
-      [['firstname', 'lastname', 'nickname', 'birthdate', 'age', 'weight', 'height', 'school', 'level', 'address', 'telephone', 'line_id', 'facebook_link', 'email', 'foot', 'preferred_position', 'guardian_name', 'guardian_telephone', 'arena', 'accepted'], 'required', 'message' => '{attribute} ห้ามเป็นค่าว่าง'],
-      ['email', 'email'],
-      [['telephone', 'guardian_telephone'], 'integer', 'message' => '{attribute} ต้องเป็นตัวเลขเท่านั้น'],
+      // [['firstname', 'lastname', 'nickname', 'birthdate', 'age', 'weight', 'height', 'school', 'level', 'address', 'telephone', 'line_id', 'facebook_link', 'email', 'foot', 'preferred_position', 'guardian_name', 'guardian_telephone', 'arena', 'accepted'], 'required', 'message' => '{attribute} ห้ามเป็นค่าว่าง'],
+      // ['email', 'email'],
+      ['firstname', 'required'],
+      // [['telephone', 'guardian_telephone'], 'integer', 'message' => '{attribute} ต้องเป็นตัวเลขเท่านั้น'],
       [['identity_card'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png,jpg'],
     ];
   }
@@ -70,11 +71,15 @@ class RegistrationForm extends Model {
 
   public function upload() {
     // if ($this->validate()) {
-      $this->identity_card->saveAs(Yii::getAlias('@webroot') . '/uploads/' . $this->identity_card->basename . '.' . $this->identity_card->extension);
-      return true;
+      // $this->identity_card->saveAs(Yii::getAlias('@webroot') . '/uploads/' . $this->identity_card->basename . '.' . $this->identity_card->extension);
+      // return true;
     // } else {
       // return false;
     // }
+    if ($this->validate()) {
+      die('fuck');
+    }
+    die();
   }
 
 }
