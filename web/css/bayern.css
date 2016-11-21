@@ -143,14 +143,14 @@
   width:calc((100%/6)*6);
 }
 
-#registration-content #registration-form-container #registration-form input[type=text], #registration-form input[type=date] {
+#registration-content #registration-form-container #registration-form input[type=text], #registration-form input[type=date], select {
   border-radius:25px;
   padding:8px 16px;
   background-color:#f3f3f3;
   border:0;
 }
 
-#registration-content #registration-form-container #registration-form input[type=date] {
+#registration-content #registration-form-container #registration-form input[type=date], select {
    width:100%;
    outline:0 none;
 }

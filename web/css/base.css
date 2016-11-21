@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css?family=Kanit:100,100i,200,200i,300,300i,400,400i,500,500i,600,700,800,900');
+@import url('https://fonts.googleapis.com/css?family=Prompt:100,100i,200,200i,300,300i,400,400i,500,500i,600,700,800,900');
 
 html,body {
-  font-family: 'Kanit', sans-serif;
+  font-family: 'Prompt', sans-serif;
   height:100%;
   font-size:100%;
 }
@@ -136,7 +136,7 @@ header {
   position:relative;
   background-color:#961933;
   color:#fff;
-  padding:10px;
+  /*padding:10px;*/
   line-height:60px;
   /*border-bottom:1px solid #dadada;*/
   z-index:10;
@@ -146,6 +146,7 @@ header #logo {
   display:block;
   float:left;
   width:150px;
+  padding:10px 0;
 }
 
 header #logo img {
@@ -160,7 +161,15 @@ header nav {
 
 header nav ul > li {
   float:left;
-  margin:0 20px;
+  margin:0 10px;
+  padding:10px 20px;
+  transition:background-color 250ms;
+  -webkit-transition:background-color 250ms;
+}
+
+header nav ul > li:hover {
+  background-color:#fff;
+  color:#961933;
 }
 
 header nav ul > li a {
