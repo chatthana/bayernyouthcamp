@@ -7,12 +7,16 @@ use yii\widgets\ActiveForm;
     <div id="registration-form-container">
 
       <div id="registration-form-header">
-        <div class="bayern-vertical-logo">
+        <!-- <div class="bayern-vertical-logo">
           <?php echo Html::img('@web/images/vertical-logo.png'); ?>
+        </div> -->
+        <div class="bayern-sponsored">
+          <?php echo Html::img('@web/images/registration_wkn.png'); ?>
+          <?php echo Html::img('@web/images/vertical_logo_2.png'); ?>
+          <?php echo Html::img('@web/images/registration_stb.png'); ?>
         </div>
-        <div class="bayern-wangkanai">
-          <?php echo Html::img('@web/images/wangkanai_black.png'); ?>
-        </div>
+
+        <h1>สมัครในนามบุคคล</h1>
       </div>
 
       <?php $form = ActiveForm::begin([
@@ -61,7 +65,7 @@ use yii\widgets\ActiveForm;
           <?php echo $form->field($model, 'email', ['inputOptions' => ['placeholder' => $model->getAttributeLabel('email')]])->label(false); ?>
           <?php echo $form->field($model, 'foot', ['inputOptions' => ['placeholder' => $model->getAttributeLabel('foot')]])->label(false); ?>
           <?php echo $form->field($model, 'preferred_position', ['inputOptions' => ['placeholder' => $model->getAttributeLabel('preferred_position')]])->label(false); ?>
-          <?php echo $form->field($model, 'preferred_position', ['inputOptions' => ['placeholder' => $model->getAttributeLabel('preferred_position_alternative')]])->label(false); ?>
+          <?php echo $form->field($model, 'preferred_position_alternative', ['inputOptions' => ['placeholder' => $model->getAttributeLabel('preferred_position_alternative')]])->label(false); ?>
         </li>
         <li class="col-2 clearfix">
           <?php echo $form->field($model, 'guardian_name', ['inputOptions' => ['placeholder' => $model->getAttributeLabel('guardian_name')]])->label(false); ?>
@@ -73,6 +77,7 @@ use yii\widgets\ActiveForm;
       <div id="registration-form-arenas">
         <ul>
           <?php $radioTemplate = '<div class="radio clearfix">{input}<div class="radio-label">{label}</div>{error}</div>'; ?>
+          <?php $radioTemplate = '<label class="radio-label"><div class="radio-label-input-group">{input}<div class="custom-radio"></div></div></label>{label}'; ?>
           <li class="clearfix">
             <?php echo $form->field($model, 'arena', ['template' => $radioTemplate])->input('radio')->label('<div class="radio-left">กรุงเทพมหานคร ณ สนามกีฬาธรรมศาสตร์ รังสิต</div><div class="radio-right">วันที่ 23 มกราคม 2560</div>'); ?>
           </li>
@@ -135,6 +140,21 @@ use yii\widgets\ActiveForm;
     </div>
   </div>
 </section>
+<!-- <section class="custom-modal">
+  <div class="header">
+    <h1>กรุณายอมรับเงื่อนไข</h1>
+  </div>
+  <div class="body">
+    <p>
+      กรุณายอมรับเงื่อนไข
+    </p>
+  </div>
+</section> -->
 <script type="text/javascript">
-  var $$ = jQuery.noConflict();
+  $('#registration-form-arenas input[type=radio]').change(function() {
+    $('#registration-form-arenas ul > li .radio-label-input-group').removeClass('checked');
+    $('#registration-form-arenas ul > li label + label').css('color', 'inherit');
+    $(this).parent().addClass('checked');
+    $(this).parent().parent().next().css('color', '#961933');
+  });
 </script>

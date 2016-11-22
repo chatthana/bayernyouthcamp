@@ -10,6 +10,7 @@ use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\RegistrationForm;
 use yii\web\UploadedFile;
+use kartik\mpdf\Pdf;
 
 class SiteController extends Controller
 {
@@ -125,12 +126,29 @@ class SiteController extends Controller
         return $this->render('about');
     }
 
+    public function actionConfirm() {
+      $content = "<h1>YOU ARE SUCH A MOTHERFUCKER</h1>";
+      $content .= "<p>Welcome to the black parade</p>";
+      $pdf = new Pdf([
+        'mode' => Pdf::FORMAT_A4,
+        'orientation' => Pdf::ORIENT_PORTRAIT,
+        'destination' => Pdf::DEST_BROWSER,
+        'content' => $content,
+        'methods' => [
+            'SetHeader'=>['Krajee Report Header'],
+            'SetFooter'=>['{PAGENO}'],
+        ]
+      ]);
+      return $pdf->render();
+    }
+
     public function actionRegister() {
       $model = new RegistrationForm();
       if (Yii::$app->request->post()) {
         $model->load(Yii::$app->request->post());
-        var_dump($model->firstname);
-        die();
+        $model->identity_card = UploadedFile::getInstance($model, 'identity_card');
+        $model->upload();
+        return $this->render('individual_render', ['model'=>$model]);
       }
       return $this->render('register', ['model'=>$model]);
     }

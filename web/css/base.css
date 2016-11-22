@@ -75,6 +75,10 @@ p {
   font-family:inherit;
 }
 
+.button.blue {
+  background-color:#5e9ed6;
+}
+
 .button.bayern {
   background-color:#961933;
 }
@@ -209,4 +213,15 @@ footer #sponsors .sponsor-img {
 footer #sponsors .sponsor-img img {
   max-width:100%;
   vertical-align:middle;
+}
+
+.custom-modal {
+  position:fixed;
+  width:500px;
+  top:50%;
+  left:50%;
+  margin-left:-250px;
+  background-color:#fff;
+  border-radius:5px;
+  color:#515151;
 }
