@@ -127,15 +127,16 @@ class SiteController extends Controller
     }
 
     public function actionConfirm() {
-      $content = "<h1>YOU ARE SUCH A MOTHERFUCKER</h1>";
+      $content = $this->renderPartial('_sponsored');
       $content .= "<p>Welcome to the black parade</p>";
       $pdf = new Pdf([
         'mode' => Pdf::FORMAT_A4,
         'orientation' => Pdf::ORIENT_PORTRAIT,
         'destination' => Pdf::DEST_BROWSER,
         'content' => $content,
+        'cssFile' => '@webroot/css/base.css',
         'methods' => [
-            'SetHeader'=>['Krajee Report Header'],
+            'SetHeader'=>['Bayern Youth Cup 2017'],
             'SetFooter'=>['{PAGENO}'],
         ]
       ]);

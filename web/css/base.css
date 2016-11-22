@@ -3,7 +3,7 @@
 html,body {
   font-family: 'Prompt', sans-serif;
   height:100%;
-  font-size:100%;
+  font-size:300%;
 }
 
 * {
@@ -77,6 +77,10 @@ p {
 
 .button.blue {
   background-color:#5e9ed6;
+}
+
+.button.red {
+  background-color:#f15b5b;
 }
 
 .button.bayern {
@@ -224,4 +228,19 @@ footer #sponsors .sponsor-img img {
   background-color:#fff;
   border-radius:5px;
   color:#515151;
+}
+
+/** GLOBAL HEADER **/
+.global-sponsored-header {
+  position:relative;
+  margin:15px 0 50px;
+  text-align:center;
+}
+
+.global-sponsored-header img {
+  display:inline-block !important;
+  margin:0 10px;
+  /*width:0px;*/
+  width:11px;
+  height:auto;
 }

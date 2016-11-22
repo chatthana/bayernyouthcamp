@@ -4,6 +4,7 @@ use yii\helpers\Html;
 
 <section class="registration-render">
   <div class="wrapper">
+    <?php echo $this->render('_sponsored'); ?>
     <div class="header">
       <h1>กรุณาตรวจสอบข้อมูล</h1>
       <p>หากยืนยันแล้วจะไม่สามารถแก้ไขข้อมูลได้ในภายหลัง</p>
@@ -37,8 +38,9 @@ use yii\helpers\Html;
         <p class="col-4"><span>ชื่อ - นามสกุลผู้ปกครอง : </span> <?= $model->guardian_name ?></p>
         <p class="col-2"><span>เบอร์โทรศัพท์ : </span> <?= $model->guardian_telephone ?></p>
       </div>
-      <div class="row">
+      <div class="row" style="text-align:center; margin-top:35px;">
         <?php echo Html::a('ยืนยันการสมัคร', Yii::$app->urlManager->createUrl(['site/confirm', 'mode'=>'approved']), ['class'=>'button blue']); ?>
+        <?php echo Html::a('กลับไปแก้ไข', Yii::$app->urlManager->createUrl(['site/register']), ['class'=>'button red']); ?>
       </div>
   </div>
 </section>
