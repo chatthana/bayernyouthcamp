@@ -128,19 +128,21 @@ class SiteController extends Controller
 
     public function actionConfirm() {
       $content = $this->renderPartial('_sponsored');
-      $content .= "<p>Welcome to the black parade</p>";
+      // die($content);
       $pdf = new Pdf([
-        'mode' => Pdf::FORMAT_A4,
+        'mode' => 'utf-8',
+        'format' => Pdf::FORMAT_A4,
         'orientation' => Pdf::ORIENT_PORTRAIT,
         'destination' => Pdf::DEST_BROWSER,
         'content' => $content,
-        'cssFile' => '@webroot/css/base.css',
-        'methods' => [
-            'SetHeader'=>['Bayern Youth Cup 2017'],
-            'SetFooter'=>['{PAGENO}'],
-        ]
+        'cssFile' => '@webroot/css/pdf.css'
+        // 'methods' => [
+        //     'SetHeader'=>['Bayern Youth Cup 2017'],
+        //     'SetFooter'=>['{PAGENO}'],
+        // ]
       ]);
       return $pdf->render();
+      // return $this->renderPartial('_sponsored');
     }
 
     public function actionRegister() {

@@ -1,0 +1,47 @@
+body {
+  font-family: "Garuda";
+  font-size:100%;
+}
+
+.global-sponsored-header {
+  position:relative;
+  text-align:center;
+}
+
+img {
+  display:inline-block;
+  width:120px;
+}
+
+h1,h3 {
+  margin:5px 0;
+}
+
+
+[class^="col"] {
+  float:left;
+}
+
+.col-1 {
+  width:calc(100%/6);
+}
+
+.col-2 {
+  width:calc((100%/6)*2);
+}
+
+.col-3 {
+  width:calc((100%/6)*3);
+}
+
+.col-4 {
+  width:calc((100%/6)*4);
+}
+
+.col-5 {
+  width:calc((100%/6)*5);
+}
+
+.col-6 {
+  width:calc((100%/6)*6);
+}

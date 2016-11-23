@@ -3,7 +3,7 @@
 html,body {
   font-family: 'Prompt', sans-serif;
   height:100%;
-  font-size:300%;
+  font-size:100%;
 }
 
 * {
@@ -240,7 +240,6 @@ footer #sponsors .sponsor-img img {
 .global-sponsored-header img {
   display:inline-block !important;
   margin:0 10px;
-  /*width:0px;*/
-  width:11px;
+  width:230px;
   height:auto;
 }

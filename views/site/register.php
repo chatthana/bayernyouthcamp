@@ -6,15 +6,18 @@ use yii\widgets\ActiveForm;
   <div class="wrapper">
     <div id="registration-form-container">
 
+      <?= $this->render('_sponsored'); ?>
+
       <div id="registration-form-header">
         <!-- <div class="bayern-vertical-logo">
           <?php echo Html::img('@web/images/vertical-logo.png'); ?>
         </div> -->
-        <div class="bayern-sponsored">
+        <!-- <div class="bayern-sponsored">
           <?php echo Html::img('@web/images/registration_wkn.png'); ?>
           <?php echo Html::img('@web/images/vertical_logo_2.png'); ?>
           <?php echo Html::img('@web/images/registration_stb.png'); ?>
-        </div>
+        </div> -->
+
 
         <h1>สมัครในนามบุคคล</h1>
       </div>
