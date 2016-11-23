@@ -25,7 +25,16 @@ $this->beginPage();
           <li><a href="#">Home</a></li>
           <li><a href="#">News & Updates</a></li>
           <li><a href="#">Youth Cups</a></li>
-          <li><a href="#">Register</a></li>
+          <li>
+            <a href="#">Register</a>
+            <div class="dropdown">
+              <ul>
+                <li><?= Html::a('สมัครในนามบุคคล', Yii::$app->urlManager->createUrl('site/register')); ?></li>
+                <li><?= Html::a('สมัครในนามทีม', Yii::$app->urlManager->createUrl('site/register')); ?></li>
+                <li><?= Html::a('สมัครในนามผู้รักษาประตู', Yii::$app->urlManager->createUrl('site/registergk')); ?></li>
+              </ul>
+            </div>
+          </li>
           <li><a href="#">Contact</a></li>
         </ul>
       </nav>

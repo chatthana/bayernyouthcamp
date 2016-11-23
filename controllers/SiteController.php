@@ -155,4 +155,18 @@ class SiteController extends Controller
       }
       return $this->render('register', ['model'=>$model]);
     }
+
+    public function actionRegistergk() {
+      $model = new RegistrationForm();
+      return $this->render('registergk', ['model' => $model]);
+    }
+
+    public function actionRegisterteam() {
+        $this->enableCsrfValidation = false;
+        echo json_encode([
+          "token"=> "3e587udjt9545dfdg0eeedfd",
+          "username"=> "admin",
+          "password_verfied"=> true
+        ]);
+    }
 }

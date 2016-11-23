@@ -168,6 +168,7 @@ header nav {
 }
 
 header nav ul > li {
+  position:relative;
   float:left;
   margin:0 10px;
   padding:10px 20px;
@@ -183,6 +184,31 @@ header nav ul > li:hover {
 header nav ul > li a {
   /*font-size:0.85em;*/
   /*font-weight:800;*/
+}
+
+header nav ul > li .dropdown {
+  display:none;
+  position:absolute;
+  width:320px;
+  /*padding:0 10px;*/
+  background-color:#961933;
+  color:#fff;
+  z-index:999;
+  /*border:1px solid #dadada;*/
+  /*border-top:0;*/
+  /*border-radius:3px;*/
+  left:0;
+  /*top:10px;*/
+}
+
+header nav ul > li:hover .dropdown {
+  display:block;
+}
+
+header nav ul > li .dropdown ul > li {
+  width:100%;
+  padding:0 15px;
+  margin:0;
 }
 
 /* Main Content */

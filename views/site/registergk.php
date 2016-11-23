@@ -17,7 +17,7 @@ use yii\widgets\ActiveForm;
         </div>
 
 
-        <h1>สมัครในนามบุคคล</h1>
+        <h1>สมัครในนามผู้รักษาประตู</h1>
       </div>
 
       <?php $form = ActiveForm::begin([
@@ -62,11 +62,10 @@ use yii\widgets\ActiveForm;
           <?php echo $form->field($model, 'line_id', ['inputOptions' => ['placeholder' => $model->getAttributeLabel('line_id')]])->label(false); ?>
           <?php echo $form->field($model, 'facebook_link', ['inputOptions' => ['placeholder' => $model->getAttributeLabel('facebook_link')]])->label(false); ?>
         </li>
-        <li class="col-4 clearfix">
+        <li class="col-3 clearfix">
           <?php echo $form->field($model, 'email', ['inputOptions' => ['placeholder' => $model->getAttributeLabel('email')]])->label(false); ?>
           <?php echo $form->field($model, 'foot', ['inputOptions' => ['placeholder' => $model->getAttributeLabel('foot')]])->label(false); ?>
-          <?php echo $form->field($model, 'preferred_position', ['inputOptions' => ['placeholder' => $model->getAttributeLabel('preferred_position')]])->label(false); ?>
-          <?php echo $form->field($model, 'preferred_position_alternative', ['inputOptions' => ['placeholder' => $model->getAttributeLabel('preferred_position_alternative')]])->label(false); ?>
+          <?php echo $form->field($model, 'preferred_position', ['inputOptions' => ['value'=>'ผู้รักษาประตู', 'readonly'=>true, 'placeholder' => $model->getAttributeLabel('preferred_position')]])->label(false); ?>
         </li>
         <li class="col-2 clearfix">
           <?php echo $form->field($model, 'guardian_name', ['inputOptions' => ['placeholder' => $model->getAttributeLabel('guardian_name')]])->label(false); ?>
@@ -153,11 +152,12 @@ use yii\widgets\ActiveForm;
 </section> -->
 <script type="text/javascript">
   $('.datepicker').datepicker();
-
   $('#registration-form-arenas input[type=radio]').change(function() {
     $('#registration-form-arenas ul > li .radio-label-input-group').removeClass('checked');
     $('#registration-form-arenas ul > li label + label').css('color', 'inherit');
     $(this).parent().addClass('checked');
     $(this).parent().parent().next().css('color', '#961933');
   });
+
+  var forms = [];
 </script>
