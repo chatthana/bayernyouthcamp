@@ -37,7 +37,7 @@ class RegistrationForm extends Model {
 
   public function rules() {
     return [
-      [['firstname', 'lastname', 'nickname', 'birthdate', 'age', 'weight', 'height', 'school', 'level', 'address', 'telephone', 'line_id', 'facebook_link', 'email', 'foot', 'preferred_position', 'guardian_name', 'guardian_telephone', 'arena', 'accepted'], 'required', 'message' => '{attribute} ห้ามเป็นค่าว่าง'],
+      [['firstname', 'lastname', 'nickname', 'birthdate', 'age', 'weight', 'height', 'school', 'level', 'address', 'telephone', 'line_id', 'facebook_link', 'email', 'foot', 'preferred_position', 'preferred_position_alternative', 'guardian_name', 'guardian_telephone', 'arena', 'accepted'], 'required', 'message' => '{attribute} ห้ามเป็นค่าว่าง'],
       ['email', 'email'],
       [['telephone', 'guardian_telephone'], 'integer', 'message' => '{attribute} ต้องเป็นตัวเลขเท่านั้น'],
       [['identity_card'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png,jpg'],
@@ -67,6 +67,12 @@ class RegistrationForm extends Model {
       'guardian_telephone' => 'เบอร์โทรศัพท์ผู้ปกครอง'
     ];
   }
+
+  // private function validateDropdownlist($attribute, $params) {
+  //   if (empty($this->foot) || $this->foot !== 'Yeah') {
+  //     $this->addError($attribute, 'Wrong');
+  //   }
+  // }
 
   public function upload() {
     if ($this->validate()) {

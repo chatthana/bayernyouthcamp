@@ -64,9 +64,9 @@ use yii\widgets\ActiveForm;
         </li>
         <li class="col-4 clearfix">
           <?php echo $form->field($model, 'email', ['inputOptions' => ['placeholder' => $model->getAttributeLabel('email')]])->label(false); ?>
-          <?php echo $form->field($model, 'foot', ['inputOptions' => ['placeholder' => $model->getAttributeLabel('foot')]])->label(false); ?>
-          <?php echo $form->field($model, 'preferred_position', ['inputOptions' => ['placeholder' => $model->getAttributeLabel('preferred_position')]])->label(false); ?>
-          <?php echo $form->field($model, 'preferred_position_alternative', ['inputOptions' => ['placeholder' => $model->getAttributeLabel('preferred_position_alternative')]])->label(false); ?>
+          <?php echo $form->field($model, 'foot', ['inputOptions' => ['placeholder' => $model->getAttributeLabel('foot')]])->dropDownList(['left'=>'ซ้าย', 'right'=>'ขวา'], ['prompt'=>'--- เท้าที่ถนัด ---'])->label(false); ?>
+          <?php echo $form->field($model, 'preferred_position', ['inputOptions' => ['placeholder' => $model->getAttributeLabel('preferred_position')]])->dropDownList(['bk'=>'กองหลัง', 'ct'=>'กองกลาง', 'fw'=>'กองหน้า'], ['prompt'=>'--- ตำแหน่งที่ถนัด ---'])->label(false); ?>
+          <?php echo $form->field($model, 'preferred_position_alternative', ['inputOptions' => ['placeholder' => $model->getAttributeLabel('preferred_position_alternative')]])->dropDownList(['bk'=>'กองหลัง', 'ct'=>'กองกลาง', 'fw'=>'กองหน้า'], ['prompt'=>'--- ตำแหน่งที่ถนัด ---'])->label(false); ?>
         </li>
         <li class="col-2 clearfix">
           <?php echo $form->field($model, 'guardian_name', ['inputOptions' => ['placeholder' => $model->getAttributeLabel('guardian_name')]])->label(false); ?>
@@ -159,5 +159,9 @@ use yii\widgets\ActiveForm;
     $('#registration-form-arenas ul > li label + label').css('color', 'inherit');
     $(this).parent().addClass('checked');
     $(this).parent().parent().next().css('color', '#961933');
+  });
+
+  $('#registration-form input[type=file]').change(function(e) {
+    $('#id-card-uploader').css('background-color', '#dadada');
   });
 </script>

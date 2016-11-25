@@ -162,11 +162,6 @@ class SiteController extends Controller
     }
 
     public function actionRegisterteam() {
-        $this->enableCsrfValidation = false;
-        echo json_encode([
-          "token"=> "3e587udjt9545dfdg0eeedfd",
-          "username"=> "admin",
-          "password_verfied"=> true
-        ]);
+      
     }
 }
