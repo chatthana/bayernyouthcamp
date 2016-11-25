@@ -9,6 +9,8 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\RegistrationForm;
+use app\models\CoachRegistrationForm;
+use app\models\TeamRegistrationForm;
 use yii\web\UploadedFile;
 use kartik\mpdf\Pdf;
 
@@ -146,7 +148,16 @@ class SiteController extends Controller
     }
 
     public function actionRegister() {
+
       $model = new RegistrationForm();
+
+      if (Yii::$app->request->get('regtype')) {
+        $regType = Yii::$app->request->get('regtype');
+        $model->preferred_position = $regType;
+        $model->preferred_position_alternative = $regType;
+        return $this->render('register', ['model'=>$model]);
+      }
+
       if (Yii::$app->request->post()) {
         $model->load(Yii::$app->request->post());
         $model->identity_card = UploadedFile::getInstance($model, 'identity_card');
@@ -162,6 +173,15 @@ class SiteController extends Controller
     }
 
     public function actionRegisterteam() {
-      
+
+      // Instantiate the coach model
+      $coachModel = new CoachRegistrationForm();
+
+      // We need 7 members per team, so iterate and create array of models here
+      for ($i=0; $i < 7; $i++) {
+        $models[] = new TeamRegistrationForm();
+      }
+
+      return $this->render('teamregister', ['coachModel'=>$coachModel, 'models' => $models]);
     }
 }

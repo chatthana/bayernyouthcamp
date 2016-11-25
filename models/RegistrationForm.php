@@ -68,11 +68,6 @@ class RegistrationForm extends Model {
     ];
   }
 
-  // private function validateDropdownlist($attribute, $params) {
-  //   if (empty($this->foot) || $this->foot !== 'Yeah') {
-  //     $this->addError($attribute, 'Wrong');
-  //   }
-  // }
 
   public function upload() {
     if ($this->validate()) {
@@ -81,10 +76,6 @@ class RegistrationForm extends Model {
     } else {
       return false;
     }
-    // if ($this->validate()) {
-    //   die('fuck');
-    // }
-    // die();
   }
 
 }

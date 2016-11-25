@@ -62,11 +62,11 @@ use yii\widgets\ActiveForm;
           <?php echo $form->field($model, 'line_id', ['inputOptions' => ['placeholder' => $model->getAttributeLabel('line_id')]])->label(false); ?>
           <?php echo $form->field($model, 'facebook_link', ['inputOptions' => ['placeholder' => $model->getAttributeLabel('facebook_link')]])->label(false); ?>
         </li>
-        <li class="col-4 clearfix">
+        <li class="<?= ($model->preferred_position === null) ? 'col-4':'col-3' ?> clearfix">
           <?php echo $form->field($model, 'email', ['inputOptions' => ['placeholder' => $model->getAttributeLabel('email')]])->label(false); ?>
           <?php echo $form->field($model, 'foot', ['inputOptions' => ['placeholder' => $model->getAttributeLabel('foot')]])->dropDownList(['left'=>'ซ้าย', 'right'=>'ขวา'], ['prompt'=>'--- เท้าที่ถนัด ---'])->label(false); ?>
-          <?php echo $form->field($model, 'preferred_position', ['inputOptions' => ['placeholder' => $model->getAttributeLabel('preferred_position')]])->dropDownList(['bk'=>'กองหลัง', 'ct'=>'กองกลาง', 'fw'=>'กองหน้า'], ['prompt'=>'--- ตำแหน่งที่ถนัด ---'])->label(false); ?>
-          <?php echo $form->field($model, 'preferred_position_alternative', ['inputOptions' => ['placeholder' => $model->getAttributeLabel('preferred_position_alternative')]])->dropDownList(['bk'=>'กองหลัง', 'ct'=>'กองกลาง', 'fw'=>'กองหน้า'], ['prompt'=>'--- ตำแหน่งที่ถนัด ---'])->label(false); ?>
+          <?php echo $form->field($model, 'preferred_position', ['inputOptions' => ['placeholder' => $model->getAttributeLabel('preferred_position'), 'disabled'=> ($model->preferred_position === null) ? false:true]])->dropDownList(['gk'=>'ผู้รักษาประตู', 'bk'=>'กองหลัง', 'ct'=>'กองกลาง', 'fw'=>'กองหน้า'], ['prompt'=>'--- ตำแหน่งที่ถนัด ---'])->label(false); ?>
+          <?php echo ($model->preferred_position_alternative !== null) ? '': $form->field($model, 'preferred_position_alternative', ['inputOptions' => ['placeholder' => $model->getAttributeLabel('preferred_position_alternative')]])->dropDownList(['bk'=>'กองหลัง', 'ct'=>'กองกลาง', 'fw'=>'กองหน้า'], ['prompt'=>'--- ตำแหน่งที่ถนัด ---'])->label(false); ?>
         </li>
         <li class="col-2 clearfix">
           <?php echo $form->field($model, 'guardian_name', ['inputOptions' => ['placeholder' => $model->getAttributeLabel('guardian_name')]])->label(false); ?>
