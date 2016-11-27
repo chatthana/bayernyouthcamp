@@ -11,6 +11,9 @@ use app\models\ContactForm;
 use app\models\RegistrationForm;
 use app\models\CoachRegistrationForm;
 use app\models\TeamRegistrationForm;
+use app\models\Teams;
+use app\models\Players;
+use app\models\Coaches;
 use yii\web\UploadedFile;
 use kartik\mpdf\Pdf;
 
@@ -129,12 +132,12 @@ class SiteController extends Controller
     }
 
     public function actionConfirm() {
-      $content = $this->renderPartial('_sponsored');
-      // die($content);
+      $content = $this->renderPartial('_pdf');
       $pdf = new Pdf([
         'mode' => 'utf-8',
         'format' => Pdf::FORMAT_A4,
         'orientation' => Pdf::ORIENT_PORTRAIT,
+        'filename'=>Yii::getAlias('@webroot') . '/pdf/' . 'hello.pdf',
         'destination' => Pdf::DEST_BROWSER,
         'content' => $content,
         'cssFile' => '@webroot/css/pdf.css'
@@ -144,19 +147,11 @@ class SiteController extends Controller
         // ]
       ]);
       return $pdf->render();
-      // return $this->renderPartial('_sponsored');
     }
 
     public function actionRegister() {
 
       $model = new RegistrationForm();
-
-      if (Yii::$app->request->get('regtype')) {
-        $regType = Yii::$app->request->get('regtype');
-        $model->preferred_position = $regType;
-        $model->preferred_position_alternative = $regType;
-        return $this->render('register', ['model'=>$model]);
-      }
 
       if (Yii::$app->request->post()) {
         $model->load(Yii::$app->request->post());
@@ -164,24 +159,120 @@ class SiteController extends Controller
         $model->upload();
         return $this->render('individual_render', ['model'=>$model]);
       }
+
+      // If there is a GET parameter specifying the registration type, parse it to the variable
+      if (Yii::$app->request->get('regtype')) {
+        $regType = Yii::$app->request->get('regtype');
+        $model->preferred_position = $regType;
+        $model->preferred_position_alternative = $regType;
+      }
+
       return $this->render('register', ['model'=>$model]);
     }
 
-    public function actionRegistergk() {
-      $model = new RegistrationForm();
-      return $this->render('registergk', ['model' => $model]);
-    }
+    /**
+      * Register as a team
+      * Two types of participant (Players and coach)
+      * Note : These participants share the same competing arena and must be the same ONLY!!!
+      */
 
     public function actionRegisterteam() {
 
-      // Instantiate the coach model
+      // Instantiate the coach model. We need only one coach per team
       $coachModel = new CoachRegistrationForm();
 
       // We need 7 members per team, so iterate and create array of models here
-      for ($i=0; $i < 7; $i++) {
+      for ($i=0; $i < 3; $i++) {
         $models[] = new TeamRegistrationForm();
+      }
+
+      // If this is a POST request (means forms are summitted)
+      if (Yii::$app->request->post()) {
+
+        $images = UploadedFile::getInstance($model, 'identity_card_files');
+        var_dump($images);
+        die();
+
+        // die('accesed');
+
+        //Assign the post values for coach model
+        $coachModel->load(Yii::$app->request->post());
+
+        // Get instance of the uploaded identity card file
+        $coachModel->identity_card_file = UploadedFile::getInstance($coachModel, 'identity_card_file');
+        // Finally call upload method to save the image with unique file name
+        $_cfilename = \app\components\KeyGenerator::getUniqueName();
+        $coachModel->upload($_cfilename);
+
+        // Assign multiple players to the form model
+        \yii\base\Model::loadMultiple($models, Yii::$app->request->post());
+
+        // Create new activity-based team first
+        $team = new Teams();
+        $team->pretty_unique_id = $coachModel->arena . date('YmdHis');
+        $team->selected_arena = $coachModel->arena;
+        $team->created = date('Y-m-d H:i:s');
+        $team->save();
+
+        // Create the coach record for this team
+        $coach = new Coaches();
+        $coach->name = $coachModel->name;
+        $coach->name_en = $coachModel->name_en;
+        $coach->identity_card_no = $coachModel->identity_card_no;
+        $coach->age = $coachModel->age;
+        $coach->telephone = $coachModel->telephone;
+        $coach->school = $coachModel->school;
+        $coach->address = $coachModel->address;
+        $coach->identity_card_path = '/uploads/identity_cards/' . $_cfilename . $coachModel->identity_card_file->extension;
+        $coach->virtual_team = $team->id;
+        $coach->created = date('Y-m-d H:i:s');
+        $coach->save();
+
+        // Iterate to create players for the team
+        foreach ($models as $model) {
+          // Retrieve uploaded file
+          $model->identity_card_file = UploadedFile::getInstance($model, 'identity_card_file');
+          $_pfilename = \app\components\KeyGenerator::getUniqueName();
+          $model->identity_card_file->saveAs(Yii::getAlias('@webroot' . '/uploads/identity_cards/' . $index . $_pfilename . '.' . $model->identity_card_file->extension));
+
+          $player = new Players();
+          $player->name = $model->name;
+          $player->name_en = $model->name_en;
+          $player->birthdate = $model->birthdate;
+          $player->age = $model->age;
+          $player->identity_card_no = $model->identity_card_no;
+          $player->identity_card_path = '/uploads/identity_cards/' . $_pfilename . '.' . $model->identity_card_file->extension;
+          $player->school = $model->school;
+          $player->year = $model->year;
+          $player->address = $model->address;
+          $player->telephone = $model->telephone;
+          $player->line_id = $model->line_id;
+          $player->facebook_link = $model->facebook_link;
+          $player->email = $model->email;
+          $player->foot = $model->foot;
+          $player->pp = $model->pp;
+          $player->ppa = $model->ppa;
+          $player->weight = $model->weight;
+          $player->height = $model->height;
+          $player->team = $model->team;
+          $player->virtual_team = $team->id;
+          $player->guardian_name = $model->guardian_name;
+          $player->guardian_telephone = $model->guardian_telephone;
+          $player->arena = $coachModel->arena;
+          $player->created = date('Y-m-d H:i:s');
+          $player->save();
+
+          // die('fuck');
+
+        }
       }
 
       return $this->render('teamregister', ['coachModel'=>$coachModel, 'models' => $models]);
     }
+
+    public function actionPreregister() {
+      $regtype = Yii::$app->request->get('type') !== false ? Yii::$app->request->get('type') : NULL;
+      return $this->render('preregister', ['regtype'=>$regtype]);
+    }
+
 }

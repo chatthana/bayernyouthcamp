@@ -29,9 +29,9 @@ $this->beginPage();
             <a href="#">Register</a>
             <div class="dropdown">
               <ul>
-                <li><?= Html::a('สมัครในนามบุคคล', Yii::$app->urlManager->createUrl('site/register')); ?></li>
-                <li><?= Html::a('สมัครในนามทีม', Yii::$app->urlManager->createUrl('site/register')); ?></li>
-                <li><?= Html::a('สมัครในนามผู้รักษาประตู', Yii::$app->urlManager->createUrl('site/registergk')); ?></li>
+                <li><?= Html::a('สมัครในนามบุคคล', Yii::$app->urlManager->createUrl(['site/preregister', 'type'=>'individual'])); ?></li>
+                <li><?= Html::a('สมัครในนามทีม', Yii::$app->urlManager->createUrl(['site/preregister', 'type'=>'team'])); ?></li>
+                <li><?= Html::a('สมัครในนามผู้รักษาประตู', Yii::$app->urlManager->createUrl(['site/preregister', 'regtype'=>'goalkeeper'])); ?></li>
               </ul>
             </div>
           </li>

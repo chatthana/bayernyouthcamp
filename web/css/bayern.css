@@ -56,33 +56,33 @@
   margin:0 auto;
 }
 
-#registration-content #registration-form-container #registration-form-header {
+.registration-form-header {
   position:relative;
   padding:30px 0;
 }
 
-#registration-content #registration-form-container #registration-form-header .bayern-vertical-logo {
+.registration-form-header .bayern-vertical-logo {
   position:absolute;
   width:120px;
   left:0;
   top:-12px;
 }
 
-#registration-content #registration-form-container #registration-form-header .bayern-sponsored {
+.registration-form-header .bayern-sponsored {
   position:relative;
   text-align:center;
 }
 
-#registration-content #registration-form-container #registration-form-header .bayern-sponsored img {
+.registration-form-header .bayern-sponsored img {
   width:230px;
   height:auto;
 }
 
-#registration-content #registration-form-container #registration-form-header img {
+.registration-form-header img {
   width:100%;
 }
 
-#registration-content #registration-form-container #registration-form-header h1 {
+.registration-form-header h1 {
   font-size:1.85em;
   margin-top:35px;
   text-align:center;
@@ -163,7 +163,8 @@
    outline:0 none;
 }
 
-#registration-content #registration-form-container #registration-form .id-card-uploader {
+#registration-content #registration-form-container #registration-form .id-card-uploader,
+.id-card-uploader {
   position:relative;
   overflow:hidden;
   margin:10px;
@@ -171,7 +172,14 @@
   background-color:#961933;
 }
 
-#registration-content #registration-form-container #registration-form .id-card-uploader input[type=file] {
+#registration-content #registration-form-container #registration-form .id-card-uploader.attached,
+.id-card-uploader.attached {
+  background-color:#dadada;
+  color:#fff;
+}
+
+#registration-content #registration-form-container #registration-form .id-card-uploader input[type=file],
+.id-card-uploader input[type=file] {
   position:absolute;
   top:0;
   right:0;
@@ -183,24 +191,32 @@
   filter:alpha(opacity=0);
 }
 
-#registration-content #registration-form-container #registration-form #registration-form-arenas {
+#registration-content #registration-form-container #registration-form #registration-form-arenas,
+.registration-form-arenas {
   position:relative;
   margin-top:60px;
 }
 
-#registration-content #registration-form-container #registration-form #registration-form-arenas ul > li .form-group {
+#registration-content #registration-form-container #registration-form #registration-form-arenas ul > li .form-group,
+.registration-form-arenas ul > li .form-group,
+.acceptance .form-group {
   position:relative;
+  width:100%;
   vertical-align:middle;
   color:#a5a5a5;
 }
 
-#registration-content #registration-form-container #registration-form #registration-form-arenas ul > li .form-group .radio-label {
+#registration-content #registration-form-container #registration-form #registration-form-arenas ul > li .form-group .radio-label,
+.registration-form-arenas ul > li .form-group .radio-label,
+.acceptance .form-group .radio-label {
   position:relative;
   float:left;
   margin:2px;
 }
 
-#registration-content #registration-form-container #registration-form #registration-form-arenas ul > li .form-group .radio-label .radio-label-input-group {
+#registration-content #registration-form-container #registration-form #registration-form-arenas ul > li .form-group .radio-label .radio-label-input-group,
+.registration-form-arenas ul > li .form-group .radio-label .radio-label-input-group,
+.acceptance .form-group .radio-label .radio-label-input-group {
   width:20px;
   height:20px;
   margin:0;
@@ -211,44 +227,72 @@
   background-position:0 0;
 }
 
-#registration-content #registration-form-container #registration-form #registration-form-arenas ul > li .form-group .radio-label .radio-label-input-group.checked {
+#registration-content #registration-form-container #registration-form #registration-form-arenas ul > li .form-group .radio-label .radio-label-input-group.checked,
+.registration-form-arenas ul > li .form-group .radio-label .radio-label-input-group.checked,
+.acceptance .form-group .radio-label .radio-label-input-group.checked {
   background-position:0 -29px;
 }
 
-#registration-content #registration-form-container #registration-form #registration-form-arenas ul > li .form-group .radio-label input[type=radio] {
+#registration-content #registration-form-container #registration-form #registration-form-arenas ul > li .form-group .radio-label input[type=radio],
+.registration-form-arenas ul > li .form-group .radio-label input[type=radio],
+.acceptance .form-group .radio-label input[type=radio] {
   position:absolute;
   opacity:0;
 }
 
-#registration-content #registration-form-container #registration-form #registration-form-arenas ul > li .form-group .radio-label .custom-radio {
+#registration-content #registration-form-container #registration-form #registration-form-arenas ul > li .form-group .radio-label .custom-radio,
+.registration-form-arenas ul > li .form-group .radio-label .custom-radio,
+.acceptance .form-group .radio-label .custom-radio {
   position:absolute;
-
   width:36px;
   height:36px;
 }
 
-#registration-content #registration-form-container #registration-form #registration-form-arenas ul > li .form-group input[type=radio] {
+#registration-content #registration-form-container #registration-form #registration-form-arenas ul > li .form-group input[type=radio],
+.registration-form-arenas ul > li .form-group input[type=radio],
+.acceptance .form-group input[type=radio] {
   display:block;
-  margin:3spx;
+  margin:3px;
   float:left;
 }
 
-#registration-content #registration-form-container #registration-form #registration-form-arenas ul > li .form-group .radio-label .control-label:before {
+#registration-content #registration-form-container #registration-form #registration-form-arenas ul > li .form-group .radio-label .control-label:before,
+.registration-form-arenas ul > li .form-group .radio-label .control-label:before,
+.acceptance .form-group .radio-label .control-label:before {
   content:'';
   display:table;
 }
 
-#registration-content #registration-form-container #registration-form #registration-form-arenas ul > li .form-group .radio-label .control-label:after {
+#registration-content #registration-form-container #registration-form #registration-form-arenas ul > li .form-group .radio-label .control-label:after,
+.registration-form-arenas ul > li .form-group .radio-label .control-label:after,
+.acceptance .form-group .radio-label .control-label:after {
   clear:both;
 }
 
-#registration-content #registration-form-container #registration-form #registration-form-arenas ul > li .form-group .radio-left {
+.acceptance {
+  position:relative;
+  margin:50px 0;
+  text-align:center;
+}
+
+.acceptance .form-group {
+  display:inline-block;
+  width:auto;
+}
+
+.acceptance .form-group .control-label {
+  float:left;
+}
+
+#registration-content #registration-form-container #registration-form #registration-form-arenas ul > li .form-group .radio-left,
+.registration-form-arenas ul > li .form-group .radio-left {
   display:block;
   margin-left:10px;
   float:left;
 }
 
-#registration-content #registration-form-container #registration-form #registration-form-arenas ul > li .form-group .radio-right {
+#registration-content #registration-form-container #registration-form #registration-form-arenas ul > li .form-group .radio-right,
+.registration-form-arenas ul > li .form-group .radio-right {
   display:block;
   float:right;
 }
@@ -302,24 +346,117 @@
   float:left;
 }
 
-#registration-content #registration-form-container #registration-form #acceptance .radio-left {
+#registration-content #registration-form-container #registration-form .acceptance .radio-left {
   float:left;
   margin-left:5px;
   font-size:1.25em;
   color:#961933;
 }
 
-#registration-content #registration-form-container #registration-form #submit-button-container {
+#registration-content #registration-form-container #registration-form #submit-button-container,
+.submit-button-container {
   position:relative;
   margin-top:50px;
   text-align:center;
 }
 
-#registration-content #registration-form-container #registration-form #submit-button-container button {
+#registration-content #registration-form-container #registration-form #submit-button-container button,
+.submit-button-container button,
+.submit-button-container .button {
   border-radius:30px;
   background-color:#961933;
   cursor:pointer;
 }
+
+/** TEAM REGISTRATION **/
+#team-registration-form-container {
+  position:relative;
+  padding-bottom:100px;
+}
+
+#team-registration-form-container #form-navigation-container {
+  position:relative;
+  width:100%;
+  margin:10px 0 50px;
+  text-align:center;
+}
+
+#team-registration-form-container #form-navigation-container .form-navigator {
+  display: inline-block;
+  text-decoration: none;
+  color: #949494;
+  margin:0 10px;
+  background-color: #dadada;
+  width: 80px;
+  height: 80px;
+  padding: 26px 16px;
+  text-align: center;
+  border-radius: 80%;
+  transition:background 250ms ease-in-out;
+  -webkit-transition:background 250ms ease-in-out;
+  -moz-transition:background 250ms ease-in-out;
+  -ms-transition:background 250ms ease-in-out;
+  -o-transition:background 250ms ease-in-out;
+}
+
+/*#team-registration-form-container #form-navigation-container .form-navigator:hover,*/
+#team-registration-form-container #form-navigation-container .form-navigator.selected {
+  background-color:#961933;
+  color:#fff;
+}
+
+#team-registration-form-container input[type=text], #registration-form input[type=date], select {
+  border-radius:25px;
+  padding:8px 16px;
+  background-color:#f3f3f3;
+  border:0;
+}
+
+#team-registration-form-container .each-form {
+  position:relative;
+}
+
+#team-registration-form-container .each-form.player {
+  padding:50px 0 100px;
+}
+
+#team-registration-form-container .each-form h1 {
+  text-align:center;
+  font-size:1.8em;
+  margin-bottom:30px;
+  font-weight:400;
+  color:#961933;
+}
+
+#team-registration-form-container .each-form ul > li {
+  position:relative;
+  margin:20px 0;
+}
+
+#team-registration-form-container .each-form ul > li .form-group {
+  position:relative;
+  float:left;
+  padding:0 10px;
+}
+
+#team-registration-form-container .each-form ul > li.col-2 .form-group {
+  width:50%;
+}
+
+#team-registration-form-container .each-form ul > li.col-3 .form-group {
+  width:calc(100%/3);
+}
+
+#team-registration-form-container .each-form ul > li.full .form-group {
+  width:100%;
+}
+
+.upload-button-container {
+  position:relative;
+  margin-top:50px;
+}
+
+
 
 /** RENDERER **/
 
@@ -336,7 +473,7 @@
 
 .registration-render .header h1 {
   font-size:1.8em;
-  font-weight:400;
+  font-weight:800;
 }
 
 .registration-render .header p {
@@ -395,4 +532,67 @@
 
 .registration-render .registration-information .col-6 {
   width:calc((100%/6)*6);
+}
+
+/** REGULATIONS **/
+section#regulations {
+  position:relative;
+  padding:50px 0 100px;
+}
+
+section#regulations .text, section#regulations .list {
+  margin:30px 0;
+}
+
+section#regulations h1 {
+  font-size:1.8em;
+  font-weight:400;
+}
+
+section#regulations h5 {
+  font-weight:400;
+  font-size:1.5em;
+}
+
+section#regulations .list ol {
+  list-style-type:decimal;
+  padding:0 20px;
+}
+
+section#regulations .list ol > li {
+  margin-top:10px;
+  line-height:22px;
+}
+
+section#regulations .text .two-cols {
+  position:relative;
+}
+
+section#regulations .text .two-cols p {
+  float:left;
+  margin:5px 0;
+}
+
+section#regulations .text .two-cols p:nth-child(1) {
+  width:20%;
+}
+
+section#regulations .text .two-cols p:nth-child(2) {
+  width:80%;
+  text-align:right;
+}
+
+section#regulations table {
+  position:relative;
+  margin:30px auto;
+  width:80%;
+}
+
+section#regulations table tr th {
+  font-weight:800;
+}
+
+section#regulations table tr td, section#regulations table tr th {
+  padding:5px;
+  border:1px solid #000;
 }
