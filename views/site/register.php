@@ -1,6 +1,7 @@
 <?php
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use app\components\ThaiDateHelper;
 ?>
 <section id="registration-content">
   <div class="wrapper">
@@ -17,7 +18,7 @@ use yii\widgets\ActiveForm;
         </div>
 
 
-        <h1>สมัครในนามบุคคล <?php echo $model->preferred_position === null ? '':'(ผู้รักษาประตู)'; ?></h1>
+        <h1>สมัครในนามบุคคล <?php echo $model->pp !== 'gk' ? '':'(ผู้รักษาประตู)'; ?></h1>
       </div>
 
       <?php $form = ActiveForm::begin([
@@ -25,10 +26,12 @@ use yii\widgets\ActiveForm;
         // "enableClientValidation"=>false
       ]); ?>
 
+      <?php echo $form->errorSummary($model); ?>
+
       <ul>
 
         <li class="clearfix">
-          <?php echo $form->field($model, 'identity_card', ['options' => ['class' => 'form-center'],
+          <?php echo $form->field($model, 'identity_card_file', ['options' => ['class' => 'form-center'],
             'template' =>
             '   {label}
                 <div class="id-card-uploader button green">
@@ -39,38 +42,48 @@ use yii\widgets\ActiveForm;
           ])->fileInput()->label(false); ?>
         </li>
 
-        <li class="col-3 clearfix">
-          <?php echo $form->field($model, 'firstname', ['inputOptions' => ['placeholder' => $model->getAttributeLabel('firstname')]])->label(false); ?>
-          <?php echo $form->field($model, 'lastname', ['inputOptions' => ['placeholder' => $model->getAttributeLabel('lastname')]])->label(false); ?>
-          <?php echo $form->field($model, 'nickname', ['inputOptions' => ['placeholder' => $model->getAttributeLabel('nickname')]])->label(false); ?>
+        <li class="col-2 clearfix">
+          <?php echo $form->field($model, 'name', ['inputOptions' => ['placeholder'=>$model->getAttributeLabel('name')]])->label(false); ?>
+          <?php echo $form->field($model, 'nickname', ['inputOptions' => ['placeholder'=>$model->getAttributeLabel('nickname')]])->label(false); ?>
         </li>
-        <li class="clearfix">
-          <?php echo $form->field($model, 'birthdate', ['options' => ['class' => 'form-group span-2-6'], 'inputOptions' => ['class' => 'datepicker','placeholder' => $model->getAttributeLabel('birthdate')]])->label(false); ?>
-          <?php echo $form->field($model, 'age', ['options' => ['class' => 'form-group span-2-6'], 'inputOptions' => ['placeholder' => $model->getAttributeLabel('age')]])->label(false); ?>
-          <?php echo $form->field($model, 'weight', ['options' => ['class' => 'form-group span-1-6'], 'inputOptions' => ['placeholder' => $model->getAttributeLabel('weight')]])->label(false); ?>
-          <?php echo $form->field($model, 'height', ['options' => ['class' => 'form-group span-1-6'], 'inputOptions' => ['placeholder' => $model->getAttributeLabel('height')]])->label(false); ?>
-        </li>
-        <li class="clearfix">
-          <?php echo $form->field($model, 'school', ['options' => ['class' => 'form-group span-5-6'], 'inputOptions' => ['placeholder' => $model->getAttributeLabel('school')]])->label(false); ?>
-          <?php echo $form->field($model, 'level', ['options' => ['class' => 'form-group span-1-6'], 'inputOptions' => ['placeholder' => $model->getAttributeLabel('level')]])->label(false); ?>
-        </li>
-        <li class="clearfix">
-          <?php echo $form->field($model, 'address', ['inputOptions' => ['placeholder' => $model->getAttributeLabel('address')]])->label(false); ?>
-        </li>
-        <li class="col-3 clearfix">
-          <?php echo $form->field($model, 'telephone', ['inputOptions' => ['placeholder' => $model->getAttributeLabel('telephone')]])->label(false); ?>
-          <?php echo $form->field($model, 'line_id', ['inputOptions' => ['placeholder' => $model->getAttributeLabel('line_id')]])->label(false); ?>
-          <?php echo $form->field($model, 'facebook_link', ['inputOptions' => ['placeholder' => $model->getAttributeLabel('facebook_link')]])->label(false); ?>
-        </li>
-        <li class="<?= ($model->preferred_position === null) ? 'col-4':'col-3' ?> clearfix">
-          <?php echo $form->field($model, 'email', ['inputOptions' => ['placeholder' => $model->getAttributeLabel('email')]])->label(false); ?>
-          <?php echo $form->field($model, 'foot', ['inputOptions' => ['placeholder' => $model->getAttributeLabel('foot')]])->dropDownList(['left'=>'ซ้าย', 'right'=>'ขวา'], ['prompt'=>'--- เท้าที่ถนัด ---'])->label(false); ?>
-          <?php echo $form->field($model, 'preferred_position', ['inputOptions' => ['placeholder' => $model->getAttributeLabel('preferred_position'), 'disabled'=> ($model->preferred_position === null) ? false:true]])->dropDownList(['gk'=>'ผู้รักษาประตู', 'bk'=>'กองหลัง', 'ct'=>'กองกลาง', 'fw'=>'กองหน้า'], ['prompt'=>'--- ตำแหน่งที่ถนัด ---'])->label(false); ?>
-          <?php echo ($model->preferred_position_alternative !== null) ? '': $form->field($model, 'preferred_position_alternative', ['inputOptions' => ['placeholder' => $model->getAttributeLabel('preferred_position_alternative')]])->dropDownList(['bk'=>'กองหลัง', 'ct'=>'กองกลาง', 'fw'=>'กองหน้า'], ['prompt'=>'--- ตำแหน่งที่ถนัด ---', 'options'=>['template'=>'<div></div>']])->label(false); ?>
+        <li class="full clearfix">
+          <?php echo $form->field($model, 'name_en', ['inputOptions' => ['placeholder'=>$model->getAttributeLabel('name_en')]])->label(false); ?>
         </li>
         <li class="col-2 clearfix">
-          <?php echo $form->field($model, 'guardian_name', ['inputOptions' => ['placeholder' => $model->getAttributeLabel('guardian_name')]])->label(false); ?>
-          <?php echo $form->field($model, 'guardian_telephone', ['inputOptions' => ['placeholder' => $model->getAttributeLabel('guardian_telephone')]])->label(false); ?>
+          <?php echo $form->field($model, 'birthdate', ['inputOptions' => ['placeholder'=>$model->getAttributeLabel('birthdate'), 'class'=>'datepicker']])->label(false); ?>
+          <?php echo $form->field($model, 'age', ['inputOptions' => ['placeholder'=>$model->getAttributeLabel('age')]])->label(false); ?>
+        </li>
+        <li class="full clearfix">
+          <?php echo $form->field($model, 'identity_card_no', ['inputOptions' => ['placeholder'=>$model->getAttributeLabel('identity_card_no')]])->label(false); ?>
+        </li>
+        <li class="col-2 clearfix">
+          <?php echo $form->field($model, 'school', ['inputOptions' => ['placeholder'=>$model->getAttributeLabel('school')]])->label(false); ?>
+          <?php echo $form->field($model, 'year', ['inputOptions' => ['placeholder'=>$model->getAttributeLabel('year')]])->label(false); ?>
+        </li>
+        <li class="full clearfix">
+          <?php echo $form->field($model, 'address', ['inputOptions' => ['placeholder'=>$model->getAttributeLabel('address')]])->label(false); ?>
+        </li>
+        <li class="col-3 clearfix">
+          <?php echo $form->field($model, 'telephone', ['inputOptions' => ['placeholder'=>$model->getAttributeLabel('telephone')]])->label(false); ?>
+          <?php echo $form->field($model, 'line_id', ['inputOptions' => ['placeholder'=>$model->getAttributeLabel('line_id')]])->label(false); ?>
+          <?php echo $form->field($model, 'facebook_link', ['inputOptions' => ['placeholder'=>$model->getAttributeLabel('facebook_link')]])->label(false); ?>
+        </li>
+        <li class="full clearfix">
+          <?php echo $form->field($model, 'email', ['inputOptions' => ['placeholder'=>$model->getAttributeLabel('email')]])->label(false); ?>
+        </li>
+        <li class="<?= ($model->pp == 'gk') ? 'col-2':'col-3' ?> clearfix">
+          <?php echo $form->field($model, 'foot', ['inputOptions' => ['placeholder' => $model->getAttributeLabel('foot')]])->dropDownList(['left'=>'ซ้าย', 'right'=>'ขวา'], ['prompt'=>'--- เท้าที่ถนัด ---'])->label(false); ?>
+          <?php echo $form->field($model, 'pp', ['inputOptions' => ['placeholder' => $model->getAttributeLabel('pp'), 'disabled'=> ($model->pp !== 'gk') ? false:true]])->dropDownList(($model->pp !== 'gk') ? ['bk'=>'กองหลัง', 'ct'=>'กองกลาง', 'fw'=>'กองหน้า']:['gk'=>'ผู้รักษาประตู'], ['prompt'=>'--- ตำแหน่งที่ถนัด ---'])->label(false); ?>
+          <?php echo ($model->ppa == 'gk') ? '': $form->field($model, 'ppa', ['inputOptions' => ['placeholder' => $model->getAttributeLabel('ppa')]])->dropDownList(['bk'=>'กองหลัง', 'ct'=>'กองกลาง', 'fw'=>'กองหน้า'], ['prompt'=>'--- ตำแหน่งที่ถนัด ---', 'options'=>['template'=>'<div></div>']])->label(false); ?>
+        </li>
+        <li class="col-3 clearfix">
+          <?php echo $form->field($model, 'weight', ['inputOptions' => ['placeholder'=>$model->getAttributeLabel('weight')]])->label(false); ?>
+          <?php echo $form->field($model, 'height', ['inputOptions' => ['placeholder'=>$model->getAttributeLabel('height')]])->label(false); ?>
+          <?php echo $form->field($model, 'team', ['inputOptions' => ['placeholder'=>$model->getAttributeLabel('team')]])->label(false); ?>
+        </li>
+        <li class="col-2 clearfix">
+          <?php echo $form->field($model, 'guardian_name', ['inputOptions' => ['placeholder'=>$model->getAttributeLabel('guardian_name')]])->label(false); ?>
+          <?php echo $form->field($model, 'guardian_telephone', ['inputOptions' => ['placeholder'=>$model->getAttributeLabel('guardian_telephone')]])->label(false); ?>
         </li>
 
       </ul>
@@ -79,40 +92,11 @@ use yii\widgets\ActiveForm;
         <ul>
           <?php $radioTemplate = '<div class="radio clearfix">{input}<div class="radio-label">{label}</div>{error}</div>'; ?>
           <?php $radioTemplate = '<label class="radio-label"><div class="radio-label-input-group">{input}<div class="custom-radio"></div></div></label>{label}'; ?>
-          <li class="clearfix">
-            <?php echo $form->field($model, 'arena', ['template' => $radioTemplate])->input('radio', ['value'=>'tu1'])->label('<div class="radio-left">กรุงเทพมหานคร ณ สนามกีฬาธรรมศาสตร์ รังสิต</div><div class="radio-right">วันที่ 23 มกราคม 2560</div>'); ?>
-          </li>
-          <li class="clearfix">
-            <?php echo $form->field($model, 'arena', ['template' => $radioTemplate])->input('radio', ['value'=>'chr'])->label('<div class="radio-left">จังหวัดเชียงราย ณ สนามยูไนเต็ด สเตเดี้ยม</div><div class="radio-right">วันที่ 23 มกราคม 2560</div>'); ?>
-          </li>
-          <li class="clearfix">
-            <?php echo $form->field($model, 'arena', ['template' => $radioTemplate])->input('radio', ['value'=>'phk'])->label('<div class="radio-left">จังหวัดภูเก็ด ณ สนามกีฬาสุระกุล</div><div class="radio-right">วันที่ 23 มกราคม 2560</div>'); ?>
-          </li>
-          <li class="clearfix">
-            <?php echo $form->field($model, 'arena', ['template' => $radioTemplate])->input('radio', ['value'=>'nrs'])->label('<div class="radio-left">จังหวัดนครราชสีมา ณ สนามราชสีมาวิทยาลัย</div><div class="radio-right">วันที่ 23 มกราคม 2560</div>'); ?>
-          </li>
-          <li class="clearfix">
-            <?php echo $form->field($model, 'arena', ['template' => $radioTemplate])->input('radio', ['value'=>'khk'])->label('<div class="radio-left">จังหวัดขอนแก่น ณ สนามวิทยาลัยบัณฑิตเอเชีย</div><div class="radio-right">วันที่ 23 มกราคม 2560</div>'); ?>
-          </li>
-          <li class="clearfix">
-            <?php echo $form->field($model, 'arena', ['template' => $radioTemplate])->input('radio', ['value'=>'nks'])->label('<div class="radio-left">จังหวัดนครสวรรค์ ณ สนามโรงเรียนกีฬาจังหวัดนครสวรรค์</div><div class="radio-right">วันที่ 23 มกราคม 2560</div>'); ?>
-          </li>
-          <li class="clearfix">
-            <?php echo $form->field($model, 'arena', ['template' => $radioTemplate])->input('radio', ['value'=>'sbr'])->label('<div class="radio-left">จังหวัดสุพรรณบุรี ณ สนามโรงเรียนกีฬาจังหวัดสุพรรณบุรี</div><div class="radio-right">วันที่ 23 มกราคม 2560</div>'); ?>
-          </li>
-          <li class="clearfix">
-            <?php echo $form->field($model, 'arena', ['template' => $radioTemplate])->input('radio', ['value'=>'chm'])->label('<div class="radio-left">จังหวัดเชียงใหม่ ณ สนามกีฬาเทศบาลเมืองเชียงใหม่</div><div class="radio-right">วันที่ 23 มกราคม 2560</div>'); ?>
-          </li>
-          <li class="clearfix">
-            <?php echo $form->field($model, 'arena', ['template' => $radioTemplate])->input('radio', ['value'=>'ray'])->label('<div class="radio-left">จังหวัดระยอง ณ สนามกีฬาพีทีทีสเตเดี้ยม</div><div class="radio-right">วันที่ 23 มกราคม 2560</div>'); ?>
-          </li>
-          <li class="clearfix">
-            <?php echo $form->field($model, 'arena', ['template' => $radioTemplate])->input('radio', ['value'=>'rbr'])->label('<div class="radio-left">จังหวัดราชบุรี ณ สนามค่ายภานุรังสี</div><div class="radio-right">วันที่ 23 มกราคม 2560</div>'); ?>
-          </li>
-          <li class="clearfix">
-            <?php echo $form->field($model, 'arena', ['template' => $radioTemplate])->input('radio', ['value' => 'tu2'])->label('<div class="radio-left">กรุงเทพมหานคร ณ สนามกีฬาธรรมศาสตร์ รังสิต</div><div class="radio-right">วันที่ 23 มกราคม 2560</div>'); ?>
-          </li>
-
+          <?php foreach ($arenas as $arena): ?>
+            <li class="clearfix">
+              <?php echo $form->field($model, 'arena', ['template' => $radioTemplate])->input('radio', ['value'=>$arena->code])->label('<div class="radio-left">'. $arena->text .'</div><div class="radio-right">วันที่ '. ThaiDateHelper::getThaiDate($arena->reg_date) .'</div>'); ?>
+            </li>
+          <?php endforeach; ?>
         </ul>
       </div>
 

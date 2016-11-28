@@ -4,20 +4,26 @@ use yii\helpers\Html;
 
 <section class="registration-render">
   <div class="wrapper">
-    <?php echo $this->render('_sponsored'); ?>
+    <div class="registration-form-header">
+      <div class="bayern-sponsored">
+        <?php echo Html::img('@web/images/registration_wkn.png'); ?>
+        <?php echo Html::img('@web/images/vertical_logo_2.png'); ?>
+        <?php echo Html::img('@web/images/registration_stb.png'); ?>
+      </div>
+    </div>
     <div class="header">
       <h1>กรุณาตรวจสอบข้อมูล</h1>
       <p>หากยืนยันแล้วจะไม่สามารถแก้ไขข้อมูลได้ในภายหลัง</p>
     </div>
     <div class="registration-information">
       <div class="row clearfix">
-        <p class="col-3"><span>ชื่อ - นามสกุล : </span><?= $model->firstname . ' ' . $model->lastname ?></p>
-        <p class="col-1"><span>ชื่อเล่น : </span><?= $model->nickname ?></p>
+        <p class="col-2"><span>ชื่อ - นามสกุล : </span><?= $model->name ?></p>
+        <p class="col-2"><span>ชื่อ - นามสกุล (อังกฤษ) : </span><?= $model->name_en ?></p>
         <p class="col-2"><span>อายุ : </span> <?= $model->age ?> ปี</p>
       </div>
       <div class="row clearfix">
         <p class="col-3"><span>โรงเรียน : </span> <?= $model->school ?></p>
-        <p class="col-1"><span>ปีที่ : </span> <?= $model->level ?></p>
+        <p class="col-1"><span>ปีที่ : </span> <?= $model->year ?></p>
         <p class="col-1"><span>น้ำหนัก : </span> <?= $model->weight ?> kg</p>
         <p class="col-1"><span>ส่วนสูง : </span> <?= $model->height ?> cm</p>
       </div>
@@ -31,16 +37,20 @@ use yii\helpers\Html;
       </div>
       <div class="row clearfix">
         <p class="col-4"><span>Facebook : </span> <?= $model->facebook_link ?></p>
-        <p class="col-1"><span>ตำแหน่ง : </span> <?= $model->preferred_position ?></p>
-        <p class="col-1"><span>ตำแหน่ง : </span> <?= $model->preferred_position_alternative ?></p>
+        <p class="col-1"><span>ตำแหน่ง : </span> <?= $model->pp ?></p>
+        <p class="col-1"><span>ตำแหน่ง : </span> <?= $model->ppa ?></p>
       </div>
       <div class="row clearfix">
         <p class="col-4"><span>ชื่อ - นามสกุลผู้ปกครอง : </span> <?= $model->guardian_name ?></p>
         <p class="col-2"><span>เบอร์โทรศัพท์ : </span> <?= $model->guardian_telephone ?></p>
       </div>
+      <div class="row clearfix">
+        <p class="col-3"><span>สนามแข่งขัน : </span> <?= $model->arena ?></p>
+        <p class="col-3"><span>เบอร์โทรศัพท์ : </span> <?= $model->guardian_telephone ?></p>
+      </div>
       <div class="row" style="text-align:center; margin-top:35px;">
         <?php echo Html::a('ยืนยันการสมัคร', Yii::$app->urlManager->createUrl(['site/confirm', 'mode'=>'approved']), ['class'=>'button blue']); ?>
-        <?php echo Html::a('กลับไปแก้ไข', Yii::$app->urlManager->createUrl(['site/register']), ['class'=>'button red']); ?>
+        <?php echo Html::a('กลับไปแก้ไข', Yii::$app->urlManager->createUrl(['site/register', 'requesttype'=>'edit']), ['class'=>'button red']); ?>
       </div>
   </div>
 </section>

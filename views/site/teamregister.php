@@ -1,6 +1,7 @@
 <?php
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use app\components\ThaiDateHelper;
 ?>
 
 <div class="wrapper">
@@ -72,39 +73,11 @@ use yii\widgets\ActiveForm;
           <ul>
             <?php $radioTemplate = '<div class="radio clearfix">{input}<div class="radio-label">{label}</div>{error}</div>'; ?>
             <?php $radioTemplate = '<label class="radio-label"><div class="radio-label-input-group">{input}<div class="custom-radio"></div></div></label>{label}'; ?>
-            <li class="clearfix">
-              <?php echo $form->field($coachModel, 'arena', ['template' => $radioTemplate])->input('radio', ['value'=>'tu1'])->label('<div class="radio-left">กรุงเทพมหานคร ณ สนามกีฬาธรรมศาสตร์ รังสิต</div><div class="radio-right">วันที่ 23 มกราคม 2560</div>'); ?>
-            </li>
-            <li class="clearfix">
-              <?php echo $form->field($coachModel, 'arena', ['template' => $radioTemplate])->input('radio', ['value'=>'chr'])->label('<div class="radio-left">จังหวัดเชียงราย ณ สนามยูไนเต็ด สเตเดี้ยม</div><div class="radio-right">วันที่ 23 มกราคม 2560</div>'); ?>
-            </li>
-            <li class="clearfix">
-              <?php echo $form->field($coachModel, 'arena', ['template' => $radioTemplate])->input('radio', ['value'=>'phk'])->label('<div class="radio-left">จังหวัดภูเก็ด ณ สนามกีฬาสุระกุล</div><div class="radio-right">วันที่ 23 มกราคม 2560</div>'); ?>
-            </li>
-            <li class="clearfix">
-              <?php echo $form->field($coachModel, 'arena', ['template' => $radioTemplate])->input('radio', ['value'=>'nrs'])->label('<div class="radio-left">จังหวัดนครราชสีมา ณ สนามราชสีมาวิทยาลัย</div><div class="radio-right">วันที่ 23 มกราคม 2560</div>'); ?>
-            </li>
-            <li class="clearfix">
-              <?php echo $form->field($coachModel, 'arena', ['template' => $radioTemplate])->input('radio', ['value'=>'khk'])->label('<div class="radio-left">จังหวัดขอนแก่น ณ สนามวิทยาลัยบัณฑิตเอเชีย</div><div class="radio-right">วันที่ 23 มกราคม 2560</div>'); ?>
-            </li>
-            <li class="clearfix">
-              <?php echo $form->field($coachModel, 'arena', ['template' => $radioTemplate])->input('radio', ['value'=>'nks'])->label('<div class="radio-left">จังหวัดนครสวรรค์ ณ สนามโรงเรียนกีฬาจังหวัดนครสวรรค์</div><div class="radio-right">วันที่ 23 มกราคม 2560</div>'); ?>
-            </li>
-            <li class="clearfix">
-              <?php echo $form->field($coachModel, 'arena', ['template' => $radioTemplate])->input('radio', ['value'=>'sbr'])->label('<div class="radio-left">จังหวัดสุพรรณบุรี ณ สนามโรงเรียนกีฬาจังหวัดสุพรรณบุรี</div><div class="radio-right">วันที่ 23 มกราคม 2560</div>'); ?>
-            </li>
-            <li class="clearfix">
-              <?php echo $form->field($coachModel, 'arena', ['template' => $radioTemplate])->input('radio', ['value'=>'chm'])->label('<div class="radio-left">จังหวัดเชียงใหม่ ณ สนามกีฬาเทศบาลเมืองเชียงใหม่</div><div class="radio-right">วันที่ 23 มกราคม 2560</div>'); ?>
-            </li>
-            <li class="clearfix">
-              <?php echo $form->field($coachModel, 'arena', ['template' => $radioTemplate])->input('radio', ['value'=>'ray'])->label('<div class="radio-left">จังหวัดระยอง ณ สนามกีฬาพีทีทีสเตเดี้ยม</div><div class="radio-right">วันที่ 23 มกราคม 2560</div>'); ?>
-            </li>
-            <li class="clearfix">
-              <?php echo $form->field($coachModel, 'arena', ['template' => $radioTemplate])->input('radio', ['value'=>'rbr'])->label('<div class="radio-left">จังหวัดราชบุรี ณ สนามค่ายภานุรังสี</div><div class="radio-right">วันที่ 23 มกราคม 2560</div>'); ?>
-            </li>
-            <li class="clearfix">
-              <?php echo $form->field($coachModel, 'arena', ['template' => $radioTemplate])->input('radio', ['value' => 'tu2'])->label('<div class="radio-left">กรุงเทพมหานคร ณ สนามกีฬาธรรมศาสตร์ รังสิต</div><div class="radio-right">วันที่ 23 มกราคม 2560</div>'); ?>
-            </li>
+            <?php foreach ($arenas as $arena): ?>
+              <li class="clearfix">
+                <?php echo $form->field($coachModel, 'arena', ['template' => $radioTemplate])->input('radio', ['value'=>$arena->code])->label('<div class="radio-left">'. $arena->text .'</div><div class="radio-right">วันที่ '. ThaiDateHelper::getThaiDate($arena->reg_date) .'</div>'); ?>
+              </li>
+            <?php endforeach; ?>
           </ul>
         </div>
 

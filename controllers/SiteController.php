@@ -14,6 +14,7 @@ use app\models\TeamRegistrationForm;
 use app\models\Teams;
 use app\models\Players;
 use app\models\Coaches;
+use app\models\Arenas;
 use yii\web\UploadedFile;
 use kartik\mpdf\Pdf;
 
@@ -91,6 +92,15 @@ class SiteController extends Controller
         ]);
     }
 
+    public function actionSendmail() {
+      Yii::$app->mailer->compose('@app/mail/layouts/test')
+        ->setFrom('chattana.j@gmail.com')
+        ->setTo('chatthana@mol.com')
+        ->setSubject('Test SwiftMailer in Yii2')
+        ->attach(Yii::getAlias('@webroot') . '/pdf/hello.pdf')
+        ->send();
+    }
+
     /**
      * Logout action.
      *
@@ -152,22 +162,31 @@ class SiteController extends Controller
     public function actionRegister() {
 
       $model = new RegistrationForm();
+      $arenas = Arenas::find()->all();
 
       if (Yii::$app->request->post()) {
         $model->load(Yii::$app->request->post());
-        $model->identity_card = UploadedFile::getInstance($model, 'identity_card');
-        $model->upload();
+        $model->identity_card_file = UploadedFile::getInstance($model, 'identity_card_file');
+        $_pfilename = \app\components\KeyGenerator::getUniqueName();
+        $model->upload($_pfilename);
+        Yii::$app->session->set('data', $model);
         return $this->render('individual_render', ['model'=>$model]);
       }
 
-      // If there is a GET parameter specifying the registration type, parse it to the variable
-      if (Yii::$app->request->get('regtype')) {
-        $regType = Yii::$app->request->get('regtype');
-        $model->preferred_position = $regType;
-        $model->preferred_position_alternative = $regType;
+      if (Yii::$app->request->get('requesttype') == 'edit') {
+        $model = Yii::$app->session->get('data');
+        return $this->render('register', ['model'=>$model, 'arenas'=>$arenas]);
       }
 
-      return $this->render('register', ['model'=>$model]);
+      // If there is a GET parameter specifying the registration type, parse it to the variable
+      if (Yii::$app->request->get('regtype')!==null) {
+        if (Yii::$app->request->get('regtype') == 'gk') {
+          $model->pp = 'gk';
+          $model->ppa = 'gk';
+        }
+      }
+
+      return $this->render('register', ['model'=>$model, 'arenas'=>$arenas]);
     }
 
     /**
@@ -178,22 +197,18 @@ class SiteController extends Controller
 
     public function actionRegisterteam() {
 
+      $arenas = Arenas::find()->all();
+
       // Instantiate the coach model. We need only one coach per team
       $coachModel = new CoachRegistrationForm();
 
       // We need 7 members per team, so iterate and create array of models here
-      for ($i=0; $i < 3; $i++) {
+      for ($i=0; $i < 2; $i++) {
         $models[] = new TeamRegistrationForm();
       }
 
       // If this is a POST request (means forms are summitted)
       if (Yii::$app->request->post()) {
-
-        $images = UploadedFile::getInstance($model, 'identity_card_files');
-        var_dump($images);
-        die();
-
-        // die('accesed');
 
         //Assign the post values for coach model
         $coachModel->load(Yii::$app->request->post());
@@ -262,12 +277,10 @@ class SiteController extends Controller
           $player->created = date('Y-m-d H:i:s');
           $player->save();
 
-          // die('fuck');
-
         }
       }
 
-      return $this->render('teamregister', ['coachModel'=>$coachModel, 'models' => $models]);
+      return $this->render('teamregister', ['coachModel'=>$coachModel, 'models' => $models, 'arenas'=>$arenas]);
     }
 
     public function actionPreregister() {
