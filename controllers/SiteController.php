@@ -144,22 +144,17 @@ class SiteController extends Controller
     public function actionConfirm() {
 
       $model = Yii::$app->session->get('data');
-
-      // Upload a file
-      // $model->identity_card_file = UploadedFile::getInstance($model, 'identity_card_file');
-      var_dump($model->identity_card_file);
-      die();
-      $_uname = \app\components\KeyGenerator::getUniqueName();
-      $model->upload($_uname);
+      $filename = Yii::$app->request->get('filename');
 
       // Create a user
       $player = new Players();
       $player->name = $model->name;
       $player->name_en = $model->name_en;
+      $player->nickname = $model->nickname;
       $player->birthdate = $model->birthdate;
       $player->age = $model->age;
       $player->identity_card_no = $model->identity_card_no;
-      $player->identity_card_path = '/uploads/identity_cards/' . $_uname. '.' . $model->identity_card_file->extension;
+      $player->identity_card_path = '/uploads/identity_cards/' . $filename . '.' . $model->identity_card_file->extension;
       $player->school = $model->school;
       $player->year = $model->year;
       $player->address = $model->address;
@@ -173,28 +168,34 @@ class SiteController extends Controller
       $player->weight = $model->weight;
       $player->height = $model->height;
       $player->team = $model->team;
-      $player->virtual_team = $team->id;
       $player->guardian_name = $model->guardian_name;
       $player->guardian_telephone = $model->guardian_telephone;
-      $player->arena = $coachModel->arena;
+      $player->arena = $model->arena;
       $player->created = date('Y-m-d H:i:s');
       $player->save();
 
-      $content = $this->renderPartial('_pdf');
+      $content = $this->renderPartial('_pdf', ['model'=>$player]);
+
+      $_pdfName = \app\components\KeyGenerator::getUniqueName();
       $pdf = new Pdf([
         'mode' => 'utf-8',
         'format' => Pdf::FORMAT_A4,
         'orientation' => Pdf::ORIENT_PORTRAIT,
-        'filename'=>Yii::getAlias('@webroot') . '/pdf/' . 'hello.pdf',
-        'destination' => Pdf::DEST_BROWSER,
+        'filename'=>Yii::getAlias('@webroot') . '/pdf/' . $_pdfName .'.pdf',
+        'destination' => Pdf::DEST_FILE,
         'content' => $content,
         'cssFile' => '@webroot/css/pdf.css'
-        // 'methods' => [
-        //     'SetHeader'=>['Bayern Youth Cup 2017'],
-        //     'SetFooter'=>['{PAGENO}'],
-        // ]
       ]);
-      return $pdf->render();
+
+      $pdf->render();
+
+      Yii::$app->mailer->compose('@app/mail/layouts/test')
+        ->setFrom('info@sporttb.com')
+        ->setTo('chatthana@mol.com')
+        ->setSubject('ยืนยันการสมัคร FC Bayern Youth Cup 2017')
+        ->attach(Yii::getAlias('@webroot') . '/pdf/'. $_pdfName .'.pdf')
+        ->send();
+
     }
 
     public function actionRegister() {

@@ -1,5 +1,6 @@
 <?php
 use yii\helpers\Html;
+use app\components\PlayerHelper;
 ?>
 
 <section class="registration-render">
@@ -42,8 +43,8 @@ use yii\helpers\Html;
       </div>
       <div class="row clearfix">
         <p class="col-4"><span>Facebook : </span> <?= $model->facebook_link ?></p>
-        <p class="col-1"><span>ตำแหน่ง : </span> <?= $model->pp ?></p>
-        <p class="col-1"><span>ตำแหน่ง : </span> <?= $model->ppa ?></p>
+        <p class="col-1"><span>ตำแหน่ง : </span> <?= PlayerHelper::getPosition($model->pp) ?></p>
+        <p class="col-1"><span>ตำแหน่ง : </span> <?= PlayerHelper::getPosition($model->ppa) ?></p>
       </div>
       <div class="row clearfix">
         <p class="col-4"><span>ชื่อ - นามสกุลผู้ปกครอง : </span> <?= $model->guardian_name ?></p>
@@ -54,7 +55,7 @@ use yii\helpers\Html;
         <p class="col-3"><span>เบอร์โทรศัพท์ : </span> <?= $model->guardian_telephone ?></p>
       </div>
       <div class="row" style="text-align:center; margin-top:35px;">
-        <?php echo Html::a('ยืนยันการสมัคร', Yii::$app->urlManager->createUrl(['site/confirm', 'mode'=>'approved']), ['class'=>'button blue']); ?>
+        <?php echo Html::a('ยืนยันการสมัคร', Yii::$app->urlManager->createUrl(['site/confirm', 'filename'=>$filename]), ['class'=>'button blue']); ?>
         <?php echo Html::a('กลับไปแก้ไข', Yii::$app->urlManager->createUrl(['site/register', 'requesttype'=>'edit']), ['class'=>'button red']); ?>
       </div>
   </div>

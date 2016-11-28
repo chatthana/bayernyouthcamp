@@ -12,6 +12,11 @@ class ArenaHelper extends Component {
     return $arena->text;
   }
 
+  public static function getApplicationDate($arenaCode) {
+    $arena = Arenas::findOne(['code'=>$arenaCode]);
+    return $arena->reg_date;
+  }
+
 }
 
 ?>

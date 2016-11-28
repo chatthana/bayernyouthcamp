@@ -35,9 +35,9 @@ class RegistrationForm extends Model {
     return [
       [['name', 'name_en', 'nickname', 'birthdate', 'age', 'identity_card_no', 'school', 'year', 'address', 'telephone', 'line_id', 'facebook_link', 'email', 'foot', 'pp', 'ppa', 'weight', 'height', 'team', 'guardian_name', 'guardian_telephone', 'arena'], 'required', 'message' => '{attribute}ห้ามเป็นค่าว่าง'],
       ['email', 'email', 'message' => 'รูปแบบอีเมล์ไม่ถูกต้อง'],
-      // ['name', 'required']
+      [['pp', 'ppa'], 'safe'],
       [['identity_card_no', 'age', 'telephone', 'guardian_telephone'], 'integer', 'message' => '{attribute}ต้องเป็นตัวเลขเท่านั้น'],
-      [['identity_card_file'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png,jpg']
+      [['identity_card_file'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png,jpg', 'message'=>'กรุณาอปโหลดไฟล์']
     ];
   }
 
@@ -64,7 +64,8 @@ class RegistrationForm extends Model {
       "team" => "สังกัด / ทีม",
       "guardian_name" => "ชื่อผู้ปกครอง",
       "guardian_telephone" => "เบอร์โทรศัพท์ผู้ปกครอง",
-      "identity_card_file" => "ไฟล์ภาพบัตรประชาชน"
+      "identity_card_file" => "ไฟล์ภาพบัตรประชาชน",
+      "arena" => "สนาม"
     ];
   }
 

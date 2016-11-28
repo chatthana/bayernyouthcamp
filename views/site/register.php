@@ -18,7 +18,6 @@ use app\components\ThaiDateHelper;
             <?php echo Html::img('@web/images/registration_stb.png'); ?>
           </div>
 
-
           <h1>สมัครในนามบุคคล <?php echo $model->pp !== 'gk' ? '':'(ผู้รักษาประตู)'; ?></h1>
         </div>
 
@@ -75,7 +74,7 @@ use app\components\ThaiDateHelper;
           <li class="<?= ($model->pp == 'gk') ? 'col-2':'col-3' ?> clearfix">
             <?php echo $form->field($model, 'foot', ['inputOptions' => ['placeholder' => $model->getAttributeLabel('foot')]])->dropDownList(['left'=>'ซ้าย', 'right'=>'ขวา'], ['prompt'=>'--- เท้าที่ถนัด ---'])->label(false); ?>
             <?php echo $form->field($model, 'pp', ['inputOptions' => ['placeholder' => $model->getAttributeLabel('pp'), 'disabled'=> ($model->pp !== 'gk') ? false:true]])->dropDownList(($model->pp !== 'gk') ? ['bk'=>'กองหลัง', 'ct'=>'กองกลาง', 'fw'=>'กองหน้า']:['gk'=>'ผู้รักษาประตู'], ['prompt'=>'--- ตำแหน่งที่ถนัด ---'])->label(false); ?>
-            <?php echo ($model->ppa == 'gk') ? '': $form->field($model, 'ppa', ['inputOptions' => ['placeholder' => $model->getAttributeLabel('ppa')]])->dropDownList(['bk'=>'กองหลัง', 'ct'=>'กองกลาง', 'fw'=>'กองหน้า'], ['prompt'=>'--- ตำแหน่งที่ถนัด ---', 'options'=>['template'=>'<div></div>']])->label(false); ?>
+            <?php echo ($model->ppa == 'gk') ? '' : $form->field($model, 'ppa', ['inputOptions' => ['placeholder' => $model->getAttributeLabel('ppa')]])->dropDownList(['bk'=>'กองหลัง', 'ct'=>'กองกลาง', 'fw'=>'กองหน้า'], ['prompt'=>'--- ตำแหน่งที่ถนัด ---', 'options'=>['template'=>'<div></div>']])->label(false); ?>
           </li>
           <li class="col-3 clearfix">
             <?php echo $form->field($model, 'weight', ['inputOptions' => ['placeholder'=>$model->getAttributeLabel('weight')]])->label(false); ?>
@@ -86,6 +85,11 @@ use app\components\ThaiDateHelper;
             <?php echo $form->field($model, 'guardian_name', ['inputOptions' => ['placeholder'=>$model->getAttributeLabel('guardian_name')]])->label(false); ?>
             <?php echo $form->field($model, 'guardian_telephone', ['inputOptions' => ['placeholder'=>$model->getAttributeLabel('guardian_telephone')]])->label(false); ?>
           </li>
+
+          <?php if ($model->pp == 'gk' && $model->ppa == 'gk'): ?>
+            <?= $form->field($model, 'pp')->hiddenInput(['value'=>'gk'])->label(false); ?>
+            <?= $form->field($model, 'ppa')->hiddenInput(['value'=>'gk'])->label(false); ?>
+          <?php endif; ?>
 
         </ul>
 
