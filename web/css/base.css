@@ -216,10 +216,13 @@ header nav ul > li .dropdown ul > li {
 #main-content {
   position:relative;
   min-height:100%;
-  /*height:1200px;*/
-  height:auto;
+  height:100%;
   margin:-83px 0 -105px;
   padding:83px 0 105px;
+}
+
+#main-content.auto {
+  height:auto;
 }
 
 footer {

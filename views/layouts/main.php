@@ -42,9 +42,8 @@ $this->beginPage();
 
   </header>
 
-  <section id="main-content">
-    <?php echo $content; ?>
-  </section>
+
+  <?php echo $content; ?>
 
 
   <footer>

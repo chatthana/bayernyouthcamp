@@ -491,6 +491,16 @@
   margin:20px 0;
 }
 
+.registration-render .registration-information .row .img-container {
+  position:relative;
+  text-align:center;
+  padding:50px 0;
+}
+
+.registration-render .registration-information .row .img-container img {
+  max-width:350px;
+}
+
 .registration-render .registration-information .row p {
   margin:0 !important;
   color:#961933;

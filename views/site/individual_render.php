@@ -16,6 +16,11 @@ use yii\helpers\Html;
       <p>หากยืนยันแล้วจะไม่สามารถแก้ไขข้อมูลได้ในภายหลัง</p>
     </div>
     <div class="registration-information">
+      <div class="row">
+        <div class="img-container">
+          <img src="<?php echo Yii::getAlias('@web') . '/uploads/identity_cards/' . $filename . '.' . $model->identity_card_file->extension ?>" alt="" />
+        </div>
+      </div>
       <div class="row clearfix">
         <p class="col-2"><span>ชื่อ - นามสกุล : </span><?= $model->name ?></p>
         <p class="col-2"><span>ชื่อ - นามสกุล (อังกฤษ) : </span><?= $model->name_en ?></p>
@@ -45,7 +50,7 @@ use yii\helpers\Html;
         <p class="col-2"><span>เบอร์โทรศัพท์ : </span> <?= $model->guardian_telephone ?></p>
       </div>
       <div class="row clearfix">
-        <p class="col-3"><span>สนามแข่งขัน : </span> <?= $model->arena ?></p>
+        <p class="col-3"><span>สนามแข่งขัน : </span> <?= \app\components\ArenaHelper::getArenaName($model->arena) ?></p>
         <p class="col-3"><span>เบอร์โทรศัพท์ : </span> <?= $model->guardian_telephone ?></p>
       </div>
       <div class="row" style="text-align:center; margin-top:35px;">

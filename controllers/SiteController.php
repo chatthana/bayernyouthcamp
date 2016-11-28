@@ -142,6 +142,44 @@ class SiteController extends Controller
     }
 
     public function actionConfirm() {
+
+      $model = Yii::$app->session->get('data');
+
+      // Upload a file
+      // $model->identity_card_file = UploadedFile::getInstance($model, 'identity_card_file');
+      var_dump($model->identity_card_file);
+      die();
+      $_uname = \app\components\KeyGenerator::getUniqueName();
+      $model->upload($_uname);
+
+      // Create a user
+      $player = new Players();
+      $player->name = $model->name;
+      $player->name_en = $model->name_en;
+      $player->birthdate = $model->birthdate;
+      $player->age = $model->age;
+      $player->identity_card_no = $model->identity_card_no;
+      $player->identity_card_path = '/uploads/identity_cards/' . $_uname. '.' . $model->identity_card_file->extension;
+      $player->school = $model->school;
+      $player->year = $model->year;
+      $player->address = $model->address;
+      $player->telephone = $model->telephone;
+      $player->line_id = $model->line_id;
+      $player->facebook_link = $model->facebook_link;
+      $player->email = $model->email;
+      $player->foot = $model->foot;
+      $player->pp = $model->pp;
+      $player->ppa = $model->ppa;
+      $player->weight = $model->weight;
+      $player->height = $model->height;
+      $player->team = $model->team;
+      $player->virtual_team = $team->id;
+      $player->guardian_name = $model->guardian_name;
+      $player->guardian_telephone = $model->guardian_telephone;
+      $player->arena = $coachModel->arena;
+      $player->created = date('Y-m-d H:i:s');
+      $player->save();
+
       $content = $this->renderPartial('_pdf');
       $pdf = new Pdf([
         'mode' => 'utf-8',
@@ -170,7 +208,7 @@ class SiteController extends Controller
         $_pfilename = \app\components\KeyGenerator::getUniqueName();
         $model->upload($_pfilename);
         Yii::$app->session->set('data', $model);
-        return $this->render('individual_render', ['model'=>$model]);
+        return $this->render('individual_render', ['model'=>$model, 'filename'=>$_pfilename]);
       }
 
       if (Yii::$app->request->get('requesttype') == 'edit') {
@@ -286,6 +324,10 @@ class SiteController extends Controller
     public function actionPreregister() {
       $regtype = Yii::$app->request->get('type') !== false ? Yii::$app->request->get('type') : NULL;
       return $this->render('preregister', ['regtype'=>$regtype]);
+    }
+
+    public function actionTest() {
+      die(\app\components\ArenaHelper::getArenaName('tu1'));
     }
 
 }
