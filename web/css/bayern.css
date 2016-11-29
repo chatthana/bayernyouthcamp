@@ -197,8 +197,35 @@
   margin-top:60px;
 }
 
+.registration-form-arenas .form-group {
+  position:relative;
+  width:100%;
+}
+
+.registration-form-arenas .form-group .each-radiobox {
+  position:relative;
+  width:100%;
+  vertical-align:middle;
+  margin:5px 0;
+}
+
+/**/
+
+/*#registration-content #registration-form-container #registration-form .registration-form-arena {
+  position:relative;
+  margin-top:160px;
+}*/
+
+/*#registration-content #registration-form-container #registration-form .registration-form-arena .form-group {
+  position:relative;
+  width:100%;
+}*/
+
+/**/
+
 #registration-content #registration-form-container #registration-form #registration-form-arenas ul > li .form-group,
 .registration-form-arenas ul > li .form-group,
+.registration-form-arenas .form-group
 .acceptance .form-group {
   position:relative;
   width:100%;
@@ -207,7 +234,7 @@
 }
 
 #registration-content #registration-form-container #registration-form #registration-form-arenas ul > li .form-group .radio-label,
-.registration-form-arenas ul > li .form-group .radio-label,
+.registration-form-arenas .form-group .each-radiobox .radio-label,
 .acceptance .form-group .radio-label {
   position:relative;
   float:left;
@@ -215,7 +242,7 @@
 }
 
 #registration-content #registration-form-container #registration-form #registration-form-arenas ul > li .form-group .radio-label .radio-label-input-group,
-.registration-form-arenas ul > li .form-group .radio-label .radio-label-input-group,
+.registration-form-arenas .form-group .each-radiobox .radio-label .radio-label-input-group,
 .acceptance .form-group .radio-label .radio-label-input-group {
   width:20px;
   height:20px;
@@ -228,20 +255,20 @@
 }
 
 #registration-content #registration-form-container #registration-form #registration-form-arenas ul > li .form-group .radio-label .radio-label-input-group.checked,
-.registration-form-arenas ul > li .form-group .radio-label .radio-label-input-group.checked,
+.registration-form-arenas .form-group .each-radiobox .radio-label .radio-label-input-group.checked,
 .acceptance .form-group .radio-label .radio-label-input-group.checked {
   background-position:0 -29px;
 }
 
 #registration-content #registration-form-container #registration-form #registration-form-arenas ul > li .form-group .radio-label input[type=radio],
-.registration-form-arenas ul > li .form-group .radio-label input[type=radio],
+.registration-form-arenas .form-group .each-radiobox .radio-label input[type=radio],
 .acceptance .form-group .radio-label input[type=radio] {
   position:absolute;
   opacity:0;
 }
 
 #registration-content #registration-form-container #registration-form #registration-form-arenas ul > li .form-group .radio-label .custom-radio,
-.registration-form-arenas ul > li .form-group .radio-label .custom-radio,
+.registration-form-arenas .form-group .each-radiobox .radio-label .custom-radio,
 .acceptance .form-group .radio-label .custom-radio {
   position:absolute;
   width:36px;
@@ -249,7 +276,7 @@
 }
 
 #registration-content #registration-form-container #registration-form #registration-form-arenas ul > li .form-group input[type=radio],
-.registration-form-arenas ul > li .form-group input[type=radio],
+.registration-form-arenas .form-group .each-radiobox .form-group input[type=radio],
 .acceptance .form-group input[type=radio] {
   display:block;
   margin:3px;
@@ -257,14 +284,14 @@
 }
 
 #registration-content #registration-form-container #registration-form #registration-form-arenas ul > li .form-group .radio-label .control-label:before,
-.registration-form-arenas ul > li .form-group .radio-label .control-label:before,
+.registration-form-arenas .form-group .each-radiobox .control-label:before,
 .acceptance .form-group .radio-label .control-label:before {
   content:'';
   display:table;
 }
 
 #registration-content #registration-form-container #registration-form #registration-form-arenas ul > li .form-group .radio-label .control-label:after,
-.registration-form-arenas ul > li .form-group .radio-label .control-label:after,
+.registration-form-arenas .form-group .each-radiobox .control-label:after,
 .acceptance .form-group .radio-label .control-label:after {
   clear:both;
 }
@@ -285,14 +312,14 @@
 }
 
 #registration-content #registration-form-container #registration-form #registration-form-arenas ul > li .form-group .radio-left,
-.registration-form-arenas ul > li .form-group .radio-left {
+.registration-form-arenas .form-group .each-radiobox .radio-left {
   display:block;
   margin-left:10px;
   float:left;
 }
 
 #registration-content #registration-form-container #registration-form #registration-form-arenas ul > li .form-group .radio-right,
-.registration-form-arenas ul > li .form-group .radio-right {
+.registration-form-arenas .form-group .each-radiobox .radio-right {
   display:block;
   float:right;
 }

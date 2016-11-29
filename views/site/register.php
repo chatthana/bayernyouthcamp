@@ -93,15 +93,19 @@ use app\components\ThaiDateHelper;
 
         </ul>
 
-        <div id="registration-form-arenas">
+        <div class="registration-form-arenas">
           <ul>
-            <?php $radioTemplate = '<div class="radio clearfix">{input}<div class="radio-label">{label}</div>{error}</div>'; ?>
-            <?php $radioTemplate = '<label class="radio-label"><div class="radio-label-input-group">{input}<div class="custom-radio"></div></div></label>{label}'; ?>
-            <?php foreach ($arenas as $arena): ?>
-              <li class="clearfix">
-                <?php echo $form->field($model, 'arena', ['template' => $radioTemplate])->input('radio', ['value'=>$arena->code])->label('<div class="radio-left">'. $arena->text .'</div><div class="radio-right">วันที่ '. ThaiDateHelper::getThaiDate($arena->reg_date) .'</div>'); ?>
-              </li>
-            <?php endforeach; ?>
+            <?= $form->field($model, 'arena')->radioList([
+              "tu1"=>"sdsdsd",
+              "tu2"=>"fdfdfd"
+            ],[
+              "item"=>function($index, $label, $name, $checked, $value) {
+                $input = "<input type='radio' name=" . $name . " value=". $value . " />";
+                $_label = '<label class="control-label"><div class="radio-left">'. $label .'</div><div class="radio-right">วันที่ '. ThaiDateHelper::getThaiDate('2016-07-10') .'</div></label>';
+                return '<div class="each-radiobox clearfix"><label class="radio-label"><div class="radio-label-input-group">'.$input.'<div class="custom-radio"></div></div></label>' . $_label . "</div>";
+              }
+            ]
+            )->label(false); ?>
           </ul>
         </div>
 
@@ -132,10 +136,11 @@ use app\components\ThaiDateHelper;
       'dateFormat': 'yy-mm-dd'
     });
 
-    $('#registration-form-arenas input[type=radio]').change(function() {
-      $('#registration-form-arenas ul > li .radio-label-input-group').removeClass('checked');
-      $('#registration-form-arenas ul > li label + label').css('color', 'inherit');
+    $('.registration-form-arenas input[type=radio]').change(function() {
+      $('.registration-form-arenas .radio-label-input-group').removeClass('checked');
+      $('.registration-form-arenas label + label').css('color', 'inherit');
       $(this).parent().addClass('checked');
+      console.log($('.registration-form-arenas input[type=radio]:checked').val());
       $(this).parent().parent().next().css('color', '#961933');
     });
 
