@@ -127,6 +127,35 @@
   padding-right:0;
 }
 
+/** FORM GROUP CUSTOM SPAN **/
+#registration-content #registration-form-container #registration-form ul > li.custom [class^="span-"] {
+  position:relative;
+  float:left;
+  padding:0 20px;
+}
+
+#registration-content #registration-form-container #registration-form ul > li.custom [class^="span-"]:first-child {
+  padding-left:0;
+}
+
+#registration-content #registration-form-container #registration-form ul > li.custom [class^="span-"]:last-child {
+  padding-right:0;
+}
+
+#registration-content #registration-form-container #registration-form ul > li.custom .span-1 {
+  width:calc(100%/6);
+}
+
+#registration-content #registration-form-container #registration-form ul > li.custom .span-2 {
+  width:calc((100%/6)*2);
+}
+
+#registration-content #registration-form-container #registration-form ul > li.custom .span-3 {
+  width:50%;
+}
+
+/** ========================== **/
+
 #registration-content #registration-form-container #registration-form .form-group.span-1-6 {
   width:calc(100%/6);
 }
@@ -206,7 +235,7 @@
   position:relative;
   width:100%;
   vertical-align:middle;
-  margin:5px 0;
+  margin:10px 0;
 }
 
 /**/
@@ -632,4 +661,17 @@ section#regulations table tr th {
 section#regulations table tr td, section#regulations table tr th {
   padding:5px;
   border:1px solid #000;
+}
+
+/** SUCCESS PAGE **/
+#notifier {
+  position: relative;
+  width: 60%;
+  margin: 70px auto;
+  text-align: center;
+  border: 1px solid #52ab7e;
+  padding: 20px;
+  background-color: #e6fff2;
+  color: #66a978;
+  border-radius: 5px;
 }

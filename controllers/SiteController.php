@@ -16,6 +16,7 @@ use app\models\Players;
 use app\models\Coaches;
 use app\models\Arenas;
 use yii\web\UploadedFile;
+use yii\helpers\ArrayHelper;
 use kartik\mpdf\Pdf;
 
 class SiteController extends Controller
@@ -191,7 +192,7 @@ class SiteController extends Controller
 
       Yii::$app->mailer->compose('@app/mail/layouts/test')
         ->setFrom('info@sporttb.com')
-        ->setTo('chatthana@mol.com')
+        ->setTo($player->email)
         ->setSubject('ยืนยันการสมัคร FC Bayern Youth Cup 2017')
         ->attach(Yii::getAlias('@webroot') . '/pdf/'. $_pdfName .'.pdf')
         ->send();
@@ -225,7 +226,7 @@ class SiteController extends Controller
         }
       }
 
-      return $this->render('register', ['model'=>$model, 'arenas'=>$arenas]);
+      return $this->render('register', ['model'=>$model, 'arenas'=>ArrayHelper::map($arenas, 'code', 'text')]);
     }
 
     /**
@@ -329,6 +330,10 @@ class SiteController extends Controller
 
     public function actionTest() {
       die(\app\components\ArenaHelper::getArenaName('tu1'));
+    }
+
+    public function actionSuccess() {
+      return $this->render('success');
     }
 
 }

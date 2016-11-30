@@ -30,6 +30,27 @@ class ThaiDateHelper extends Component {
     return false;
   }
 
+  public static function getMonths() {
+    return self::$months;
+  }
+
+  public static function getDates() {
+    $dateNo = [];
+    for ($i=1; $i <= 31; $i++) {
+      $dateNo[$i] = $i;
+    }
+
+    return $dateNo;
+  }
+
+  public static function getYears() {
+    $years = [];
+    for ($i=2000; $i < 2008; $i++) {
+      $years[$i] = $i;
+    }
+    return $years;
+  }
+
   public static function getThaiDate($date) {
     $datas = explode('-', $date);
     return date('j', strtotime($date)) . ' ' . self::getMonth($datas[1]) . ' ' . ($datas[0] + 543);

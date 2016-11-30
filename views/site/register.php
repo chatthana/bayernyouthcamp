@@ -1,6 +1,7 @@
 <?php
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use app\components\ArenaHelper;
 use app\components\ThaiDateHelper;
 ?>
 <div id="main-content" class="auto">
@@ -49,9 +50,17 @@ use app\components\ThaiDateHelper;
           <li class="full clearfix">
             <?php echo $form->field($model, 'name_en', ['inputOptions' => ['placeholder'=>$model->getAttributeLabel('name_en')]])->label(false); ?>
           </li>
-          <li class="col-2 clearfix">
-            <?php echo $form->field($model, 'birthdate', ['inputOptions' => ['placeholder'=>$model->getAttributeLabel('birthdate'), 'class'=>'datepicker']])->label(false); ?>
-            <?php echo $form->field($model, 'age', ['inputOptions' => ['placeholder'=>$model->getAttributeLabel('age')]])->label(false); ?>
+          <li class="custom clearfix">
+            <div class="form-group span-1">
+              <?php echo Html::dropDownList('birthdate',null, ThaiDateHelper::getDates(), ['prompt'=>'--- วัน ---', 'options'=>['class'=>'span-1']]); ?>
+            </div>
+            <div class="form-group span-1">
+              <?php echo Html::dropDownList('birthmonth', null, ThaiDateHelper::getMonths(), ['prompt'=>'--- เดือน ---', 'options'=>['class'=>'span-1']]); ?>
+            </div>
+            <div class="form-group span-1">
+              <?php echo Html::dropDownList('birthyear', null, ThaiDateHelper::getYears(), ['prompt'=>'--- ปี ---', 'options'=>['class'=>'span-1']]); ?>
+            </div>
+            <?php echo $form->field($model, 'age', ['options'=>['class'=>'span-3'], 'inputOptions' => ['placeholder'=>$model->getAttributeLabel('age'), 'readonly'=>true]])->label(false); ?>
           </li>
           <li class="full clearfix">
             <?php echo $form->field($model, 'identity_card_no', ['inputOptions' => ['placeholder'=>$model->getAttributeLabel('identity_card_no')]])->label(false); ?>
@@ -91,17 +100,18 @@ use app\components\ThaiDateHelper;
             <?= $form->field($model, 'ppa')->hiddenInput(['value'=>'gk'])->label(false); ?>
           <?php endif; ?>
 
+          <?= $form->field($model, 'birthdate')->hiddenInput(['value'=>''])->label(false); ?>
+
         </ul>
 
         <div class="registration-form-arenas">
           <ul>
-            <?= $form->field($model, 'arena')->radioList([
-              "tu1"=>"sdsdsd",
-              "tu2"=>"fdfdfd"
-            ],[
+            <?= $form->field($model, 'arena')->radioList(
+              $arenas
+            ,[
               "item"=>function($index, $label, $name, $checked, $value) {
                 $input = "<input type='radio' name=" . $name . " value=". $value . " />";
-                $_label = '<label class="control-label"><div class="radio-left">'. $label .'</div><div class="radio-right">วันที่ '. ThaiDateHelper::getThaiDate('2016-07-10') .'</div></label>';
+                $_label = '<label class="control-label"><div class="radio-left">'. $label .'</div><div class="radio-right">วันที่ '. ThaiDateHelper::getThaiDate(ArenaHelper::findDateByText($label)) .'</div></label>';
                 return '<div class="each-radiobox clearfix"><label class="radio-label"><div class="radio-label-input-group">'.$input.'<div class="custom-radio"></div></div></label>' . $_label . "</div>";
               }
             ]
@@ -132,9 +142,35 @@ use app\components\ThaiDateHelper;
   </section>
 
   <script type="text/javascript">
-    $('.datepicker').datepicker({
-      'dateFormat': 'yy-mm-dd'
-    });
+    // $('.datepicker').datepicker({
+    //   'dateFormat': 'yy-mm-dd'
+    // });
+
+
+
+    // Birthdate object
+    var birthdate = {
+      "date":"",
+      "month":"",
+      "year":"",
+      assign: function(element) {
+        if(this.validate()) {
+          $(element).val(this.year + '-' + this.month + '-' + this.date);
+        }
+      },
+      validate: function() {
+        if (this.date == '' || this.month == '' || this.year == '') {
+          return false;
+        }
+        return true;
+      },
+      getAge: function() {
+        if (this.validate()) {
+          var yearNow = new Date().getFullYear();
+          return yearNow - this.year;
+        }
+      }
+    };
 
     $('.registration-form-arenas input[type=radio]').change(function() {
       $('.registration-form-arenas .radio-label-input-group').removeClass('checked');
@@ -152,5 +188,16 @@ use app\components\ThaiDateHelper;
       $('.acceptance .radio-label-input-group').removeClass('checked');
       $(this).parent().addClass('checked');
     });
+
+    $('select[name=birthdate], select[name=birthmonth], select[name=birthyear]').change(function(e) {
+      birthdate[$(this).attr('name').substring(5)] = $(this).val();
+      if (birthdate.validate()) {
+        birthdate.assign('#registrationform-birthdate');
+        $('#registrationform-age').val(birthdate.getAge());
+        return true;
+      }
+      return false;
+    });
+
   </script>
 </div>
