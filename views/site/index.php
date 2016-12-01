@@ -15,9 +15,9 @@ use yii\helpers\Url;
           Fc Bayern Youth Cup Thailand 2017 รายการที่ค้นหา นักเตะอายุระหว่าง 14-15 ปี (พ.ศ.2544-2545) เข้ารับการคัดเลือกนักเตะที่ดีที่สุดจากทีมงานและผู้ฝึกสอนจาก Fc Bayern Munich ยอดทีมจากประเทศเยอรมนี
         </p>
         <div class="submit-operation">
-          <?php echo Html::a('สมัครเข้าร่วมกิจกรรม', Yii::$app->urlManager->createUrl('site/register'), ['class'=>['button', 'bayern']]); ?>
-          <?php echo Html::a('สมัครเป็นทีม', Yii::$app->urlManager->createUrl(['site/registerteam']), ['class'=>['button', 'bayern']]); ?>
-          <?php echo Html::a('สมัครผู้รักษาประตู', Yii::$app->urlManager->createUrl(['site/register', 'regtype'=>'gk']), ['class'=>['button', 'bayern']]); ?>
+          <?php echo Html::a('สมัครเข้าร่วมกิจกรรม', Yii::$app->urlManager->createUrl(['site/preregister', 'type'=>'individual']), ['class'=>['button', 'bayern']]); ?>
+          <?php echo Html::a('สมัครเป็นทีม', Yii::$app->urlManager->createUrl(['site/preregister', 'type'=>'team']), ['class'=>['button', 'bayern']]); ?>
+          <?php echo Html::a('สมัครผู้รักษาประตู', Yii::$app->urlManager->createUrl(['site/preregister', 'regtype'=>'gk']), ['class'=>['button', 'bayern']]); ?>
         </div>
       </div>
     </div>

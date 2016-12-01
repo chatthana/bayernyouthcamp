@@ -268,19 +268,17 @@ class SiteController extends Controller
         // Assign multiple players to the form model
         \yii\base\Model::loadMultiple($models, Yii::$app->request->post());
 
+        foreach ($models as $index => $model) {
+          $model->identity_card_file = UploadedFile::getInstance($model, '[' . $index . ']identity_card_file');
+          $_pfilename = \app\components\KeyGenerator::getUniqueName();
+          $model->upload($_pfilename);
+        }
 
+        Yii::$app->session->set('teamdata', ['coach'=>$coachModel, 'players'=>$models]);
 
-        $model = $models[0];
-        $img = UploadedFile::getInstance($coachModel, 'identity_card_file');
-        var_dump($img);
+        var_dump(Yii::$app->session->get('teamdata'));
+
         die();
-        // foreach ($models as $model) {
-        //   $identity_card_file = UploadedFile::getInstances($model[1], 'identity_card_file');
-        //   $_pfilename = \app\components\KeyGenerator::getUniqueName();
-        //   var_dump($identity_card_file);
-        //   die();
-        //   $model->upload($_pfilename);
-        // }
 
         return $this->render('team_render', ['coach'=>$coachModel, 'models'=>$models]);
 
