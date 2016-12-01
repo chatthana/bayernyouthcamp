@@ -138,7 +138,8 @@
   padding-left:0;
 }
 
-#registration-content #registration-form-container #registration-form ul > li.custom [class^="span-"]:last-child {
+#registration-content #registration-form-container #registration-form ul > li.custom [class^="span-"]:last-child,
+#team-registration-form-container #registration-form ul > li.custom [class^="span-"]:last-child {
   padding-right:0;
 }
 
@@ -507,6 +508,32 @@
   width:100%;
 }
 
+#team-registration-form-container .each-form ul > li.custom [class^="span-"] {
+  position:relative;
+  float:left;
+  padding:0 20px;
+}
+
+#team-registration-form-container .each-form ul > li.custom [class^="span-"]:first-child {
+  padding-left:0;
+}
+
+#team-registration-form-container .each-form ul > li.custom [class^="span-"]:last-child {
+  padding-right:0;
+}
+
+#team-registration-form-container .each-form ul > li.custom .span-1 {
+  width:calc(100%/6);
+}
+
+#team-registration-form-container .each-form ul > li.custom .span-2 {
+  width:calc((100%/6)*2);
+}
+
+#team-registration-form-container .each-form ul > li.custom .span-3 {
+  width:50%;
+}
+
 .upload-button-container {
   position:relative;
   margin-top:50px;
@@ -600,6 +627,18 @@
   width:calc((100%/6)*6);
 }
 
+/** TEAM RENDER **/
+.registration-render .registration-information #team-member-render-zone {
+  position:relative;
+  margin:30px;
+}
+
+.registration-render .registration-information #team-member-render-zone .each-member {
+  position:relative;
+  padding:10px 0 30px;
+  border-bottom:1px solid #dadada;
+}
+
 /** REGULATIONS **/
 section#regulations {
   position:relative;
@@ -669,9 +708,41 @@ section#regulations table tr td, section#regulations table tr th {
   width: 60%;
   margin: 70px auto;
   text-align: center;
-  border: 1px solid #52ab7e;
-  padding: 20px;
-  background-color: #e6fff2;
-  color: #66a978;
+  border: 1px solid #bce8f1;;
+  padding:25px 10px;
+  color: #31708f;
+  background-color: #d9edf7;
   border-radius: 5px;
 }
+
+#notifier h1 {
+  font-size:1.5em;
+  font-weight:600;
+  margin:10px 0;
+}
+
+#notifier p {
+  margin:8px 0;
+}
+
+#notifier p:first-child {
+  margin-top:20px;
+}
+
+#notifier .button-container {
+  margin-top:25px;
+}
+
+#notifier .button-container .link-btn {
+  display:inline-block;
+  border:0;
+  padding:10px 17px;
+  color: #186d98;
+  background-color: #76b2d2;
+  border-radius:5px;
+  outline:0 none;
+}
+
+/*#notifier .button-container .link-btn.red {
+
+}*/

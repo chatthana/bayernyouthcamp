@@ -45,7 +45,7 @@ class ThaiDateHelper extends Component {
 
   public static function getYears() {
     $years = [];
-    for ($i=2000; $i < 2008; $i++) {
+    for ($i=2001; $i <= 2002; $i++) {
       $years[$i] = $i;
     }
     return $years;

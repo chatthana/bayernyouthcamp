@@ -66,6 +66,7 @@ p {
 .button {
   display:inline-block !important;
   border:0;
+  margin:10px 0;
   padding:10px 18px;
   outline:0 none;
   color:#fff;

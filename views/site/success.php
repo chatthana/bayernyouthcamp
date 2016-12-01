@@ -8,6 +8,9 @@
       <p>
         กรุณาพิมพ์ใบสมัครข้างต้นและนำไปยื่น ณ จุดรับสมัครที่ท่านทำการลงทะเบียนไว้ ตามวันและเวลาในการรับสมัคร
       </p>
+      <div class="button-container">
+        <a class="link-btn" href="<?= Yii::$app->urlManager->createUrl(['site/index']) ?>">กลับไปหน้าแรก</a>
+      </div>
     </div>
   </div>
 </section>

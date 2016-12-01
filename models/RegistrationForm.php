@@ -37,7 +37,7 @@ class RegistrationForm extends Model {
       ['email', 'email', 'message' => 'รูปแบบอีเมล์ไม่ถูกต้อง'],
       [['pp', 'ppa'], 'safe'],
       [['identity_card_no', 'age', 'telephone', 'guardian_telephone'], 'integer', 'message' => '{attribute}ต้องเป็นตัวเลขเท่านั้น'],
-      [['identity_card_file'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png,jpg', 'message'=>'กรุณาอปโหลดไฟล์']
+      [['identity_card_file'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png,jpg', 'message'=>'กรุณาอัปโหลดไฟล์']
     ];
   }
 

@@ -36,7 +36,7 @@ class TeamRegistrationForm extends Model {
       ['email', 'email', 'message' => 'รูปแบบอีเมล์ไม่ถูกต้อง'],
       // ['name', 'required']
       [['identity_card_no', 'age', 'telephone', 'guardian_telephone'], 'integer', 'message' => '{attribute}ต้องเป็นตัวเลขเท่านั้น'],
-      [['identity_card_file'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png,jpg']
+      [['identity_card_file'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png,jpg', 'message'=>'กรุณาอัปโหลดไฟล์']
     ];
   }
 
@@ -70,7 +70,6 @@ class TeamRegistrationForm extends Model {
   public function upload($name) {
       $this->identity_card_file->saveAs(Yii::getAlias('@webroot') . '/uploads/identity_cards/' . $name . '.' . $this->identity_card_file->extension);
       return true;
-
   }
 
 }

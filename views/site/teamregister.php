@@ -1,7 +1,11 @@
 <?php
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use app\components\ArenaHelper;
 use app\components\ThaiDateHelper;
+
+// Register JS file
+$this->registerJsFile(Yii::getAlias('@web') . '/js/teamregistration.js');
 ?>
 
 <div class="wrapper">
@@ -71,13 +75,16 @@ use app\components\ThaiDateHelper;
 
         <div class="registration-form-arenas">
           <ul>
-            <?php $radioTemplate = '<div class="radio clearfix">{input}<div class="radio-label">{label}</div>{error}</div>'; ?>
-            <?php $radioTemplate = '<label class="radio-label"><div class="radio-label-input-group">{input}<div class="custom-radio"></div></div></label>{label}'; ?>
-            <?php foreach ($arenas as $arena): ?>
-              <li class="clearfix">
-                <?php echo $form->field($coachModel, 'arena', ['template' => $radioTemplate])->input('radio', ['value'=>$arena->code])->label('<div class="radio-left">'. $arena->text .'</div><div class="radio-right">วันที่ '. ThaiDateHelper::getThaiDate($arena->reg_date) .'</div>'); ?>
-              </li>
-            <?php endforeach; ?>
+            <?= $form->field($coachModel, 'arena')->radioList(
+              $arenas
+            ,[
+              "item"=>function($index, $label, $name, $checked, $value) {
+                $input = "<input type='radio' name=" . $name . " value=". $value . " />";
+                $_label = '<label class="control-label"><div class="radio-left">'. $label .'</div><div class="radio-right">วันที่ '. ThaiDateHelper::getThaiDate(ArenaHelper::findDateByText($label)) .'</div></label>';
+                return '<div class="each-radiobox clearfix"><label class="radio-label"><div class="radio-label-input-group">'.$input.'<div class="custom-radio"></div></div></label>' . $_label . "</div>";
+              }
+            ]
+            )->label(false); ?>
           </ul>
         </div>
 
@@ -98,9 +105,17 @@ use app\components\ThaiDateHelper;
             <li class="full clearfix">
               <?php echo $form->field($model, '[' . $index . ']name_en', ['inputOptions' => ['placeholder'=>$model->getAttributeLabel('name_en')]])->label(false); ?>
             </li>
-            <li class="col-2 clearfix">
-              <?php echo $form->field($model, '[' . $index . ']birthdate', ['inputOptions' => ['placeholder'=>$model->getAttributeLabel('birthdate'), 'class'=>'datepicker']])->label(false); ?>
-              <?php echo $form->field($model, '[' . $index . ']age', ['inputOptions' => ['placeholder'=>$model->getAttributeLabel('age')]])->label(false); ?>
+            <li class="custom clearfix">
+              <div class="form-group span-1" data-seq-ref="<?= $index ?>">
+                <?php echo Html::dropDownList('birthdate',null, ThaiDateHelper::getDates(), ['prompt'=>'--- วัน ---', 'class'=>'birthdate-date-selector']); ?>
+              </div>
+              <div class="form-group span-1" data-seq-ref="<?= $index ?>">
+                <?php echo Html::dropDownList('birthmonth', null, ThaiDateHelper::getMonths(), ['prompt'=>'--- เดือน ---', 'class'=>'birthdate-month-selector']); ?>
+              </div>
+              <div class="form-group span-1" data-seq-ref="<?= $index ?>">
+                <?php echo Html::dropDownList('birthyear', null, ThaiDateHelper::getYears(), ['prompt'=>'--- ปี ---', 'class'=>'birthdate-year-selector']); ?>
+              </div>
+              <?php echo $form->field($model, '[' . $index . ']age', ['options'=>['class'=>'span-3'], 'inputOptions' => ['placeholder'=>$model->getAttributeLabel('age'), 'readonly'=>true]])->label(false); ?>
             </li>
             <li class="full clearfix">
               <?php echo $form->field($model, '[' . $index . ']identity_card_no', ['inputOptions' => ['placeholder'=>$model->getAttributeLabel('identity_card_no')]])->label(false); ?>
@@ -137,7 +152,7 @@ use app\components\ThaiDateHelper;
           </ul>
 
           <div class="upload-button-container">
-            <?php echo $form->field($model, 'identity_card_file', ['options' => ['class' => 'form-center'],
+            <?php echo $form->field($model, '[' . $index . ']identity_card_file', ['options' => ['class' => 'form-center'],
               'template' =>
               '   {label}
                   <div class="id-card-uploader button green">
@@ -147,6 +162,8 @@ use app\components\ThaiDateHelper;
                '
             ])->fileInput()->label(false); ?>
           </div>
+
+          <?= $form->field($model, '[' . $index . ']birthdate')->hiddenInput(['value'=>''])->label(false); ?>
 
           <div class="submit-button-container">
             <?php if (($index + 1) === count($models)) : ?>
@@ -162,35 +179,3 @@ use app\components\ThaiDateHelper;
   </section>
 
 </div>
-<script type="text/javascript">
-
-  $('.datepicker').datepicker({
-    'dateFormat':'yy-mm-dd'
-  });
-
-  $('.each-form').hide();
-
-  $('.each-form[data-sequence=1]').show();
-
-  $('.id-card-uploader input[type=file]').change(function(e) {
-    $(this).parent().addClass('attached');
-  });
-
-  $('.each-form a, a.form-navigator').click(function(e) {
-    e.preventDefault();
-    var target_sequence = $(this).attr('data-target-sequence');
-    $('.each-form').hide();
-    $('.each-form[data-sequence='+ target_sequence +']').fadeIn(500);
-
-    $('.form-navigator').removeClass('selected');
-    $('.form-navigator[data-target-sync='+ target_sequence +']').addClass('selected');
-  });
-
-  $('.registration-form-arenas input[type=radio]').change(function() {
-    $('.registration-form-arenas ul > li .radio-label-input-group').removeClass('checked');
-    $('.registration-form-arenas ul > li label + label').css('color', 'inherit');
-    $(this).parent().addClass('checked');
-    $(this).parent().parent().next().css('color', '#961933');
-  });
-
-</script>

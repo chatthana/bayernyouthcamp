@@ -190,12 +190,14 @@ class SiteController extends Controller
 
       $pdf->render();
 
-      Yii::$app->mailer->compose('@app/mail/layouts/test')
+      $sendMail = Yii::$app->mailer->compose('@app/mail/layouts/test')
         ->setFrom('info@sporttb.com')
         ->setTo($player->email)
         ->setSubject('ยืนยันการสมัคร FC Bayern Youth Cup 2017')
         ->attach(Yii::getAlias('@webroot') . '/pdf/'. $_pdfName .'.pdf')
         ->send();
+
+      return $this->render('success');
 
     }
 
@@ -253,14 +255,34 @@ class SiteController extends Controller
         //Assign the post values for coach model
         $coachModel->load(Yii::$app->request->post());
 
+
+
         // Get instance of the uploaded identity card file
         $coachModel->identity_card_file = UploadedFile::getInstance($coachModel, 'identity_card_file');
+
+
         // Finally call upload method to save the image with unique file name
         $_cfilename = \app\components\KeyGenerator::getUniqueName();
         $coachModel->upload($_cfilename);
 
         // Assign multiple players to the form model
         \yii\base\Model::loadMultiple($models, Yii::$app->request->post());
+
+
+
+        $model = $models[0];
+        $img = UploadedFile::getInstance($coachModel, 'identity_card_file');
+        var_dump($img);
+        die();
+        // foreach ($models as $model) {
+        //   $identity_card_file = UploadedFile::getInstances($model[1], 'identity_card_file');
+        //   $_pfilename = \app\components\KeyGenerator::getUniqueName();
+        //   var_dump($identity_card_file);
+        //   die();
+        //   $model->upload($_pfilename);
+        // }
+
+        return $this->render('team_render', ['coach'=>$coachModel, 'models'=>$models]);
 
         // Create new activity-based team first
         $team = new Teams();
@@ -288,7 +310,7 @@ class SiteController extends Controller
           // Retrieve uploaded file
           $model->identity_card_file = UploadedFile::getInstance($model, 'identity_card_file');
           $_pfilename = \app\components\KeyGenerator::getUniqueName();
-          $model->identity_card_file->saveAs(Yii::getAlias('@webroot' . '/uploads/identity_cards/' . $index . $_pfilename . '.' . $model->identity_card_file->extension));
+          $model->identity_card_file->saveAs(Yii::getAlias('@webroot' . '/uploads/identity_cards/' .  $_pfilename . '.' . $model->identity_card_file->extension));
 
           $player = new Players();
           $player->name = $model->name;
@@ -320,7 +342,7 @@ class SiteController extends Controller
         }
       }
 
-      return $this->render('teamregister', ['coachModel'=>$coachModel, 'models' => $models, 'arenas'=>$arenas]);
+      return $this->render('teamregister', ['coachModel'=>$coachModel, 'models' => $models, 'arenas'=>ArrayHelper::map($arenas, 'code', 'text')]);
     }
 
     public function actionPreregister() {
