@@ -340,7 +340,7 @@ class SiteController extends Controller
       $coachModel = new CoachRegistrationForm();
 
       // We need 7 members per team, so iterate and create array of models here
-      for ($i=0; $i < 2; $i++) {
+      for ($i=0; $i < 7; $i++) {
         $models[] = new TeamRegistrationForm();
       }
 
