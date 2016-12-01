@@ -144,6 +144,101 @@ class SiteController extends Controller
 
     public function actionConfirm() {
 
+      if (Yii::$app->request->get('confirmtype') == 'team') {
+        $teamData = Yii::$app->session->get('teamdata');
+        $coachModel = $teamData['coach']['models'];
+        $models = $teamData['players']['models'];
+
+        // Declare empty template
+        $template = '';
+
+        // Create new activity-based team first
+        $team = new Teams();
+        $team->pretty_unique_id = $coachModel->arena . date('YmdHis');
+        $team->selected_arena = $coachModel->arena;
+        $team->created = date('Y-m-d H:i:s');
+        $team->save();
+
+        // Create the coach record for this team
+        $coach = new Coaches();
+        $coach->name = $coachModel->name;
+        $coach->name_en = $coachModel->name_en;
+        $coach->identity_card_no = $coachModel->identity_card_no;
+        $coach->age = $coachModel->age;
+        $coach->telephone = $coachModel->telephone;
+        $coach->school = $coachModel->school;
+        $coach->address = $coachModel->address;
+        $coach->identity_card_path = '/uploads/identity_cards/' . $teamData['coach']['filenames'] . '.' . $coachModel->identity_card_file->extension;
+        $coach->virtual_team = $team->id;
+        $coach->created = date('Y-m-d H:i:s');
+        $coach->save();
+
+        // Render coach template
+        $template .= $this->renderPartial('_cpdf', ['model'=>$coach, 'arena'=>$coachModel->arena]) . "<pagebreak page-break-type=\"clonebycss\" />";
+        $template .= $this->renderPartial('_cpdf', ['model'=>$coach, 'arena'=>$coachModel->arena]) . "<pagebreak page-break-type=\"clonebycss\" />";
+
+        foreach ($models as $index => $model) {
+          $player = new Players();
+          $player->name = $model->name;
+          $player->name_en = $model->name_en;
+          $player->nickname = $model->nickname;
+          $player->birthdate = $model->birthdate;
+          $player->age = $model->age;
+          $player->identity_card_no = $model->identity_card_no;
+          $player->identity_card_path = '/uploads/identity_cards/' . $_pfilename . $teamData['players']['filenames'][$index] . '.' . $model->identity_card_file->extension;
+          $player->school = $model->school;
+          $player->year = $model->year;
+          $player->address = $model->address;
+          $player->telephone = $model->telephone;
+          $player->line_id = $model->line_id;
+          $player->facebook_link = $model->facebook_link;
+          $player->email = $model->email;
+          $player->foot = $model->foot;
+          $player->pp = $model->pp;
+          $player->ppa = $model->ppa;
+          $player->weight = $model->weight;
+          $player->height = $model->height;
+          $player->team = $model->team;
+          $player->virtual_team = $team->id;
+          $player->guardian_name = $model->guardian_name;
+          $player->guardian_telephone = $model->guardian_telephone;
+          $player->arena = $coachModel->arena;
+          $player->created = date('Y-m-d H:i:s');
+          $player->save();
+
+          $player->unique_id = "FBY17" . $player->getPrimaryKey();
+          $player->save();
+
+          // Render each memeber template and store in the array
+          // $template .= $this->renderPartial('_pdf', ['model'=>$player]);
+
+        }
+
+          $content = $template;
+
+          $_pdfName = \app\components\KeyGenerator::getUniqueName();
+          $pdf = new Pdf([
+            'mode' => 'utf-8',
+            'format' => Pdf::FORMAT_A4,
+            'orientation' => Pdf::ORIENT_PORTRAIT,
+            'filename'=>Yii::getAlias('@webroot') . '/pdf/' . $_pdfName .'.pdf',
+            'destination' => Pdf::DEST_BROWSER,
+            'content' => $content,
+            'cssFile' => '@webroot/css/pdf.css'
+          ]);
+
+          $pdf->render();
+
+          // $sendMail = Yii::$app->mailer->compose('@app/mail/layouts/test')
+          //   ->setFrom('info@sporttb.com')
+          //   ->setTo('chattana.j@gmail.com')
+          //   ->setSubject('ยืนยันการสมัคร FC Bayern Youth Cup 2017')
+          //   ->attach(Yii::getAlias('@webroot') . '/pdf/'. $_pdfName .'.pdf')
+          //   ->send();
+
+          return $this->render('success');
+      }
+
       $model = Yii::$app->session->get('data');
       $filename = Yii::$app->request->get('filename');
 
@@ -245,12 +340,15 @@ class SiteController extends Controller
       $coachModel = new CoachRegistrationForm();
 
       // We need 7 members per team, so iterate and create array of models here
-      for ($i=0; $i < 7; $i++) {
+      for ($i=0; $i < 2; $i++) {
         $models[] = new TeamRegistrationForm();
       }
 
       // If this is a POST request (means forms are summitted)
       if (Yii::$app->request->post()) {
+
+        // Pre-declare the filename objects
+        Yii::$app->session['teamdata'] = new \ArrayObject;
 
         //Assign the post values for coach model
         $coachModel->load(Yii::$app->request->post());
@@ -258,27 +356,27 @@ class SiteController extends Controller
         // Get instance of the uploaded identity card file
         $coachModel->identity_card_file = UploadedFile::getInstance($coachModel, 'identity_card_file');
 
-
         // Finally call upload method to save the image with unique file name
         $_cfilename = \app\components\KeyGenerator::getUniqueName();
         $coachModel->upload($_cfilename);
+        Yii::$app->session['teamdata']['coach']['filenames'] = $_cfilename;
 
         // Assign multiple players to the form model
         \yii\base\Model::loadMultiple($models, Yii::$app->request->post());
 
+        // Upload files first
         foreach ($models as $index => $model) {
           $model->identity_card_file = UploadedFile::getInstance($model, '[' . $index . ']identity_card_file');
           $_pfilename = \app\components\KeyGenerator::getUniqueName();
           $model->upload($_pfilename);
+          Yii::$app->session['teamdata']['players']['filenames'][] = $_pfilename;
         }
 
-        Yii::$app->session->set('teamdata', ['coach'=>$coachModel, 'players'=>$models]);
+        // Store models in the session
+        Yii::$app->session['teamdata']['coach']['models'] = $coachModel;
+        Yii::$app->session['teamdata']['players']['models'] = $models;
 
-        var_dump(Yii::$app->session->get('teamdata'));
-
-        die();
-
-        return $this->render('team_render', ['coach'=>$coachModel, 'models'=>$models]);
+        return $this->render('team_render', ['coachModel'=>$coachModel, 'models'=>$models]);
 
         // Create new activity-based team first
         $team = new Teams();
@@ -334,9 +432,15 @@ class SiteController extends Controller
           $player->arena = $coachModel->arena;
           $player->created = date('Y-m-d H:i:s');
           $player->save();
-
         }
       }
+
+      // if (Yii::$app->request->get('requesttype') == 'edit') {
+      //   $teamData = Yii::$app->session->get('teamdata');
+      //   $coachModel = $teamData['coachModel'];
+      //   $models = $teamData['models'];
+      //   return $this->render('register', ['model'=>$model, 'arenas'=>$arenas]);
+      // }
 
       return $this->render('teamregister', ['coachModel'=>$coachModel, 'models' => $models, 'arenas'=>ArrayHelper::map($arenas, 'code', 'text')]);
     }

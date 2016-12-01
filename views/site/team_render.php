@@ -20,7 +20,7 @@ use app\components\PlayerHelper;
       <!-- For coach -->
       <div id="team-coach-render-zone">
         <div class="row">
-          <h1>โค้ช / อาจารย์</h1>
+          <h3>โค้ช / อาจารย์</h3>
         </div>
         <div class="row clearfix">
           <p class="col-2"><span>ชื่อ - นามสกุล : </span><?= $coachModel->name ?></p>
@@ -40,8 +40,9 @@ use app\components\PlayerHelper;
       </div>
 
       <div id="team-member-render-zone">
-        <?php foreach ($models as $model): ?>
+        <?php foreach ($models as $index => $model): ?>
           <div class="each-member">
+            <h3>ผู้เล่นที่ <?php echo $index + 1; ?></h3>
             <div class="row clearfix">
               <p class="col-2"><span>ชื่อ - นามสกุล : </span><?= $model->name ?></p>
               <p class="col-2"><span>ชื่อ - นามสกุล (อังกฤษ) : </span><?= $model->name_en ?></p>
@@ -71,15 +72,14 @@ use app\components\PlayerHelper;
               <p class="col-2"><span>เบอร์โทรศัพท์ : </span> <?= $model->guardian_telephone ?></p>
             </div>
             <div class="row clearfix">
-              <p class="col-3"><span>สนามแข่งขัน : </span> <?= \app\components\ArenaHelper::getArenaName($model->arena) ?></p>
-              <p class="col-3"><span>เบอร์โทรศัพท์ : </span> <?= $model->guardian_telephone ?></p>
-            </div>
-            <div class="row" style="text-align:center; margin-top:35px;">
-              <?php echo Html::a('ยืนยันการสมัคร', Yii::$app->urlManager->createUrl(['site/confirm', 'filename'=>$filename]), ['class'=>'button blue']); ?>
-              <?php echo Html::a('กลับไปแก้ไข', Yii::$app->urlManager->createUrl(['site/register', 'requesttype'=>'edit']), ['class'=>'button red']); ?>
+              <p class="col-6"><span>เบอร์โทรศัพท์ : </span> <?= $model->guardian_telephone ?></p>
             </div>
           </div>
         <?php endforeach; ?>
+          <div class="row" style="text-align:center; margin-top:35px;">
+            <?php echo Html::a('ยืนยันการสมัคร', Yii::$app->urlManager->createUrl(['site/confirm', 'confirmtype'=>'team']), ['class'=>'button blue']); ?>
+            <?php echo Html::a('กลับไปแก้ไข', Yii::$app->urlManager->createUrl(['site/registerteam', 'requesttype'=>'edit']), ['class'=>'button red']); ?>
+          </div>
       </div>
   </div>
 </section>

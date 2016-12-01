@@ -8,6 +8,7 @@ use Yii;
  * This is the model class for table "players".
  *
  * @property integer $id
+ * @property string $unique_id
  * @property string $name
  * @property string $name_en
  * @property string $nickname
@@ -50,13 +51,13 @@ class Players extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'name_en', 'nickname', 'birthdate', 'age', 'identity_card_no', 'identity_card_path', 'school', 'year', 'address', 'telephone', 'line_id', 'facebook_link', 'email', 'foot', 'pp', 'ppa', 'weight', 'height', 'guardian_name', 'guardian_telephone', 'created'], 'required'],
+            [['unique_id', 'name', 'name_en', 'nickname', 'birthdate', 'age', 'identity_card_no', 'identity_card_path', 'school', 'year', 'address', 'telephone', 'line_id', 'facebook_link', 'email', 'foot', 'pp', 'ppa', 'weight', 'height', 'guardian_name', 'guardian_telephone', 'created'], 'required'],
             [['birthdate', 'created'], 'safe'],
             [['age', 'year', 'weight', 'height', 'virtual_team'], 'integer'],
             [['identity_card_path', 'school', 'address', 'facebook_link', 'team'], 'string'],
+            [['unique_id', 'telephone', 'guardian_telephone'], 'string', 'max' => 10],
             [['name', 'name_en', 'nickname', 'guardian_name', 'arena'], 'string', 'max' => 255],
             [['identity_card_no'], 'string', 'max' => 13],
-            [['telephone', 'guardian_telephone'], 'string', 'max' => 10],
             [['line_id'], 'string', 'max' => 32],
             [['email'], 'string', 'max' => 128],
             [['foot'], 'string', 'max' => 16],
@@ -71,6 +72,7 @@ class Players extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
+            'unique_id' => 'Unique ID',
             'name' => 'Name',
             'name_en' => 'Name En',
             'nickname' => 'Nickname',
