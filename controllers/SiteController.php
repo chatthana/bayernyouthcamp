@@ -245,7 +245,7 @@ class SiteController extends Controller
       $coachModel = new CoachRegistrationForm();
 
       // We need 7 members per team, so iterate and create array of models here
-      for ($i=0; $i < 2; $i++) {
+      for ($i=0; $i < 7; $i++) {
         $models[] = new TeamRegistrationForm();
       }
 
@@ -254,8 +254,6 @@ class SiteController extends Controller
 
         //Assign the post values for coach model
         $coachModel->load(Yii::$app->request->post());
-
-
 
         // Get instance of the uploaded identity card file
         $coachModel->identity_card_file = UploadedFile::getInstance($coachModel, 'identity_card_file');
