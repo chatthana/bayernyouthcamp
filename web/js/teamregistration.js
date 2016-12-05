@@ -58,8 +58,9 @@ $('.birthdate-date-selector, .birthdate-month-selector, .birthdate-year-selector
 });
 
 $('.registration-form-arenas input[type=radio]').change(function() {
-  $('.registration-form-arenas ul > li .radio-label-input-group').removeClass('checked');
-  $('.registration-form-arenas ul > li label + label').css('color', 'inherit');
+  console.log($(this).val());
+  $('.registration-form-arenas ul > div .radio-label-input-group').removeClass('checked');
+  $('.registration-form-arenas ul > div label + label').css('color', 'inherit');
   $(this).parent().addClass('checked');
   $(this).parent().parent().next().css('color', '#961933');
 });
