@@ -12,6 +12,7 @@ class CoachRegistrationForm extends Model {
   public $identity_card_no;
   public $age;
   public $telephone;
+  public $email;
   public $school;
   public $address;
   public $identity_card_file;
@@ -19,7 +20,7 @@ class CoachRegistrationForm extends Model {
 
   public function rules() {
     return [
-      [['name', 'name_en', 'identity_card_no', 'age', 'telephone', 'school', 'address', 'arena'], 'required', 'message' => '{attribute}ห้ามเป็นค่าว่าง'],
+      [['name', 'name_en', 'identity_card_no', 'age', 'telephone', 'email', 'school', 'address', 'arena'], 'required', 'message' => '{attribute}ห้ามเป็นค่าว่าง'],
       // ['name', 'required'],
       [['identity_card_no', 'age', 'telephone'], 'integer', 'message' => '{attribute}ต้องเป็นตัวเลขเท่านั้น'],
       [['identity_card_file'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png,jpg']
@@ -33,6 +34,7 @@ class CoachRegistrationForm extends Model {
       "identity_card_no" => "รหัสบัตรประชาชน",
       "age" => "อายุ",
       "telephone" => "เบอร์โทรศัพท์",
+      "email" => "อีเมล์",
       "school" => "โรงเรียน / สังกัด",
       "address" => "ที่อยู่",
       "identity_card_file" => "ไฟล์ภาพบัตรประชาชน",

@@ -51,7 +51,7 @@ class Players extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['unique_id', 'name', 'name_en', 'nickname', 'birthdate', 'age', 'identity_card_no', 'identity_card_path', 'school', 'year', 'address', 'telephone', 'line_id', 'facebook_link', 'email', 'foot', 'pp', 'ppa', 'weight', 'height', 'guardian_name', 'guardian_telephone', 'created'], 'required'],
+            [['name', 'name_en', 'nickname', 'birthdate', 'age', 'identity_card_no', 'identity_card_path', 'school', 'year', 'address', 'telephone', 'line_id', 'facebook_link', 'email', 'foot', 'pp', 'ppa', 'weight', 'height', 'guardian_name', 'guardian_telephone', 'created'], 'required'],
             [['birthdate', 'created'], 'safe'],
             [['age', 'year', 'weight', 'height', 'virtual_team'], 'integer'],
             [['identity_card_path', 'school', 'address', 'facebook_link', 'team'], 'string'],

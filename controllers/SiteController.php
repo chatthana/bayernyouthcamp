@@ -149,8 +149,13 @@ class SiteController extends Controller
         $coachModel = $teamData['coach']['models'];
         $models = $teamData['players']['models'];
 
-        // Declare empty template
-        $template = '';
+        // Pre-compose the email with existing information
+        $sendMail = Yii::$app->mailer->compose('@app/mail/layouts/test')
+        ->setFrom('info@sporttb.com')
+        ->setSubject('ยืนยันการสมัคร FC Bayern Youth Cup 2017');
+
+        // Declare empty array of filenames
+        $files_to_be_attached = [];
 
         // Create new activity-based team first
         $team = new Teams();
@@ -166,6 +171,7 @@ class SiteController extends Controller
         $coach->identity_card_no = $coachModel->identity_card_no;
         $coach->age = $coachModel->age;
         $coach->telephone = $coachModel->telephone;
+        $coach->email = $coachModel->email;
         $coach->school = $coachModel->school;
         $coach->address = $coachModel->address;
         $coach->identity_card_path = '/uploads/identity_cards/' . $teamData['coach']['filenames'] . '.' . $coachModel->identity_card_file->extension;
@@ -174,9 +180,28 @@ class SiteController extends Controller
         $coach->save();
 
         // Render coach template
-        $template .= $this->renderPartial('_cpdf', ['model'=>$coach, 'arena'=>$coachModel->arena]) . "<pagebreak page-break-type=\"clonebycss\" />";
-        $template .= $this->renderPartial('_cpdf', ['model'=>$coach, 'arena'=>$coachModel->arena]) . "<pagebreak page-break-type=\"clonebycss\" />";
+        $coachContent = $this->renderPartial('_cpdf', ['model'=>$coach, 'arena'=>$coachModel->arena]);
 
+        $_cpdfName = \app\components\KeyGenerator::getUniqueName();
+        $cpdf = new Pdf([
+          'mode' => 'utf-8',
+          'format' => Pdf::FORMAT_A4,
+          'orientation' => Pdf::ORIENT_PORTRAIT,
+          'filename'=>Yii::getAlias('@webroot') . '/pdf/' . $_cpdfName .'.pdf',
+          'destination' => Pdf::DEST_FILE,
+          'content' => $coachContent,
+          'cssFile' => '@webroot/css/pdf.css'
+        ]);
+
+        $cpdf->render();
+
+        $files_to_be_attached[] = $_cpdfName;
+
+        // We got the coach's email. Let's send mark the destination
+        // $sendMail->setTo($coach->email);
+        $sendMail->setTo('chattana.j@gmail.com');
+
+        // Iterate through models of players
         foreach ($models as $index => $model) {
           $player = new Players();
           $player->name = $model->name;
@@ -184,7 +209,7 @@ class SiteController extends Controller
           $player->nickname = $model->nickname;
           $player->birthdate = $model->birthdate;
           $player->age = $model->age;
-          $player->identity_card_no = $model->identity_card_no;
+          $player->identity_card_no = substr($model->identity_card_no, 0, 12);
           $player->identity_card_path = '/uploads/identity_cards/' . $_pfilename . $teamData['players']['filenames'][$index] . '.' . $model->identity_card_file->extension;
           $player->school = $model->school;
           $player->year = $model->year;
@@ -206,37 +231,43 @@ class SiteController extends Controller
           $player->created = date('Y-m-d H:i:s');
           $player->save();
 
-          $player->unique_id = "FBY17" . $player->getPrimaryKey();
+          $player->unique_id = $player->arena . $player->getPrimaryKey();
           $player->save();
 
           // Render each memeber template and store in the array
-          // $template .= $this->renderPartial('_pdf', ['model'=>$player]);
+          $content = $this->renderPartial('_pdf', ['model'=>$player]);
 
-        }
-
-          $content = $template;
-
+          // Create the PDF file
           $_pdfName = \app\components\KeyGenerator::getUniqueName();
           $pdf = new Pdf([
             'mode' => 'utf-8',
             'format' => Pdf::FORMAT_A4,
             'orientation' => Pdf::ORIENT_PORTRAIT,
             'filename'=>Yii::getAlias('@webroot') . '/pdf/' . $_pdfName .'.pdf',
-            'destination' => Pdf::DEST_BROWSER,
+            'destination' => Pdf::DEST_FILE,
             'content' => $content,
             'cssFile' => '@webroot/css/pdf.css'
           ]);
 
+          // Render PDF
           $pdf->render();
 
-          // $sendMail = Yii::$app->mailer->compose('@app/mail/layouts/test')
-          //   ->setFrom('info@sporttb.com')
-          //   ->setTo('chattana.j@gmail.com')
-          //   ->setSubject('ยืนยันการสมัคร FC Bayern Youth Cup 2017')
-          //   ->attach(Yii::getAlias('@webroot') . '/pdf/'. $_pdfName .'.pdf')
-          //   ->send();
+          // List the file in the array
+          $files_to_be_attached[] = $_pdfName;
 
-          return $this->render('success');
+        }
+
+        // var_dump($files_to_be_attached);
+        // die();
+
+        foreach ($files_to_be_attached as $file) {
+          $sendMail->attach(Yii::getAlias('@webroot') . '/pdf/' . $file . '.pdf');
+        }
+
+        $sendMail->send();
+
+        return $this->render('success');
+
       }
 
       $model = Yii::$app->session->get('data');
@@ -270,6 +301,9 @@ class SiteController extends Controller
       $player->created = date('Y-m-d H:i:s');
       $player->save();
 
+      $player->unique_id = $model->arena . $player->getPrimaryKey();
+      $player->update();
+
       $content = $this->renderPartial('_pdf', ['model'=>$player]);
 
       $_pdfName = \app\components\KeyGenerator::getUniqueName();
@@ -287,7 +321,8 @@ class SiteController extends Controller
 
       $sendMail = Yii::$app->mailer->compose('@app/mail/layouts/test')
         ->setFrom('info@sporttb.com')
-        ->setTo($player->email)
+        // ->setTo($player->email)
+        ->setTo('chattana.j@gmail.com')
         ->setSubject('ยืนยันการสมัคร FC Bayern Youth Cup 2017')
         ->attach(Yii::getAlias('@webroot') . '/pdf/'. $_pdfName .'.pdf')
         ->send();
@@ -340,7 +375,7 @@ class SiteController extends Controller
       $coachModel = new CoachRegistrationForm();
 
       // We need 7 members per team, so iterate and create array of models here
-      for ($i=0; $i < 7; $i++) {
+      for ($i=0; $i < 1; $i++) {
         $models[] = new TeamRegistrationForm();
       }
 
@@ -377,72 +412,10 @@ class SiteController extends Controller
         Yii::$app->session['teamdata']['players']['models'] = $models;
 
         return $this->render('team_render', ['coachModel'=>$coachModel, 'models'=>$models]);
-
-        // Create new activity-based team first
-        $team = new Teams();
-        $team->pretty_unique_id = $coachModel->arena . date('YmdHis');
-        $team->selected_arena = $coachModel->arena;
-        $team->created = date('Y-m-d H:i:s');
-        $team->save();
-
-        // Create the coach record for this team
-        $coach = new Coaches();
-        $coach->name = $coachModel->name;
-        $coach->name_en = $coachModel->name_en;
-        $coach->identity_card_no = $coachModel->identity_card_no;
-        $coach->age = $coachModel->age;
-        $coach->telephone = $coachModel->telephone;
-        $coach->school = $coachModel->school;
-        $coach->address = $coachModel->address;
-        $coach->identity_card_path = '/uploads/identity_cards/' . $_cfilename . $coachModel->identity_card_file->extension;
-        $coach->virtual_team = $team->id;
-        $coach->created = date('Y-m-d H:i:s');
-        $coach->save();
-
-        // Iterate to create players for the team
-        foreach ($models as $model) {
-          // Retrieve uploaded file
-          $model->identity_card_file = UploadedFile::getInstance($model, 'identity_card_file');
-          $_pfilename = \app\components\KeyGenerator::getUniqueName();
-          $model->identity_card_file->saveAs(Yii::getAlias('@webroot' . '/uploads/identity_cards/' .  $_pfilename . '.' . $model->identity_card_file->extension));
-
-          $player = new Players();
-          $player->name = $model->name;
-          $player->name_en = $model->name_en;
-          $player->birthdate = $model->birthdate;
-          $player->age = $model->age;
-          $player->identity_card_no = $model->identity_card_no;
-          $player->identity_card_path = '/uploads/identity_cards/' . $_pfilename . '.' . $model->identity_card_file->extension;
-          $player->school = $model->school;
-          $player->year = $model->year;
-          $player->address = $model->address;
-          $player->telephone = $model->telephone;
-          $player->line_id = $model->line_id;
-          $player->facebook_link = $model->facebook_link;
-          $player->email = $model->email;
-          $player->foot = $model->foot;
-          $player->pp = $model->pp;
-          $player->ppa = $model->ppa;
-          $player->weight = $model->weight;
-          $player->height = $model->height;
-          $player->team = $model->team;
-          $player->virtual_team = $team->id;
-          $player->guardian_name = $model->guardian_name;
-          $player->guardian_telephone = $model->guardian_telephone;
-          $player->arena = $coachModel->arena;
-          $player->created = date('Y-m-d H:i:s');
-          $player->save();
-        }
       }
 
-      // if (Yii::$app->request->get('requesttype') == 'edit') {
-      //   $teamData = Yii::$app->session->get('teamdata');
-      //   $coachModel = $teamData['coachModel'];
-      //   $models = $teamData['models'];
-      //   return $this->render('register', ['model'=>$model, 'arenas'=>$arenas]);
-      // }
-
       return $this->render('teamregister', ['coachModel'=>$coachModel, 'models' => $models, 'arenas'=>ArrayHelper::map($arenas, 'code', 'text')]);
+
     }
 
     public function actionPreregister() {
@@ -451,7 +424,37 @@ class SiteController extends Controller
     }
 
     public function actionTest() {
-      die(\app\components\ArenaHelper::getArenaName('tu1'));
+      $players = Players::find()->all();
+
+      $sendMail = Yii::$app->mailer->compose('@app/mail/layouts/test')
+        ->setFrom('info@sporttb.com')
+        ->setTo('chattana.j@gmail.com')
+        ->setSubject('ยืนยันการสมัคร FC Bayern Youth Cup 2017');
+
+      foreach ($players as $index => $player) {
+
+        $content = $this->renderPartial('_pdf', ['model'=>$player]);
+
+
+        $pdf = new Pdf([
+          'mode' => 'utf-8',
+          'format' => Pdf::FORMAT_A4,
+          'orientation' => Pdf::ORIENT_PORTRAIT,
+          'filename'=>Yii::getAlias('@webroot') . '/pdf/' . $index .'.pdf',
+          'destination' => Pdf::DEST_FILE,
+          'content' => $content,
+          'cssFile' => '@webroot/css/pdf.css'
+        ]);
+
+        $pdf->render();
+
+        $sendMail->attach(Yii::getAlias('@webroot') . '/pdf/'. $index.'.pdf');
+
+      }
+
+      $sendMail->send();
+
+
     }
 
     public function actionSuccess() {

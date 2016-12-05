@@ -14,6 +14,7 @@ use Yii;
  * @property string $identity_card_path
  * @property integer $age
  * @property string $telephone
+ * @property string $email
  * @property string $school
  * @property string $address
  * @property integer $virtual_team
@@ -35,11 +36,11 @@ class Coaches extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'name_en', 'identity_card_no', 'identity_card_path', 'age', 'telephone', 'school', 'address', 'virtual_team', 'created'], 'required'],
+            [['name', 'name_en', 'identity_card_no', 'identity_card_path', 'age', 'telephone', 'email', 'school', 'address', 'virtual_team', 'created'], 'required'],
             [['identity_card_path', 'school', 'address'], 'string'],
             [['age', 'virtual_team'], 'integer'],
             [['created'], 'safe'],
-            [['name', 'name_en'], 'string', 'max' => 255],
+            [['name', 'name_en', 'email'], 'string', 'max' => 255],
             [['identity_card_no'], 'string', 'max' => 13],
             [['telephone'], 'string', 'max' => 10],
         ];
@@ -58,6 +59,7 @@ class Coaches extends \yii\db\ActiveRecord
             'identity_card_path' => 'Identity Card Path',
             'age' => 'Age',
             'telephone' => 'Telephone',
+            'email' => 'Email',
             'school' => 'School',
             'address' => 'Address',
             'virtual_team' => 'Virtual Team',

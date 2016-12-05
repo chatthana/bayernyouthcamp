@@ -54,6 +54,9 @@ $this->registerJsFile(Yii::getAlias('@web') . '/js/teamregistration.js');
             <?php echo $form->field($coachModel, 'telephone', ['inputOptions' => ['placeholder' => $coachModel->getAttributeLabel('telephone')]])->label(false); ?>
           </li>
           <li class="full clearfix">
+            <?php echo $form->field($coachModel, 'email', ['inputOptions' => ['placeholder' => $coachModel->getAttributeLabel('email')]])->label(false); ?>
+          </li>
+          <li class="full clearfix">
             <?php echo $form->field($coachModel, 'school', ['inputOptions' => ['placeholder' => $coachModel->getAttributeLabel('school')]])->label(false); ?>
           </li>
           <li class="full clearfix">
