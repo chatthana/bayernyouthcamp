@@ -317,8 +317,7 @@ class SiteController extends Controller
 
       $sendMail = Yii::$app->mailer->compose('@app/mail/layouts/test')
         ->setFrom('info@sporttb.com')
-        // ->setTo($player->email)
-        ->setTo('chattana.j@gmail.com')
+        ->setTo($player->email)
         ->setSubject('ยืนยันการสมัคร FC Bayern Youth Cup 2017')
         ->attach(Yii::getAlias('@webroot') . '/pdf/'. $_pdfName .'.pdf')
         ->send();
