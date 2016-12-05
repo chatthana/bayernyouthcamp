@@ -197,9 +197,8 @@ class SiteController extends Controller
 
         $files_to_be_attached[] = $_cpdfName;
 
-        // We got the coach's email. Let's send mark the destination
-        // $sendMail->setTo($coach->email);
-        $sendMail->setTo('chattana.j@gmail.com');
+        // We got the coach's email. Let's mark the destination
+        $sendMail->setTo($coach->email);
 
         // Iterate through models of players
         foreach ($models as $index => $model) {
@@ -256,9 +255,6 @@ class SiteController extends Controller
           $files_to_be_attached[] = $_pdfName;
 
         }
-
-        // var_dump($files_to_be_attached);
-        // die();
 
         foreach ($files_to_be_attached as $file) {
           $sendMail->attach(Yii::getAlias('@webroot') . '/pdf/' . $file . '.pdf');
@@ -375,7 +371,7 @@ class SiteController extends Controller
       $coachModel = new CoachRegistrationForm();
 
       // We need 7 members per team, so iterate and create array of models here
-      for ($i=0; $i < 1; $i++) {
+      for ($i=0; $i < 7; $i++) {
         $models[] = new TeamRegistrationForm();
       }
 
