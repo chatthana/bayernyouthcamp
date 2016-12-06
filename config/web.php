@@ -52,14 +52,16 @@ $config = [
         'encryptor' => [
           'class' => 'yii\components\Encryptor'
         ],
-        /*
+
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+              "<action:\w+>" => "site/<action>",
+              "<controller:\w+>/<action:\w+>" => "<controller>/<action>"
             ],
         ],
-        */
+
     ],
     'params' => $params,
 ];
