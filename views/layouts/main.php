@@ -11,6 +11,7 @@ $this->beginPage();
   <head>
     <meta charset="utf-8">
     <title>Bayern Munchen Youth Camp 2016</title>
+    <link rel="icon" type="image/png" href="<?php echo Yii::getAlias('@web'); ?>/images/bayern_favicon.png" />
     <?= Html::csrfMetaTags(); ?>
     <?php $this->head(); ?>
   </head>
