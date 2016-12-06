@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\helpers\ArrayHelper;
+use app\models\Arenas;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\SearchPlayers */
@@ -39,9 +41,14 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'telephone',
             // 'line_id',
             // 'facebook_link:ntext',
-            'email:email',
+            // 'email:email',
             // 'foot',
             // 'pp',
+            [
+              'attribute' => 'pp',
+              'label' => 'Position',
+              'filter' => ['gk'=>'Goalkeeper', 'bk'=>'Back', 'ct'=>'Center', 'fw' => 'Forward']
+            ],
             // 'ppa',
             // 'weight',
             // 'height',
@@ -50,6 +57,11 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'guardian_name',
             // 'guardian_telephone',
             // 'arena',
+            [
+              'attribute'=>'arena',
+              'label'=>'Arena',
+              'filter'=>[ArrayHelper::map(Arenas::find()->all(), 'code', 'code')]
+            ],
             // 'created',
 
             ['class' => 'yii\grid\ActionColumn'],
