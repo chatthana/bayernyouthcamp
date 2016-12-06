@@ -80,13 +80,15 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
+        $this->layout = 'bootstrap';
+
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+            return $this->redirect(['admin/index']);
         }
         return $this->render('login', [
             'model' => $model,
@@ -111,7 +113,7 @@ class SiteController extends Controller
     {
         Yii::$app->user->logout();
 
-        return $this->goHome();
+        return $this->redirect(['admin/index']);
     }
 
     /**
@@ -303,6 +305,7 @@ class SiteController extends Controller
       $content = $this->renderPartial('_pdf', ['model'=>$player]);
 
       $_pdfName = \app\components\KeyGenerator::getUniqueName();
+
       $pdf = new Pdf([
         'mode' => 'utf-8',
         'format' => Pdf::FORMAT_A4,
