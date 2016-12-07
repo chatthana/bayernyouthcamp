@@ -11,6 +11,7 @@ use Yii;
  * @property string $code
  * @property string $text
  * @property string $reg_date
+ * @property string $last_reg_date
  */
 class Arenas extends \yii\db\ActiveRecord
 {
@@ -28,9 +29,9 @@ class Arenas extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['code', 'text', 'reg_date'], 'required'],
+            [['code', 'text', 'reg_date', 'last_reg_date'], 'required'],
             [['text'], 'string'],
-            [['reg_date'], 'safe'],
+            [['reg_date', 'last_reg_date'], 'safe'],
             [['code'], 'string', 'max' => 255],
         ];
     }
@@ -45,6 +46,7 @@ class Arenas extends \yii\db\ActiveRecord
             'code' => 'Code',
             'text' => 'Text',
             'reg_date' => 'Reg Date',
+            'last_reg_date' => 'Last Reg Date',
         ];
     }
 }

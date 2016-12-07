@@ -37,6 +37,7 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
             ['label' => 'Home', 'url' => ['/admin/index']],
+            ['label' => 'Arenas', 'url' => ['/arena/index']],
             ['label' => 'Players', 'url' => ['/player/index']],
             ['label' => 'Teams', 'url' => ['/team/index']],
             ['label' => 'Coaches', 'url' => ['/coach/index']],
