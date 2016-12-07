@@ -21,6 +21,8 @@
   float:right;
   padding:50px;
   width:50%;
+  height:100%;
+  overflow-y:scroll;
 }
 
 #teaser .right .content-box {
@@ -650,7 +652,7 @@ section#regulations .text, section#regulations .list {
 
 section#regulations h1 {
   font-size:1.8em;
-  font-weight:400;
+  font-weight:800;
 }
 
 section#regulations h5 {

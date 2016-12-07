@@ -3,6 +3,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use app\components\ArenaHelper;
 use app\components\ThaiDateHelper;
+use app\components\PlayerHelper;
 
 // Register JS file with ClientScript (Call differently from Yii1)
 $this->registerJsFile(Yii::getAlias('@web') . '/js/registration.js');
@@ -85,8 +86,8 @@ $this->registerJsFile(Yii::getAlias('@web') . '/js/registration.js');
           </li>
           <li class="<?= ($model->pp == 'gk') ? 'col-2':'col-3' ?> clearfix">
             <?php echo $form->field($model, 'foot', ['inputOptions' => ['placeholder' => $model->getAttributeLabel('foot')]])->dropDownList(['left'=>'ซ้าย', 'right'=>'ขวา'], ['prompt'=>'--- เท้าที่ถนัด ---'])->label(false); ?>
-            <?php echo $form->field($model, 'pp', ['inputOptions' => ['placeholder' => $model->getAttributeLabel('pp'), 'disabled'=> ($model->pp !== 'gk') ? false:true]])->dropDownList(($model->pp !== 'gk') ? ['bk'=>'กองหลัง', 'ct'=>'กองกลาง', 'fw'=>'กองหน้า']:['gk'=>'ผู้รักษาประตู'], ['prompt'=>'--- ตำแหน่งที่ถนัด ---'])->label(false); ?>
-            <?php echo ($model->ppa == 'gk') ? '' : $form->field($model, 'ppa', ['inputOptions' => ['placeholder' => $model->getAttributeLabel('ppa')]])->dropDownList(['bk'=>'กองหลัง', 'ct'=>'กองกลาง', 'fw'=>'กองหน้า'], ['prompt'=>'--- ตำแหน่งที่ถนัด ---', 'options'=>['template'=>'<div></div>']])->label(false); ?>
+            <?php echo $form->field($model, 'pp', ['inputOptions' => ['placeholder' => $model->getAttributeLabel('pp'), 'disabled'=> ($model->pp !== 'gk') ? false:true]])->dropDownList(($model->pp !== 'gk') ? PlayerHelper::getAllPositions(['gk']):['gk'=>'ผู้รักษาประตู'], ['prompt'=>'--- ตำแหน่งที่ถนัด ---'])->label(false); ?>
+            <?php echo ($model->ppa == 'gk') ? '' : $form->field($model, 'ppa', ['inputOptions' => ['placeholder' => $model->getAttributeLabel('ppa')]])->dropDownList(PlayerHelper::getAllPositions(['gk']), ['prompt'=>'--- ตำแหน่งที่ถนัด ---', 'options'=>['template'=>'<div></div>']])->label(false); ?>
           </li>
           <li class="col-3 clearfix">
             <?php echo $form->field($model, 'weight', ['inputOptions' => ['placeholder'=>$model->getAttributeLabel('weight')]])->label(false); ?>

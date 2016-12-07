@@ -3,6 +3,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use app\components\ArenaHelper;
 use app\components\ThaiDateHelper;
+use app\components\PlayerHelper;
 
 // Register JS file
 $this->registerJsFile(Yii::getAlias('@web') . '/js/teamregistration.js');
@@ -140,8 +141,8 @@ $this->registerJsFile(Yii::getAlias('@web') . '/js/teamregistration.js');
             </li>
             <li class="col-3 clearfix">
               <?php echo $form->field($model, '[' . $index . ']foot', ['inputOptions' => ['placeholder' => $model->getAttributeLabel('foot')]])->dropDownList(['left'=>'ซ้าย', 'right'=>'ขวา'], ['prompt'=>'--- เท้าที่ถนัด ---'])->label(false); ?>
-              <?php echo $form->field($model, '[' . $index . ']pp', ['inputOptions' => ['placeholder' => $model->getAttributeLabel('pp')]])->dropDownList(['bk'=>'กองหลัง', 'ct'=>'กองกลาง', 'fw'=>'กองหน้า'], ['prompt'=>'--- ตำแหน่งที่ถนัด ---'])->label(false); ?>
-              <?php echo $form->field($model, '[' . $index . ']ppa', ['inputOptions' => ['placeholder' => $model->getAttributeLabel('ppa')]])->dropDownList(['bk'=>'กองหลัง', 'ct'=>'กองกลาง', 'fw'=>'กองหน้า'], ['prompt'=>'--- ตำแหน่งที่ถนัด ---'])->label(false); ?>
+              <?php echo $form->field($model, '[' . $index . ']pp', ['inputOptions' => ['placeholder' => $model->getAttributeLabel('pp')]])->dropDownList(PlayerHelper::getAllPositions(['gk']), ['prompt'=>'--- ตำแหน่งที่ถนัด ---'])->label(false); ?>
+              <?php echo $form->field($model, '[' . $index . ']ppa', ['inputOptions' => ['placeholder' => $model->getAttributeLabel('ppa')]])->dropDownList(PlayerHelper::getAllPositions(['gk']), ['prompt'=>'--- ตำแหน่งที่ถนัด ---'])->label(false); ?>
             </li>
             <li class="col-3 clearfix">
               <?php echo $form->field($model, '['. $index .']weight', ['inputOptions' => ['placeholder'=>$model->getAttributeLabel('weight')]])->label(false); ?>
