@@ -10,6 +10,11 @@ $this->beginPage();
 <html lang="<?= Yii::$app->language; ?>">
   <head>
     <meta charset="utf-8">
+    <meta property="og:url" content="http://www.fcbayernyouthcupthailand.com" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="FC Bayern Youth Cup 2017 by Sport Thai Bavaria" />
+    <meta property="og:description" content="The activity to send young Thai footballer to train with one of the greatest football club in the world Bayern Munich" />
+    <meta property="og:image" content="<?php echo Yii::getAlias('@web'); ?>/images/facebook_sharing.png" />
     <title>FC Bayern Youth Cup 2017 - Sport Thai Bavaria</title>
     <link rel="icon" type="image/png" href="<?php echo Yii::getAlias('@web'); ?>/images/bayern_favicon.png" />
     <?= Html::csrfMetaTags(); ?>

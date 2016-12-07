@@ -6,6 +6,8 @@ use yii\helpers\Url;
   <section id="teaser" class="clearfix">
     <div class="left">
       <?php echo Html::img('@web/images/teaser.jpg'); ?>
+      <?php echo Html::img('@web/images/teaser.jpg'); ?>
+      <?php echo Html::img('@web/images/teaser.jpg'); ?>
     </div>
     <div class="right">
       <div class="content-box reveal">
