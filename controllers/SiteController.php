@@ -465,4 +465,8 @@ class SiteController extends Controller
       return $this->render('success');
     }
 
+    public function actionOffline() {
+      echo "Maintenance Mode. Sorry for the inconvenience.";
+    }
+
 }
