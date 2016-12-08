@@ -15,7 +15,6 @@ use yii\filters\AccessControl;
  */
 class ArenaController extends Controller
 {
-
     public $layout = 'bootstrap';
 
     /**

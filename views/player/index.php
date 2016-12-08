@@ -47,7 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
               'attribute' => 'pp',
               'label' => 'Position',
-              'filter' => ['gk'=>'Goalkeeper', 'bk'=>'Back', 'ct'=>'Center', 'fw' => 'Forward']
+              'filter' => ['gk'=>'Goalkeeper', 'df'=>'Defender', 'mf'=>'Midfielder', 'st' => 'Striker']
             ],
             // 'ppa',
             // 'weight',
@@ -60,7 +60,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
               'attribute'=>'arena',
               'label'=>'Arena',
-              'filter'=>[ArrayHelper::map(Arenas::find()->all(), 'code', 'code')]
+              'filter'=>[ArrayHelper::map(Arenas::find()->all(), 'code', 'text')]
             ],
             // 'created',
 

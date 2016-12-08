@@ -15,6 +15,7 @@ use app\models\Teams;
 use app\models\Players;
 use app\models\Coaches;
 use app\models\Arenas;
+use app\models\Regions;
 use yii\web\UploadedFile;
 use yii\helpers\ArrayHelper;
 use kartik\mpdf\Pdf;
@@ -71,6 +72,11 @@ class SiteController extends Controller
     public function actionIndex()
     {
         return $this->render('index');
+    }
+
+    public function actionNews() {
+      $regions = Regions::find()->all();
+      return $this->render('news', ['regions'=>$regions]);
     }
 
     /**

@@ -14,7 +14,8 @@
 #teaser .left img {
   display:block;
   float:left;
-  width:100%;
+  /*width:100%;*/
+  margin-left:-140px;
   height:100%;
   /*width:auto;*/
 }
@@ -747,6 +748,40 @@ section#regulations table tr td, section#regulations table tr th {
   outline:0 none;
 }
 
-/*#notifier .button-container .link-btn.red {
+/** NEWS AND UPDATES **/
+#news-and-updates {
+  position:relative;
+  padding:65px 0 100px;
+  color:#961933;
+}
 
-}*/
+#news-and-updates h1 {
+  font-size:1.6em;
+  font-weight:600;
+}
+
+#news-and-updates .region-container {
+  position:relative;
+  margin-top:50px;
+}
+
+#news-and-updates .region-container .each-region {
+  position:relative;
+  margin-top:50px;
+}
+
+#news-and-updates .region-container .each-region h3 {
+  font-size:1.25em;
+  font-weight:500;
+}
+
+#news-and-updates .region-container .each-region .each-arena {
+  position:relative;
+  margin:25px 0;
+}
+
+#news-and-updates .region-container .each-region .each-arena p {
+  font-size:1.1em;
+  margin:5px 0;
+  font-weight:300;
+}

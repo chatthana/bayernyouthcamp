@@ -29,6 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'text:ntext',
             'reg_date',
             'last_reg_date',
+            'region_id',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

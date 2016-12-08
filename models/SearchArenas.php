@@ -18,7 +18,7 @@ class SearchArenas extends Arenas
     public function rules()
     {
         return [
-            [['id'], 'integer'],
+            [['id', 'region_id'], 'integer'],
             [['code', 'text', 'reg_date', 'last_reg_date'], 'safe'],
         ];
     }
@@ -62,6 +62,7 @@ class SearchArenas extends Arenas
             'id' => $this->id,
             'reg_date' => $this->reg_date,
             'last_reg_date' => $this->last_reg_date,
+            'region_id' => $this->region_id,
         ]);
 
         $query->andFilterWhere(['like', 'code', $this->code])
