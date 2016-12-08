@@ -11,9 +11,9 @@ $this->title = 'Login';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-login">
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1>ลงชื่อเข้าใช้งาน</h1>
 
-    <p>Please fill out the following fields to login:</p>
+    <p>กรุณาเข้าสู่ระบบเพื่อทำการใช้งาน</p>
 
     <?php $form = ActiveForm::begin([
         'id' => 'login-form',

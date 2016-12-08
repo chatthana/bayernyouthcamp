@@ -29,7 +29,14 @@ $this->params['breadcrumbs'][] = $this->title;
             'text:ntext',
             'reg_date',
             'last_reg_date',
-            'region_id',
+            // 'region_id',
+            [
+              'attribute' => 'region_id',
+              'value' => function($model, $key, $index, $widget) {
+                return app\components\ArenaHelper::getRegionValue($model->region_id);
+              },
+              'filter' => $regionFilter,
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

@@ -5,10 +5,12 @@ namespace app\controllers;
 use Yii;
 use app\models\Arenas;
 use app\models\SearchArenas;
+use app\models\Regions;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+use yii\helpers\ArrayHelper;
 
 /**
  * ArenaController implements the CRUD actions for Arenas model.
@@ -55,6 +57,7 @@ class ArenaController extends Controller
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'regionFilter' => ArrayHelper::map(Regions::find()->all(), 'id', 'name')
         ]);
     }
 
@@ -103,6 +106,7 @@ class ArenaController extends Controller
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'regionFilter' => ArrayHelper::map(Regions::find()->all(), 'id', 'name')
             ]);
         }
     }

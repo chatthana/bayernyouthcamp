@@ -27,22 +27,22 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => 'SPORT THAI BAVARIA',
+        'brandLabel' => Html::img('@web/images/stbheader.png'),
         'brandUrl' => Yii::$app->urlManager->createUrl(['player/index']),
         'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
+            'class' => 'navbar',
         ],
     ]);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            ['label' => 'Home', 'url' => ['/admin/index']],
-            ['label' => 'Arenas', 'url' => ['/arena/index']],
-            ['label' => 'Players', 'url' => ['/player/index']],
-            ['label' => 'Teams', 'url' => ['/team/index']],
-            ['label' => 'Coaches', 'url' => ['/coach/index']],
+            ['label' => 'หน้าแรก', 'url' => ['/admin/index']],
+            ['label' => 'จัดการสนาม', 'url' => ['/arena/index']],
+            ['label' => 'จัดการผู้เล่น', 'url' => ['/player/index']],
+            ['label' => 'ระบบทีม', 'url' => ['/team/index']],
+            ['label' => 'ระบบจัดการโค้ช', 'url' => ['/coach/index']],
             Yii::$app->user->isGuest ? (
-                ['label' => 'Login', 'url' => ['/site/login']]
+                ['label' => 'เข้าสู่ระบบ', 'url' => ['/site/login']]
             ) : (
                 '<li>'
                 . Html::beginForm(['/site/logout'], 'post')
@@ -70,7 +70,9 @@ AppAsset::register($this);
     <div class="container">
         <p class="pull-left">&copy; Sport Thai Bavaria <?= date('Y') + 1 ?></p>
 
-        <p class="pull-right"><?= Yii::powered() ?></p>
+        <div class="pull-right">
+          <p>Developed by <span style="color:#ff4b00; font-weight:600;">MAPLE VILLAGE&reg;</span></p>
+        </div>
     </div>
 </footer>
 

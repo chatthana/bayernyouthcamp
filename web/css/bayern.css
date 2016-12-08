@@ -785,3 +785,14 @@ section#regulations table tr td, section#regulations table tr th {
   margin:5px 0;
   font-weight:300;
 }
+
+/** ADMIN **/
+#admin-image-container {
+  position:relative;
+  text-align:center;
+}
+
+#admin-image-container img {
+  display:inline-block;
+  width:380px;
+}
