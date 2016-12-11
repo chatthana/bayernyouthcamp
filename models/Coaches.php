@@ -18,6 +18,7 @@ use Yii;
  * @property string $school
  * @property string $address
  * @property integer $virtual_team
+ * @property string $source
  * @property string $created
  */
 class Coaches extends \yii\db\ActiveRecord
@@ -36,13 +37,14 @@ class Coaches extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'name_en', 'identity_card_no', 'identity_card_path', 'age', 'telephone', 'email', 'school', 'address', 'virtual_team', 'created'], 'required'],
+            [['name', 'name_en', 'identity_card_no', 'identity_card_path', 'age', 'telephone', 'email', 'school', 'address', 'virtual_team', 'source', 'created'], 'required'],
             [['identity_card_path', 'school', 'address'], 'string'],
             [['age', 'virtual_team'], 'integer'],
             [['created'], 'safe'],
             [['name', 'name_en', 'email'], 'string', 'max' => 255],
             [['identity_card_no'], 'string', 'max' => 13],
             [['telephone'], 'string', 'max' => 10],
+            [['source'], 'string', 'max' => 128],
         ];
     }
 
@@ -63,6 +65,7 @@ class Coaches extends \yii\db\ActiveRecord
             'school' => 'School',
             'address' => 'Address',
             'virtual_team' => 'Virtual Team',
+            'source' => 'Source',
             'created' => 'Created',
         ];
     }

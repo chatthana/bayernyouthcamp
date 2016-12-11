@@ -89,6 +89,10 @@ p {
   background-color:#961933;
 }
 
+.button.smalltext {
+  font-size:0.85em;
+}
+
 input[type=text], input[type=password] {
   border:1px solid #dadada;
   padding:10px 17px;
@@ -128,7 +132,7 @@ form .help-block {
 }
 
 .pulse {
-  animation: pulse 1s infinite ease;
+  animation: pulse 500ms infinite ease;
 }
 
 @keyframes pulse {

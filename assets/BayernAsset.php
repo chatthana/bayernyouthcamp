@@ -26,7 +26,8 @@ class RequiredAsset extends AssetBundle {
   public $sourcePath = "@bower";
   public $css = [
     "css-reset/reset.min.css",
-    "jquery-ui/themes/smoothness/jquery-ui.min.css"
+    "jquery-ui/themes/smoothness/jquery-ui.min.css",
+    "font-awesome/css/font-awesome.min.css"
   ];
   public $js = [
     "jquery/dist/jquery.min.js",

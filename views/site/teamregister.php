@@ -57,16 +57,20 @@ $this->registerJsFile(Yii::getAlias('@web') . '/js/teamregistration.js');
           <li class="full clearfix">
             <?php echo $form->field($coachModel, 'email', ['inputOptions' => ['placeholder' => $coachModel->getAttributeLabel('email')]])->label(false); ?>
           </li>
-          <li class="full clearfix">
+          <li class="col-2 clearfix">
             <?php echo $form->field($coachModel, 'school', ['inputOptions' => ['placeholder' => $coachModel->getAttributeLabel('school')]])->label(false); ?>
+            <?php echo $form->field($coachModel, 'source')->dropDownList(PlayerHelper::getSources(), ['prompt'=>'--- '. $coachModel->getAttributeLabel('source') .' ---'])->label(false); ?>
           </li>
           <li class="full clearfix">
             <?php echo $form->field($coachModel, 'address', ['inputOptions' => ['placeholder' => $coachModel->getAttributeLabel('address')]])->label(false); ?>
           </li>
         </ul>
 
-        <div class="upload-button-container">
-          <?php echo $form->field($coachModel, 'identity_card_file', ['options' => ['class' => 'form-center'],
+        <div class="upload-button-container make-center">
+          <div class="arrow-container">
+            <?php echo Html::img('@web/images/right.png', ['class'=>'pulse']); ?>
+          </div>
+          <?php echo $form->field($coachModel, 'identity_card_file', ['options' => ['class' => 'form-center next-to-arrow'],
             'template' =>
             '   {label}
                 <div class="id-card-uploader button green">
@@ -89,6 +93,14 @@ $this->registerJsFile(Yii::getAlias('@web') . '/js/teamregistration.js');
               }
             ]
             )->label(false); ?>
+          </ul>
+        </div>
+
+        <div class="remarks">
+          <h5>หมายเหตุ</h5>
+          <ul>
+            <li><strong>ผู้สมัคร รวมถึงครอบครัวแะลผู้ติดตามยินยอมให้บันทึกภาพ โดยทางรายการจะเป็นผู้พิจารณาภาพที่จะนำไปออกอากาศทั้งหมด</strong></li>
+            <li>หากมีการตรวจพบในภายหลังว่าหลักฐานและ/หรือข้อความที่ได้แจ้งไว้ในใบสมัครเป็นเท็จ หรือหลักฐานประกอบการสมัครเป็นเท็จหรือปลอม ผู้สมัครจะถูกเพิกถอนสิทธิในการรับคัดเลือกครั้งนี้ไม่ว่าผู้สมัครจะผ่านการคัดเลือกหรือไม่</li>
           </ul>
         </div>
 
@@ -155,8 +167,11 @@ $this->registerJsFile(Yii::getAlias('@web') . '/js/teamregistration.js');
             </li>
           </ul>
 
-          <div class="upload-button-container">
-            <?php echo $form->field($model, '[' . $index . ']identity_card_file', ['options' => ['class' => 'form-center'],
+          <div class="upload-button-container make-center">
+            <div class="arrow-container">
+              <?php echo Html::img('@web/images/right.png', ['class'=>'pulse']); ?>
+            </div>
+            <?php echo $form->field($model, '[' . $index . ']identity_card_file', ['options' => ['class' => 'form-center next-to-arrow'],
               'template' =>
               '   {label}
                   <div class="id-card-uploader button green">

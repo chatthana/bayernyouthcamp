@@ -28,12 +28,13 @@ class RegistrationForm extends Model {
   public $team;
   public $guardian_name;
   public $guardian_telephone;
+  public $source;
   public $arena;
   public $identity_card_file;
 
   public function rules() {
     return [
-      [['name', 'name_en', 'nickname', 'birthdate', 'age', 'identity_card_no', 'school', 'year', 'address', 'telephone', 'line_id', 'facebook_link', 'email', 'foot', 'pp', 'ppa', 'weight', 'height', 'team', 'guardian_name', 'guardian_telephone', 'arena'], 'required', 'message' => '{attribute}ห้ามเป็นค่าว่าง'],
+      [['name', 'name_en', 'nickname', 'birthdate', 'age', 'identity_card_no', 'school', 'year', 'address', 'telephone', 'line_id', 'facebook_link', 'email', 'foot', 'pp', 'ppa', 'weight', 'height', 'team', 'guardian_name', 'guardian_telephone', 'source', 'arena'], 'required', 'message' => '{attribute}ห้ามเป็นค่าว่าง'],
       ['email', 'email', 'message' => 'รูปแบบอีเมล์ไม่ถูกต้อง'],
       [['pp', 'ppa'], 'safe'],
       [['identity_card_no', 'age', 'telephone', 'guardian_telephone'], 'integer', 'message' => '{attribute}ต้องเป็นตัวเลขเท่านั้น'],
@@ -65,6 +66,7 @@ class RegistrationForm extends Model {
       "guardian_name" => "ชื่อผู้ปกครอง",
       "guardian_telephone" => "เบอร์โทรศัพท์ผู้ปกครอง",
       "identity_card_file" => "ไฟล์ภาพบัตรประชาชน",
+      "source" => "แหล่งที่มา",
       "arena" => "สนาม"
     ];
   }

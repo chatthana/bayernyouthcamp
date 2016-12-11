@@ -184,6 +184,7 @@ class SiteController extends Controller
         $coach->address = $coachModel->address;
         $coach->identity_card_path = '/uploads/identity_cards/' . $teamData['coach']['filenames'] . '.' . $coachModel->identity_card_file->extension;
         $coach->virtual_team = $team->id;
+        $coach->source = $coachModel->source;
         $coach->created = date('Y-m-d H:i:s');
         $coach->save();
 
@@ -234,6 +235,7 @@ class SiteController extends Controller
           $player->virtual_team = $team->id;
           $player->guardian_name = $model->guardian_name;
           $player->guardian_telephone = $model->guardian_telephone;
+          $player->source = $coachModel->source;
           $player->arena = $coachModel->arena;
           $player->created = date('Y-m-d H:i:s');
           $player->save();
@@ -301,6 +303,7 @@ class SiteController extends Controller
       $player->team = $model->team;
       $player->guardian_name = $model->guardian_name;
       $player->guardian_telephone = $model->guardian_telephone;
+      $player->source = $model->source;
       $player->arena = $model->arena;
       $player->created = date('Y-m-d H:i:s');
       $player->save();

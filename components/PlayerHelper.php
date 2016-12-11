@@ -13,6 +13,12 @@ class PlayerHelper extends Component {
     "gk" => "ผู้รักษาประตู"
   ];
 
+  private static $sources = [
+    "internet" => "Internet",
+    "website" => "Website",
+    "facebook" => "Facebook"
+  ];
+
   public static function getPosition($positionCode) {
     return isset(self::$positions[$positionCode]) ? self::$positions[$positionCode] : false;
   }
@@ -24,6 +30,10 @@ class PlayerHelper extends Component {
       }
     }
     return self::$positions;
+  }
+
+  public static function getSources() {
+    return self::$sources;
   }
 
 }

@@ -19,6 +19,23 @@ $this->beginPage();
     <link rel="icon" type="image/png" href="<?php echo Yii::getAlias('@web'); ?>/images/bayern_favicon.png" />
     <?= Html::csrfMetaTags(); ?>
     <?php $this->head(); ?>
+    <script>
+        var map;
+        function initMap() {
+          var myLatLng = {lat: 13.746639, lng: 100.573726};
+          map = new google.maps.Map(document.getElementById('contact-map'), {
+            zoom: 18,
+            disableDefaultUI: true,
+            center: myLatLng
+          });
+          var marker = new google.maps.Marker({
+            position: myLatLng,
+            map: map,
+            title: 'Hello World!'
+          });
+        }
+      </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCI4tIsF3lWIfNi1L5JH9CdpLOqzy8ul4Q&callback=initMap" async defer></script>
   </head>
   <body>
   <?php $this->beginBody(); ?>
@@ -41,7 +58,7 @@ $this->beginPage();
               </ul>
             </div>
           </li>
-          <li><a href="#">Contact</a></li>
+          <li><a href="<?php echo Yii::$app->urlManager->createUrl(['site/contact']); ?>">Contact</a></li>
         </ul>
       </nav>
     </div>

@@ -33,7 +33,7 @@
   position:relative;
   width:80%;
   margin:0 auto;
-  padding:50px 0;
+  padding:20px 0;
 }
 
 #teaser .right .content-box h1 {
@@ -50,6 +50,53 @@
   position:relative;
   margin-top:30px;
   /*text-align:center;*/
+}
+
+/** CONTACT PAGE **/
+#contact-map {
+  position:relative;
+  width:100%;
+  height:500px;
+  border:10px solid #fafafa;
+  border-radius:3px;
+}
+
+#contact .contact-content {
+  position:relative;
+  padding:50px 0;
+}
+
+#contact .contact-content .left {
+  position:relative;
+  float:left;
+  width:35%;
+}
+
+ #contact .contact-content .right {
+   position:relative;
+   float:left;
+   width:65%;
+ }
+
+#contact .contact-content .left h1 {
+  font-size:1.5em;
+  font-weight:500;
+}
+
+#contact .contact-content .left .contact-address p {
+  margin:5px 0;
+  line-height:22px;
+  font-weight:400;
+}
+
+#contact .contact-content .left .contact-address p:first-child {
+  font-size:1.25em;
+  font-weight:600;
+}
+
+#contact .contact-content .left .social-icon-container {
+  position:relative;
+  margin-top:30px;
 }
 
 #registration-content {
@@ -104,6 +151,24 @@
 #registration-content #registration-form-container #registration-form ul > li {
   position:relative;
   margin-top:20px;
+}
+
+#registration-content #registration-form-container #registration-form ul > li.make-center {
+  text-align:center;
+}
+
+#registration-content #registration-form-container #registration-form ul > li .arrow-container {
+  position:relative;
+  display:inline-block;
+  width:110px;
+}
+
+#registration-content #registration-form-container #registration-form ul > li .arrow-container img {
+  width:100%;
+}
+
+#registration-content #registration-form-container #registration-form ul > li .next-to-arrow {
+  display:inline-block;
 }
 
 #registration-content #registration-form-container #registration-form ul > li .form-group {
@@ -360,30 +425,36 @@
   float:right;
 }
 
-#registration-content #registration-form-container #registration-form #remarks {
+#registration-content #registration-form-container #registration-form #remarks,
+.remarks {
   position:relative;
   margin-top:50px;
   color:#961933;
 }
 
-#registration-content #registration-form-container #registration-form #remarks h5 {
+#registration-content #registration-form-container #registration-form #remarks h5,
+.remarks h5 {
   font-weight:400;
 }
 
-#registration-content #registration-form-container #registration-form #remarks ul > li {
+#registration-content #registration-form-container #registration-form #remarks ul > li,
+.remarks ul > li {
   margin-top:5px;
   line-height:26px;
 }
 
-#registration-content #registration-form-container #registration-form #remarks ul > li strong {
+#registration-content #registration-form-container #registration-form #remarks ul > li strong,
+.remarks ul > li strong {
   font-weight:600;
 }
 
-#registration-content #registration-form-container #registration-form #remarks ul > li:before {
+#registration-content #registration-form-container #registration-form #remarks ul > li:before
+.remarks ul > li:before {
   content:'- ';
 }
 
-#registration-content #registration-form-container #registration-form #remarks ul > li:first-child {
+#registration-content #registration-form-container #registration-form #remarks ul > li:first-child
+.remarks ul > li:first-child {
   margin-top:0;
 }
 
@@ -543,6 +614,24 @@
 .upload-button-container {
   position:relative;
   margin-top:50px;
+}
+
+.upload-button-container.make-center {
+  text-align:center;
+}
+
+.upload-button-container .next-to-arrow {
+  display:inline-block;
+}
+
+.upload-button-container .arrow-container {
+  position:relative;
+  display:inline-block;
+  width:110px;
+}
+
+.upload-button-container .arrow-container img {
+  width:100%;
 }
 
 

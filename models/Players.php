@@ -32,6 +32,7 @@ use Yii;
  * @property integer $virtual_team
  * @property string $guardian_name
  * @property string $guardian_telephone
+ * @property string $source
  * @property string $arena
  * @property string $created
  */
@@ -51,7 +52,7 @@ class Players extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'name_en', 'nickname', 'birthdate', 'age', 'identity_card_no', 'identity_card_path', 'school', 'year', 'address', 'telephone', 'line_id', 'facebook_link', 'email', 'foot', 'pp', 'ppa', 'weight', 'height', 'guardian_name', 'guardian_telephone', 'created'], 'required'],
+            [['name', 'name_en', 'nickname', 'birthdate', 'age', 'identity_card_no', 'identity_card_path', 'school', 'year', 'address', 'telephone', 'line_id', 'facebook_link', 'email', 'foot', 'pp', 'ppa', 'weight', 'height', 'guardian_name', 'guardian_telephone', 'source', 'created'], 'required'],
             [['birthdate', 'created'], 'safe'],
             [['age', 'year', 'weight', 'height', 'virtual_team'], 'integer'],
             [['identity_card_path', 'school', 'address', 'facebook_link', 'team'], 'string'],
@@ -59,7 +60,7 @@ class Players extends \yii\db\ActiveRecord
             [['name', 'name_en', 'nickname', 'guardian_name', 'arena'], 'string', 'max' => 255],
             [['identity_card_no'], 'string', 'max' => 13],
             [['line_id'], 'string', 'max' => 32],
-            [['email'], 'string', 'max' => 128],
+            [['email', 'source'], 'string', 'max' => 128],
             [['foot'], 'string', 'max' => 16],
             [['pp', 'ppa'], 'string', 'max' => 8],
         ];
@@ -96,6 +97,7 @@ class Players extends \yii\db\ActiveRecord
             'virtual_team' => 'Virtual Team',
             'guardian_name' => 'Guardian Name',
             'guardian_telephone' => 'Guardian Telephone',
+            'source' => 'Source',
             'arena' => 'Arena',
             'created' => 'Created',
         ];

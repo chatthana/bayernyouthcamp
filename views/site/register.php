@@ -35,8 +35,11 @@ $this->registerJsFile(Yii::getAlias('@web') . '/js/registration.js');
 
         <ul>
 
-          <li class="clearfix">
-            <?php echo $form->field($model, 'identity_card_file', ['options' => ['class' => 'form-center'],
+          <li class="clearfix make-center">
+            <div class="arrow-container">
+              <?php echo Html::img('@web/images/right.png', ['class'=>'pulse']); ?>
+            </div>
+            <?php echo $form->field($model, 'identity_card_file', ['options' => ['class' => 'form-center next-to-arrow'],
               'template' =>
               '   {label}
                   <div class="id-card-uploader button green">
@@ -94,9 +97,10 @@ $this->registerJsFile(Yii::getAlias('@web') . '/js/registration.js');
             <?php echo $form->field($model, 'height', ['inputOptions' => ['placeholder'=>$model->getAttributeLabel('height')]])->label(false); ?>
             <?php echo $form->field($model, 'team', ['inputOptions' => ['placeholder'=>$model->getAttributeLabel('team')]])->label(false); ?>
           </li>
-          <li class="col-2 clearfix">
+          <li class="col-3 clearfix">
             <?php echo $form->field($model, 'guardian_name', ['inputOptions' => ['placeholder'=>$model->getAttributeLabel('guardian_name')]])->label(false); ?>
             <?php echo $form->field($model, 'guardian_telephone', ['inputOptions' => ['placeholder'=>$model->getAttributeLabel('guardian_telephone')]])->label(false); ?>
+            <?php echo $form->field($model, 'source')->dropDownList(PlayerHelper::getSources(), ['prompt'=>'--- '. $model->getAttributeLabel('source') .' ---'])->label(false); ?>
           </li>
 
           <?php if ($model->pp == 'gk' && $model->ppa == 'gk'): ?>
