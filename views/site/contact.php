@@ -5,7 +5,10 @@
       <div class="left">
         <h1>Contact us</h1>
         <div class="contact-address">
-          <p>Sport Thai Bavaria Co.Ltd.</p>
+          <div class="contact-logo-container">
+            <img src="<?php echo Yii::getAlias('@web'); ?>/images/stbheader.png" alt="Contact page logo" />
+          </div>
+          <p class="contact-company-name">Sport Thai Bavaria Co.Ltd.</p>
           <p>1034 Petchburi-Tadmai Rd., Bangkapi<br/> Huakwang, Bangkok 10310</p>
           <p><i class="fa fa-mobile fa-lg"></i> 02-716-1790 , 097-192-2421</p>
         </div>

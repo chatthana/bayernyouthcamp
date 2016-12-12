@@ -83,15 +83,29 @@
   font-weight:500;
 }
 
+#contact .contact-content .left .contact-address {
+  position:relative;
+  margin-top:50px;
+}
+
+#contact .contact-content .left .contact-address .contact-logo-container {
+  position:relative;
+  /*text-align:center;*/
+}
+
+#contact .contact-content .left .contact-address .contact-logo-container img {
+  width:200px;
+}
+
 #contact .contact-content .left .contact-address p {
   margin:5px 0;
   line-height:22px;
   font-weight:400;
 }
 
-#contact .contact-content .left .contact-address p:first-child {
+#contact .contact-content .left .contact-address p.contact-company-name {
   font-size:1.25em;
-  font-weight:600;
+  font-weight:600 !important;
 }
 
 #contact .contact-content .left .social-icon-container {
