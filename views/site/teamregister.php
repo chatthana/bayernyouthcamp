@@ -87,8 +87,9 @@ $this->registerJsFile(Yii::getAlias('@web') . '/js/teamregistration.js');
               $arenas
             ,[
               "item"=>function($index, $label, $name, $checked, $value) {
+                $appointments = ArenaHelper::findDatesByText($label);
                 $input = "<input type='radio' name=" . $name . " value=". $value . " />";
-                $_label = '<label class="control-label"><div class="radio-left">'. $label .'</div><div class="radio-right">วันที่ '. ThaiDateHelper::getThaiDate(ArenaHelper::findDateByText($label)) .'</div></label>';
+                $_label = '<label class="control-label"><div class="radio-left">'. $label .'</div><div class="radio-right">วันที่ '. ThaiDateHelper::getThaiDate($appointments['regDate']) .' (สมัครภายในวันที่ '. ThaiDateHelper::getThaiDate($appointments['lastRegDate']) .')</div></label>';
                 return '<div class="each-radiobox clearfix"><label class="radio-label"><div class="radio-label-input-group">'.$input.'<div class="custom-radio"></div></div></label>' . $_label . "</div>";
               }
             ]

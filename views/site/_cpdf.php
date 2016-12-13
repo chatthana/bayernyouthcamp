@@ -15,7 +15,7 @@ use app\components\ArenaHelper;
 </div>
 <div class="content">
   <div class="information">
-    <h5><span>รหัสโค้ช / อาจารย์ :</span> <?= $model->getPrimaryKey(); ?></h5>
+    <h5 style="font-size:1.25em;"><span>รหัสโค้ช / อาจารย์ :</span> <?= $model->getPrimaryKey(); ?></h5>
     <h5><span>สนาม :</span> <?= ArenaHelper::getArenaName($arena) ?></h5>
     <h5><span>วันที่ทำการคัดเลือก :</span> <?= ThaiDateHelper::getThaiDate(ArenaHelper::getApplicationDate($arena)) ?></h5>
     <h5><span>รหัสทีม (กรณีสมัครในนามทีม) :</span> <?php echo $model->virtual_team !== null ? $model->virtual_team : '-' ?></h5>

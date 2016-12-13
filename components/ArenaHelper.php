@@ -18,8 +18,12 @@ class ArenaHelper extends Component {
     return $arena->reg_date;
   }
 
-  public static function findDateByText($text) {
-    return Arenas::findOne(['text'=>$text])->reg_date;
+  public static function findDatesByText($text) {
+    $arena = Arenas::findOne(['text'=>$text]);
+    return [
+      "regDate"=>$arena->reg_date,
+      "lastRegDate"=>$arena->last_reg_date
+    ];
   }
 
   public static function getRegionValue($region_id) {

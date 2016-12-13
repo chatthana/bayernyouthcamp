@@ -14,9 +14,13 @@ class PlayerHelper extends Component {
   ];
 
   private static $sources = [
-    "internet" => "Internet",
-    "website" => "Website",
-    "facebook" => "Facebook"
+    "poster"=>"โปสเตอร์",
+    "facebook_or_online"=>"Facebook หรือสื่อออนไลน์",
+    "coach"=>"โค้ชหรืออาจารย์",
+    "newspaper"=>"หนังสือพิมพ์",
+    "radio"=>"วิทยุ",
+    "television"=>"โทรทัศน์",
+    "billboard"=>"ป้ายประกาศ"
   ];
 
   public static function getPosition($positionCode) {

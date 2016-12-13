@@ -5,9 +5,9 @@ use app\components\PlayerHelper;
 use app\components\ArenaHelper;
 ?>
 <section class="global-sponsored-header">
-  <?php echo Html::img('@web/images/registration_wkn.png'); ?>
-  <?php echo Html::img('@web/images/vertical_logo_2.png'); ?>
   <?php echo Html::img('@web/images/registration_stb.png'); ?>
+  <?php echo Html::img('@web/images/vertical_logo_2.png'); ?>
+  <?php echo Html::img('@web/images/registration_wkn.png'); ?>
   <div class="header">
     <h3>ใบสมัครเข้าร่วมกิจกรรม</h3>
     <h3>FC Bayern Youth Cup 2017</h1>
@@ -15,7 +15,7 @@ use app\components\ArenaHelper;
 </section>
 <section class="content">
   <div class="information">
-    <h5><span>รหัสผู้สมัคร :</span> <?= $model->arena . $model->getPrimaryKey(); ?></h5>
+    <h5 style="font-size:1.25em;"><span>รหัสผู้สมัคร :</span> <?= $model->arena . $model->getPrimaryKey(); ?></h5>
     <h5><span>สนาม :</span> <?= ArenaHelper::getArenaName($model->arena) ?></h5>
     <h5><span>วันที่ทำการคัดเลือก :</span> <?= ThaiDateHelper::getThaiDate(ArenaHelper::getApplicationDate($model->arena)) ?></h5>
     <h5><span>รหัสทีม (กรณีสมัครในนามทีม) :</span> <?php echo $model->virtual_team !== null ? $model->virtual_team : '-' ?></h5>
