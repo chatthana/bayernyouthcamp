@@ -86,7 +86,7 @@ p {
 }
 
 .button.bayern {
-  background-color:#961933;
+  background-color:#005f9a;
 }
 
 .button.smalltext {
@@ -124,7 +124,7 @@ form .help-block {
   margin-top:5px;
   font-size:0.75em;
   padding-left:5px;
-  color:red;
+  color:#005f9a;
 }
 
 .form-center {
@@ -148,18 +148,18 @@ form .help-block {
 
 header {
   position:relative;
-  background-color:#961933;
-  color:#fff;
+  background-color:#fff;
+  color:#005f9a;
   /*padding:10px;*/
   line-height:60px;
-  /*border-bottom:1px solid #dadada;*/
+  border-bottom:1px solid #005f9a;
   z-index:10;
 }
 
 header #logo {
   display:block;
   float:left;
-  width:150px;
+  width:84px;
   padding:10px 0;
 }
 
@@ -184,7 +184,7 @@ header nav ul > li {
 
 header nav ul > li:hover {
   background-color:#fff;
-  color:#961933;
+  color:#005f9a;
 }
 
 header nav ul > li a {
@@ -197,7 +197,7 @@ header nav ul > li .dropdown {
   position:absolute;
   width:320px;
   /*padding:0 10px;*/
-  background-color:#961933;
+  background-color:#005f9a;
   color:#fff;
   z-index:999;
   /*border:1px solid #dadada;*/
@@ -218,7 +218,8 @@ header nav ul > li .dropdown ul > li {
 }
 
 /* Main Content */
-#main-content {
+#main-content,
+.main-content {
   position:relative;
   min-height:100%;
   height:100%;
@@ -226,14 +227,16 @@ header nav ul > li .dropdown ul > li {
   padding:83px 0 105px;
 }
 
-#main-content.auto {
+#main-content.auto,
+.main-content.auto {
   height:auto;
 }
 
 footer {
   position:relative;
   padding:10px 0;
-  background-color:#961933;
+  background-color:#005f9a;
+  /*border-top:1px solid #005f9a;*/
   z-index:10;
 }
 

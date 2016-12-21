@@ -78,3 +78,13 @@ img {
 .content .details p span {
   color:#000;
 }
+
+.remark {
+  position:relative;
+  text-align:left;
+  margin-top:35px;
+}
+
+.remark h3 {
+  font-size:1em;
+}

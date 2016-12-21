@@ -154,7 +154,7 @@
   margin-top:35px;
   text-align:center;
   font-size:400;
-  color:#961933;
+  color:#005f9a;
 }
 
 #registration-content #registration-form-container #registration-form {
@@ -284,7 +284,7 @@
   overflow:hidden;
   margin:10px;
   border-radius:30px;
-  background-color:#961933;
+  background-color:#005f9a;
 }
 
 #registration-content #registration-form-container #registration-form .id-card-uploader.attached,
@@ -443,7 +443,7 @@
 .remarks {
   position:relative;
   margin-top:50px;
-  color:#961933;
+  color:#005f9a;
 }
 
 #registration-content #registration-form-container #registration-form #remarks h5,
@@ -498,7 +498,7 @@
   float:left;
   margin-left:5px;
   font-size:1.25em;
-  color:#961933;
+  color:#005f9a;
 }
 
 #registration-content #registration-form-container #registration-form #submit-button-container,
@@ -512,7 +512,7 @@
 .submit-button-container button,
 .submit-button-container .button {
   border-radius:30px;
-  background-color:#961933;
+  background-color:#005f9a;
   cursor:pointer;
 }
 
@@ -549,7 +549,7 @@
 
 /*#team-registration-form-container #form-navigation-container .form-navigator:hover,*/
 #team-registration-form-container #form-navigation-container .form-navigator.selected {
-  background-color:#961933;
+  background-color:#005f9a;
   color:#fff;
 }
 
@@ -573,7 +573,7 @@
   font-size:1.8em;
   margin-bottom:30px;
   font-weight:400;
-  color:#961933;
+  color:#005f9a;
 }
 
 #team-registration-form-container .each-form ul > li {
@@ -695,7 +695,7 @@
 
 .registration-render .registration-information .row p {
   margin:0 !important;
-  color:#961933;
+  color:#005f9a;
 }
 
 .registration-render .registration-information .row p span {
@@ -855,7 +855,7 @@ section#regulations table tr td, section#regulations table tr th {
 #news-and-updates {
   position:relative;
   padding:65px 0 100px;
-  color:#961933;
+  color:#005f9a;
 }
 
 #news-and-updates h1 {

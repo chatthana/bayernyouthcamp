@@ -42,7 +42,7 @@ $this->beginPage();
 
   <header>
     <div class="wrapper">
-      <a href="<?php echo Yii::$app->urlManager->createUrl(['site/index']); ?>" id="logo" title="Bayern Logo"><?= Html::img('@web/images/logo.png'); ?></a>
+      <a href="<?php echo Yii::$app->urlManager->createUrl(['site/index']); ?>" id="logo" title="Bayern Logo"><?= Html::img('@web/images/stbheader.png'); ?></a>
       <nav role="navigation">
         <ul class="clearfix">
           <li><a href="<?php echo Yii::$app->urlManager->createUrl(['site/index']); ?>">Home</a></li>

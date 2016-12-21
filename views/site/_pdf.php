@@ -64,3 +64,7 @@ use app\components\ArenaHelper;
   </div>
   </div>
 </section>
+<section class="remark">
+  <h3>*หมายเหตุ</h3>
+  <p>ผู้สมัครจะต้องมารายงานตัวที่สนามที่เลือก ในเวลา 8.00 น.</p>
+</section>

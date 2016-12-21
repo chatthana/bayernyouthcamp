@@ -1,4 +1,4 @@
-<section id="contact">
+<section id="contact" class="main-content">
   <!-- <div id="contact-map"></div> -->
   <div class="wrapper">
     <div class="contact-content clearfix">
