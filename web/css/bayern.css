@@ -15,7 +15,7 @@
   display:block;
   float:left;
   /*width:100%;*/
-  margin-left:-140px;
+  margin-left:-310px;
   height:100%;
   /*width:auto;*/
 }
@@ -125,6 +125,29 @@
 
 .registration-form-header {
   position:relative;
+  background-color:#005f9a;
+  padding:40px 0;
+}
+
+.registration-form-header .bayern-sponsored {
+  position:relative;
+  text-align:center;
+}
+
+.registration-form-header .bayern-sponsored img {
+  display:inline-block;
+  width:150px;
+  margin:0 30px;
+  height:auto;
+  vertical-align:middle;
+}
+
+.registration-form-header .bayern-sponsored img.large {
+  width:230px;
+}
+
+/*.registration-form-header {
+  position:relative;
   padding:30px 0;
 }
 
@@ -152,6 +175,14 @@
 .registration-form-header h1 {
   font-size:1.85em;
   margin-top:35px;
+  text-align:center;
+  font-size:400;
+  color:#005f9a;
+}*/
+
+h1.form-super-header {
+  font-size:1.85em;
+  margin:60px 0 30px;
   text-align:center;
   font-size:400;
   color:#005f9a;
@@ -519,7 +550,7 @@
 /** TEAM REGISTRATION **/
 #team-registration-form-container {
   position:relative;
-  padding-bottom:100px;
+  padding:50px 0 100px;
 }
 
 #team-registration-form-container #form-navigation-container {

@@ -9,23 +9,22 @@ use app\components\PlayerHelper;
 $this->registerJsFile(Yii::getAlias('@web') . '/js/teamregistration.js');
 ?>
 
-<div class="wrapper">
+<section id="registration-content">
+  <div class="registration-form-header">
+    <!-- <div class="bayern-vertical-logo">
+      <?php echo Html::img('@web/images/vertical-logo.png'); ?>
+    </div> -->
+    <div class="bayern-sponsored">
+      <?php echo Html::img('@web/images/stb.png'); ?>
+      <?php echo Html::img('@web/images/logo.png', ['class'=>'large']); ?>
+      <?php echo Html::img('@web/images/wangkanai.png'); ?>
+    </div>
+
+  </div>
+  <div class="wrapper">
 
   <section id="team-registration-form-container">
 
-    <div class="registration-form-header">
-      <!-- <div class="bayern-vertical-logo">
-        <?php echo Html::img('@web/images/vertical-logo.png'); ?>
-      </div> -->
-      <div class="bayern-sponsored">
-        <?php echo Html::img('@web/images/registration_wkn.png'); ?>
-        <?php echo Html::img('@web/images/vertical_logo_2.png'); ?>
-        <?php echo Html::img('@web/images/registration_stb.png'); ?>
-      </div>
-
-
-      <h1>สมัครในนามทีม</h1>
-    </div>
 
     <div id="form-navigation-container" class="">
       <a class="form-navigator selected" href="#" data-target-sync="1" data-target-sequence="1">โค้ช / อาจารย์</a>
@@ -199,3 +198,4 @@ $this->registerJsFile(Yii::getAlias('@web') . '/js/teamregistration.js');
   </section>
 
 </div>
+</section>

@@ -10,21 +10,21 @@ $this->registerJsFile(Yii::getAlias('@web') . '/js/registration.js');
 ?>
 <div id="main-content" class="auto">
   <section id="registration-content">
+    <div class="registration-form-header">
+      <!-- <div class="bayern-vertical-logo">
+        <?php echo Html::img('@web/images/vertical-logo.png'); ?>
+      </div> -->
+      <div class="bayern-sponsored">
+        <?php echo Html::img('@web/images/stb.png'); ?>
+        <?php echo Html::img('@web/images/logo.png', ['class'=>'large']); ?>
+        <?php echo Html::img('@web/images/wangkanai.png'); ?>
+      </div>
+
+    </div>
+
     <div class="wrapper">
+      <h1 class="form-super-header">สมัครในนามบุคคล <?php echo $model->pp !== 'gk' ? '':'(ผู้รักษาประตู)'; ?></h1>
       <div id="registration-form-container">
-
-        <div class="registration-form-header">
-          <!-- <div class="bayern-vertical-logo">
-            <?php echo Html::img('@web/images/vertical-logo.png'); ?>
-          </div> -->
-          <div class="bayern-sponsored">
-            <?php echo Html::img('@web/images/registration_wkn.png'); ?>
-            <?php echo Html::img('@web/images/vertical_logo_2.png'); ?>
-            <?php echo Html::img('@web/images/registration_stb.png'); ?>
-          </div>
-
-          <h1>สมัครในนามบุคคล <?php echo $model->pp !== 'gk' ? '':'(ผู้รักษาประตู)'; ?></h1>
-        </div>
 
         <?php $form = ActiveForm::begin([
           "id"=>"registration-form",

@@ -69,7 +69,7 @@ $this->beginPage();
   <?php echo $content; ?>
 
 
-  <footer>
+  <!-- <footer>
     <div class="wrapper">
       <div id="sponsors">
         <div class="sponsor-img">
@@ -83,7 +83,7 @@ $this->beginPage();
         </div>
       </div>
     </div>
-  </footer>
+  </footer> -->
   <?php $this->endBody(); ?>
   </body>
 </html>
