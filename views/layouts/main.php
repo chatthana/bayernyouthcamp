@@ -69,8 +69,8 @@ $this->beginPage();
   <?php echo $content; ?>
 
 
-  <!-- <footer>
-    <div class="wrapper">
+  <footer>
+    <!-- <div class="wrapper">
       <div id="sponsors">
         <div class="sponsor-img">
           <img src="<?php echo Yii::getAlias('@web'); ?>/images/stb.png" alt="Sponsor" />
@@ -82,8 +82,8 @@ $this->beginPage();
           <img src="<?php echo Yii::getAlias('@web'); ?>/images/wangkanai.png" alt="Sponsor" />
         </div>
       </div>
-    </div>
-  </footer> -->
+    </div> -->
+  </footer>
   <?php $this->endBody(); ?>
   </body>
 </html>
