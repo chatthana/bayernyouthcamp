@@ -3,7 +3,6 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 ?>
 <div id="main-content">
-  <div class="horizontal-custom-rule"></div>
   <section id="teaser" class="clearfix">
     <div class="left">
       <?php echo Html::img('@web/images/teaser_r.png'); ?>
