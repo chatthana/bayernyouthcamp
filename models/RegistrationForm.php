@@ -66,7 +66,7 @@ class RegistrationForm extends Model {
       "guardian_name" => "ชื่อผู้ปกครอง",
       "guardian_telephone" => "เบอร์โทรศัพท์ผู้ปกครอง",
       "identity_card_file" => "ไฟล์ภาพบัตรประชาชน",
-      "source" => "แหล่งที่มา",
+      "source" => "ได้รับข่าวสารจาก",
       "arena" => "สนาม"
     ];
   }

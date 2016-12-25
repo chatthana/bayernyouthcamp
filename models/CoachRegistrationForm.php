@@ -39,7 +39,7 @@ class CoachRegistrationForm extends Model {
       "school" => "โรงเรียน / สังกัด",
       "address" => "ที่อยู่",
       "identity_card_file" => "ไฟล์ภาพบัตรประชาชน",
-      "source" => "แหล่งที่มา",
+      "source" => "ได้รับข่าวสารจาก",
       "arena" => "สนาม"
     ];
   }
