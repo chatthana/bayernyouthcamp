@@ -146,6 +146,13 @@ form .help-block {
   }
 }
 
+.horizontal-custom-rule {
+  position:relative;
+  border-top:3px solid #005f9a;
+  width:90%;
+  margin:10px auto 15px;
+}
+
 header {
   position:relative;
   background-color:#fff;
@@ -224,13 +231,14 @@ header nav ul > li .dropdown ul > li {
   min-height:100%;
   height:100%;
   margin:-83px 0 -52px;
-  padding:120px 0 95px;
+  padding:110px 0 95px;
   /*border-bottom:2px solid #005f9a;*/
 }
 
 #main-content.auto,
 .main-content.auto {
   height:auto;
+  padding:82px 0 95px;
 }
 
 footer {

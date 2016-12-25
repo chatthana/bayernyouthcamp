@@ -27,7 +27,7 @@ $('.registration-form-arenas input[type=radio]').change(function() {
   $('.registration-form-arenas label + label').css('color', 'inherit');
   $(this).parent().addClass('checked');
   console.log($('.registration-form-arenas input[type=radio]:checked').val());
-  $(this).parent().parent().next().css('color', '#961933');
+  $(this).parent().parent().next().css('color', '#005f9a');
 });
 
 $('#registration-form input[type=file]').change(function(e) {
