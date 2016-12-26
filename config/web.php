@@ -34,8 +34,8 @@ $config = [
             'transport' => [
               'class' => 'Swift_SmtpTransport',
               'host' => 'smtp.gmail.com',
-              'username' => 'agc.srvam@gmail.com',
-              'password' => 'serveradmin99',
+              'username' => 'info@sporttb.com',
+              'password' => 'infosporttb',
               'port' => '587',
               'encryption' => 'tls'
             ],
