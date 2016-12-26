@@ -240,7 +240,7 @@ class SiteController extends Controller
           $player->created = date('Y-m-d H:i:s');
           $player->save();
 
-          $player->unique_id = $player->arena . $player->getPrimaryKey();
+          $player->unique_id = $player->arena . str_pad($player->getPrimaryKey(), 4, "0", STR_PAD_LEFT);
           $player->save();
 
           // Render each memeber template and store in the array
@@ -308,7 +308,7 @@ class SiteController extends Controller
       $player->created = date('Y-m-d H:i:s');
       $player->save();
 
-      $player->unique_id = $model->arena . $player->getPrimaryKey();
+      $player->unique_id = $model->arena . str_pad($player->getPrimaryKey(), 4, "0", STR_PAD_LEFT);
       $player->update();
 
       $content = $this->renderPartial('_pdf', ['model'=>$player]);
