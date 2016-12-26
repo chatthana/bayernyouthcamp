@@ -40,7 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
               'attribute'=>'photo',
               'value'=>Yii::getAlias('@web') . $model->identity_card_path,
-              'format'=>['image']
+              'format'=>['image', ['width'=>'550']],
             ],
             'school:ntext',
             'year',
