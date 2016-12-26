@@ -12,7 +12,7 @@ use app\components\ThaiDateHelper;
               <div class="each-arena">
                 <!-- <p><?php //echo ThaiDateHelper::getThaiDate($arena->reg_date); ?></p> -->
                 <p><?php echo $arena->text; ?></p>
-                <p> (สมัครภายในวันที่ <?php echo ThaiDateHelper::getThaiDate($arena->last_reg_date); ?>)</p>
+                <p> (สมัครออนไลน์ภายในวันที่ <?php echo ThaiDateHelper::getThaiDate($arena->last_reg_date); ?>)</p>
               </div>
             <?php endforeach; ?>
           </div>

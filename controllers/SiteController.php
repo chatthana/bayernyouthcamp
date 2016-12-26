@@ -383,7 +383,7 @@ class SiteController extends Controller
 
       // We need 7 members per team, so iterate and create array of models here
       for ($i=0; $i < 7; $i++) {
-        $models[] = new TeamRegistrationForm();
+        $models[] = new RegistrationForm();
       }
 
       // If this is a POST request (means forms are summitted)

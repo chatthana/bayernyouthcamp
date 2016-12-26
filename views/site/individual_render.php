@@ -3,15 +3,16 @@ use yii\helpers\Html;
 use app\components\PlayerHelper;
 ?>
 
-<section class="registration-render">
-  <div class="wrapper">
-    <div class="registration-form-header">
-      <div class="bayern-sponsored">
-        <?php echo Html::img('@web/images/registration_wkn.png'); ?>
-        <?php echo Html::img('@web/images/vertical_logo_2.png'); ?>
-        <?php echo Html::img('@web/images/registration_stb.png'); ?>
-      </div>
+<section id="main-content" class="auto">
+  <div class="registration-form-header">
+    <div class="bayern-sponsored">
+      <?php echo Html::img('@web/images/stb.png'); ?>
+      <?php echo Html::img('@web/images/logo.png', ['class'=>'large']); ?>
+      <?php echo Html::img('@web/images/wangkanai.png'); ?>
     </div>
+  </div>
+  <section class="registration-render">
+  <div class="wrapper">
     <div class="header">
       <h1>กรุณาตรวจสอบข้อมูล</h1>
       <p>หากยืนยันแล้วจะไม่สามารถแก้ไขข้อมูลได้ในภายหลัง</p>
@@ -59,4 +60,5 @@ use app\components\PlayerHelper;
         <?php echo Html::a('กลับไปแก้ไข', Yii::$app->urlManager->createUrl(['site/register', 'requesttype'=>'edit']), ['class'=>'button red']); ?>
       </div>
   </div>
+</section>
 </section>

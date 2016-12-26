@@ -52,8 +52,8 @@ $('.birthdate-date-selector, .birthdate-month-selector, .birthdate-year-selector
   var ref = $(this).parent().attr('data-seq-ref');
   birthdates[ref][$(this).attr('name').substring(5)] = $(this).val();
   if (birthdates[ref].validate()) {
-    birthdates[ref].assign('#teamregistrationform-' + ref + '-birthdate');
-    $('#teamregistrationform-' + ref + '-age').val(birthdates[ref].getAge());
+    birthdates[ref].assign('#registrationform-' + ref + '-birthdate');
+    $('#registrationform-' + ref + '-age').val(birthdates[ref].getAge());
   }
 });
 
