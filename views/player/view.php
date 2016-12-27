@@ -23,6 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'method' => 'post',
             ],
         ]) ?>
+        <?= Html::a('Resend PDF', ['site/index'], ['class'=>'btn btn-warning']) ?>
     </p>
 
     <?= DetailView::widget([
