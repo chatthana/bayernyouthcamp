@@ -32,3 +32,4 @@ tests/_support/_generated
 # Upload files and folders
 /web/uploads/
 /web/pdf/
+/web/pdf/recreated/

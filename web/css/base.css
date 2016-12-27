@@ -63,6 +63,10 @@ p {
   margin:20px 0;
 }
 
+strong {
+  font-weight:600;
+}
+
 .button {
   display:inline-block !important;
   border:0;

@@ -62,7 +62,7 @@ $this->registerJsFile(Yii::getAlias('@web') . '/js/preconfirm.js');
   <div class="row">
     <div class="chd info">
       <h3>กรุณารอสักครู่</h3>
-      <p>ระบบกำลังดำเนินการกับข้อมูลของท่าน กรุณาอย่ากดออก หรือดำเนินการใดๆกับเว็บเพจ</p>
+      <p style="color:red;">กรุณารอสักครู่ ระบบกำลังดำเนินการกับข้อมูลของท่าน<br/>กรุณาอย่ากดออก กด Refresh หรือดำเนินการใดๆกับเว็บเพจโดยเด็ดขาด</p>
       <div class="chd-spinner"><i class="fa fa-spinner fa-spin fa-3x fa-fw"></i></div>
     </div>
   </div>
