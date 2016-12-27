@@ -9,6 +9,9 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+// Custom libraries (3rd party)
+use app\components\KeyGenerator;
+use kartik\mpdf\Pdf;
 
 /**
  * PlayerController implements the CRUD actions for Players model.
@@ -121,6 +124,38 @@ class PlayerController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+
+    public function actionResendpdf($id) {
+      $player = Players::findOne($id);
+      $content = $this->renderPartial('/site/_pdf', ['model'=>$player]);
+
+      $sendMail = Yii::$app->mailer->compose('@app/mail/layouts/resend')
+        ->setFrom('info@sporttb.com')
+        ->setTo($player->email)
+        ->setSubject('คำร้องขอใบสมัคร FC Bayern Youth Cup Thailand 2017');
+
+      $_pdfName = \app\components\KeyGenerator::getUniqueName();
+
+      $pdf = new Pdf([
+        'mode' => 'utf-8',
+        'format' => Pdf::FORMAT_A4,
+        'orientation' => Pdf::ORIENT_PORTRAIT,
+        'filename'=>Yii::getAlias('@webroot') . '/pdf/recreated/' . $_pdfName .'.pdf',
+        'destination' => Pdf::DEST_FILE,
+        'content' => $content,
+        'cssFile' => '@webroot/css/pdf.css'
+      ]);
+
+      $pdf->render();
+
+      $sendMail->attach(Yii::getAlias('@webroot') . '/pdf/recreated/' . $_pdfName . '.pdf');
+      $sendMail->send();
+
+      unlink(Yii::getAlias('@webroot') . '/pdf/recreated/' . $_pdfName . '.pdf');
+
+      Yii::$app->session->setFlash('success', 'ส่งอีเมล์พร้อมไฟล์ PDF ให้กับคุณ ' . $player->name . ' เรียบร้อยแล้ว');
+      return $this->redirect(['view', 'id'=>$player->id]);
     }
 
     /**

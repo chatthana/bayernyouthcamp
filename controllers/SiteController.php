@@ -276,8 +276,17 @@ class SiteController extends Controller
 
       }
 
+      $checkExistence = Players::findOne(['identity_card_no'=>$model->identity_card_no, 'arena'=>$model->arena]);
+
       $model = Yii::$app->session->get('data');
       $filename = Yii::$app->request->get('filename');
+
+      // Recheck the user's existence to assure the valid information stored in the database
+      $checkExistence = Players::findOne(['identity_card_no'=>$model->identity_card_no, 'arena'=>$model->arena]);
+      if ($checkExistence !== null) {
+        Yii::$app->session->setFlash('error', 'คุณ ' . $checkExistence->name . ' ได้ถูกบันทึกเป็นที่เรียบร้อยแล้ว แต่เกิดข้อผิดพลาดเนื่องจากเกิดการ Refresh เกินจำนวนครั้ง');
+        return $this->redirect(['site/error']);
+      }
 
       // Create a user
       $player = new Players();
@@ -306,15 +315,22 @@ class SiteController extends Controller
       $player->source = $model->source;
       $player->arena = $model->arena;
       $player->created = date('Y-m-d H:i:s');
-      $player->save();
+      if (!$player->save()) {
+        Yii::$app->session->setFlash('error', 'ข้อมูลไม่ตรงตามเงื่อนไข กรุณากรอกข้อมูลให้ครบถ้วนและถูกต้อง');
+        return $this->redirect(['site/error']);
+      }
 
+      // Create player's unique ID
       $player->unique_id = $model->arena . str_pad($player->getPrimaryKey(), 4, "0", STR_PAD_LEFT);
       $player->update();
 
+      // Render content for PDF
       $content = $this->renderPartial('_pdf', ['model'=>$player]);
 
+      // Generate PDF name
       $_pdfName = \app\components\KeyGenerator::getUniqueName();
 
+      // Initialize the PDF file
       $pdf = new Pdf([
         'mode' => 'utf-8',
         'format' => Pdf::FORMAT_A4,
@@ -325,8 +341,10 @@ class SiteController extends Controller
         'cssFile' => '@webroot/css/pdf.css'
       ]);
 
+      // Create the PDF file and store it in the directory
       $pdf->render();
 
+      // Send the PDF to the applicant's email address
       $sendMail = Yii::$app->mailer->compose('@app/mail/layouts/test')
         ->setFrom('info@sporttb.com')
         ->setTo($player->email)
@@ -334,6 +352,7 @@ class SiteController extends Controller
         ->attach(Yii::getAlias('@webroot') . '/pdf/'. $_pdfName .'.pdf')
         ->send();
 
+      // Notify the user with the success message (In this scenario)
       return $this->render('success');
 
     }
@@ -345,6 +364,15 @@ class SiteController extends Controller
 
       if (Yii::$app->request->post()) {
         $model->load(Yii::$app->request->post());
+
+        // Check whether the user already exists in the database or not
+        // If yes, redirect and notify the user
+        $checkExistence = Players::findOne(['identity_card_no'=>$model->identity_card_no, 'arena'=>$model->arena]);
+        if ($checkExistence !== null) {
+          Yii::$app->session->setFlash('error', 'คุณ ' . $checkExistence->name . ' ได้ทำการสมัคร ณ สนามดังกล่าวไปแล้ว กรุณาทำการสมัครที่สนามอื่น หรือ ท่านกด Refresh เกินจำนวนครั้งที่กำหนด');
+          return $this->redirect(['site/error']);
+        }
+
         $model->identity_card_file = UploadedFile::getInstance($model, 'identity_card_file');
         $_pfilename = \app\components\KeyGenerator::getUniqueName();
         $model->upload($_pfilename);
@@ -466,6 +494,10 @@ class SiteController extends Controller
 
     public function actionSuccess() {
       return $this->render('success');
+    }
+
+    public function actionError() {
+      return $this->render('error');
     }
 
     public function actionOffline() {

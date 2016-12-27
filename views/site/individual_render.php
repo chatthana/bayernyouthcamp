@@ -1,6 +1,7 @@
 <?php
 use yii\helpers\Html;
 use app\components\PlayerHelper;
+$this->registerJsFile(Yii::getAlias('@web') . '/js/preconfirm.js');
 ?>
 
 <section id="main-content" class="auto">
@@ -55,10 +56,18 @@ use app\components\PlayerHelper;
         <p class="col-3"><span>สนามแข่งขัน : </span> <?= \app\components\ArenaHelper::getArenaName($model->arena) ?></p>
         <p class="col-3"><span>เบอร์โทรศัพท์ : </span> <?= $model->guardian_telephone ?></p>
       </div>
-      <div class="row" style="text-align:center; margin-top:35px;">
-        <?php echo Html::a('ยืนยันการสมัคร', Yii::$app->urlManager->createUrl(['site/confirm', 'filename'=>$filename]), ['class'=>'button blue']); ?>
-        <?php echo Html::a('กลับไปแก้ไข', Yii::$app->urlManager->createUrl(['site/register', 'requesttype'=>'edit']), ['class'=>'button red']); ?>
-      </div>
   </div>
 </section>
+<div class="registration-toolset">
+  <div class="row">
+    <div class="chd info">
+      <h3>กรุณารอสักครู่</h3>
+      <p>ระบบกำลังดำเนินการกับข้อมูลของท่าน กรุณาอย่ากดออก หรือดำเนินการใดๆกับเว็บเพจ</p>
+      <div class="chd-spinner"><i class="fa fa-spinner fa-spin fa-3x fa-fw"></i></div>
+    </div>
+  </div>
+  <div id="presubmit-operation-container" class="row" style="text-align:center; margin-top:35px;">
+    <?php echo Html::a('ยืนยันการสมัคร', Yii::$app->urlManager->createUrl(['site/confirm', 'filename'=>$filename]), ['class'=>'button blue', 'id'=>'submit-confirm']); ?>
+  </div>
+</div>
 </section>

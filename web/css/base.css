@@ -292,3 +292,47 @@ footer #sponsors .sponsor-img img {
   width:230px;
   height:auto;
 }
+
+/** NOTIFIER **/
+.exception-notifier {
+  position:relative;
+  width:40%;
+  margin:50px auto;
+  padding:20px;
+  border:1px solid #dadada;
+  color:#000;
+  border-radius:5px;
+  text-align:center;
+}
+
+.exception-notifier.error {
+  color:#c16464;
+  background-color:#e6cbcb;
+}
+
+.exception-notifier .exception-button-container {
+  position:relative;
+  margin:20px 0;
+}
+
+.exception-notifier .exception-button-container a {
+  display:inline-block;
+  padding:15px;
+  color:#dadada;
+  background-color:#000;
+  border-radius:5px;
+  font-size:0.9em;
+}
+
+.exception-notifier.error .exception-button-container a {
+  background-color:#caa0a0;
+  color:#b36565;
+}
+
+.success-remark {
+  position:relative;
+  width:50%;
+  margin:0 auto;
+  text-align:center;
+  color:red;
+}

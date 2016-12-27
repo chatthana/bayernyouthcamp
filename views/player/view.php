@@ -14,6 +14,12 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
+    <?php foreach (Yii::$app->session->getAllFlashes() as $key => $value): ?>
+      <div class="alert alert-<?php echo $key; ?>">
+        <p><?php echo $value; ?></p>
+      </div>
+    <?php endforeach; ?>
+
     <p>
         <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Delete', ['delete', 'id' => $model->id], [
@@ -23,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'method' => 'post',
             ],
         ]) ?>
-        <?= Html::a('Resend PDF', ['site/index'], ['class'=>'btn btn-warning']) ?>
+        <?= Html::a('Resend PDF', ['resendpdf', 'id' => $model->id], ['class'=>'btn btn-warning']) ?>
     </p>
 
     <?= DetailView::widget([

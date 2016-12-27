@@ -685,7 +685,7 @@ h1.form-super-header {
 
 .registration-render {
   position:relative;
-  padding:50px 0;
+  padding:50px 0 0;
 }
 
 .registration-render .header {
@@ -929,4 +929,24 @@ section#regulations table tr td, section#regulations table tr th {
 #admin-image-container img {
   display:inline-block;
   width:380px;
+}
+
+/** HELPER DIALOG **/
+
+.chd {
+  display:none;
+  position: relative;
+  width: 50%;
+  color: #000;
+  background-color: #fff;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 5px;
+  text-align:center;
+}
+
+.chd .chd-spinner {
+  position:relative;
+  margin:10px 0;
+  text-align:center;
 }
