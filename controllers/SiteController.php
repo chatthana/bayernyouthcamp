@@ -341,6 +341,16 @@ class SiteController extends Controller
         'cssFile' => '@webroot/css/pdf.css'
       ]);
 
+      $_b_pdf = new Pdf([
+        'mode' => 'utf-8',
+        'format' => Pdf::FORMAT_A4,
+        'orientation' => Pdf::ORIENT_PORTRAIT,
+        'filename'=>'application_form.pdf',
+        'destination' => Pdf::DEST_BROWSER,
+        'content' => $content,
+        'cssFile' => '@webroot/css/pdf.css'
+      ]);
+
       // Create the PDF file and store it in the directory
       $pdf->render();
 
@@ -351,6 +361,8 @@ class SiteController extends Controller
         ->setSubject('ยืนยันการสมัคร FC Bayern Youth Cup 2017')
         ->attach(Yii::getAlias('@webroot') . '/pdf/'. $_pdfName .'.pdf')
         ->send();
+
+      $_b_pdf->render();
 
       // Notify the user with the success message (In this scenario)
       return $this->render('success');
