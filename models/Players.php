@@ -54,7 +54,7 @@ class Players extends \yii\db\ActiveRecord
         return [
             [['name', 'name_en', 'nickname', 'birthdate', 'age', 'identity_card_no', 'identity_card_path', 'school', 'year', 'address', 'telephone', 'line_id', 'facebook_link', 'email', 'foot', 'pp', 'ppa', 'weight', 'height', 'guardian_name', 'guardian_telephone', 'source', 'created'], 'required'],
             [['birthdate', 'created'], 'safe'],
-            [['age', 'year', 'weight', 'height', 'virtual_team'], 'integer'],
+            [['age', 'weight', 'height', 'virtual_team'], 'integer'],
             [['identity_card_path', 'school', 'address', 'facebook_link', 'team'], 'string'],
             [['unique_id', 'telephone', 'guardian_telephone'], 'string', 'max' => 10],
             [['name', 'name_en', 'nickname', 'guardian_name', 'arena'], 'string', 'max' => 255],

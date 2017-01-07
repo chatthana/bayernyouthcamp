@@ -42,7 +42,7 @@ class Coaches extends \yii\db\ActiveRecord
             [['age', 'virtual_team'], 'integer'],
             [['created'], 'safe'],
             [['name', 'name_en', 'email'], 'string', 'max' => 255],
-            [['identity_card_no'], 'string', 'max' => 13],
+            ['identity_card_no', 'string', 'min'=>13, 'max'=>13, 'tooShort'=>'ต้องมีจำนวน 13 หลักเท่านั้น', 'tooLong'=>'ต้องมีจำนวน 13 หลักเท่านั้น'],
             [['telephone'], 'string', 'max' => 10],
             [['source'], 'string', 'max' => 128],
         ];

@@ -62,6 +62,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'weight',
             'height',
             'team:ntext',
+            'source',
             'virtual_team',
             'guardian_name',
             'guardian_telephone',

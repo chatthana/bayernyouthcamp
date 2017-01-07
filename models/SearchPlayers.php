@@ -19,7 +19,7 @@ class SearchPlayers extends Players
     {
         return [
             [['id', 'age', 'year', 'weight', 'height', 'virtual_team'], 'integer'],
-            [['unique_id', 'name', 'name_en', 'nickname', 'birthdate', 'identity_card_no', 'identity_card_path', 'school', 'address', 'telephone', 'line_id', 'facebook_link', 'email', 'foot', 'pp', 'ppa', 'team', 'guardian_name', 'guardian_telephone', 'arena', 'created'], 'safe'],
+            [['unique_id', 'name', 'name_en', 'nickname', 'birthdate', 'identity_card_no', 'identity_card_path', 'school', 'address', 'telephone', 'line_id', 'facebook_link', 'email', 'foot', 'pp', 'ppa', 'team', 'guardian_name', 'guardian_telephone', 'arena', 'source', 'created'], 'safe'],
         ];
     }
 
@@ -66,6 +66,7 @@ class SearchPlayers extends Players
             'weight' => $this->weight,
             'height' => $this->height,
             'virtual_team' => $this->virtual_team,
+            'source' => $this->source,
             'created' => $this->created,
         ]);
 
@@ -86,6 +87,7 @@ class SearchPlayers extends Players
             ->andFilterWhere(['like', 'ppa', $this->ppa])
             ->andFilterWhere(['like', 'team', $this->team])
             ->andFilterWhere(['like', 'guardian_name', $this->guardian_name])
+            ->andFilterWhere(['like', 'source', $this->source])
             ->andFilterWhere(['like', 'guardian_telephone', $this->guardian_telephone])
             ->andFilterWhere(['like', 'arena', $this->arena]);
 

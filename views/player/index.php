@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\helpers\ArrayHelper;
+use app\components\PlayerHelper;
 use app\models\Arenas;
 
 /* @var $this yii\web\View */
@@ -53,6 +54,11 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'weight',
             // 'height',
             // 'team:ntext',
+            [
+                'attribute'=>'source',
+                'label'=>'Source',
+                'filter' => PlayerHelper::getSources()
+            ],
             'virtual_team',
             // 'guardian_name',
             // 'guardian_telephone',
