@@ -37,7 +37,7 @@ class RegistrationForm extends Model {
       [['name', 'name_en', 'nickname', 'birthdate', 'age', 'identity_card_no', 'school', 'year', 'address', 'telephone', 'line_id', 'facebook_link', 'email', 'foot', 'pp', 'ppa', 'weight', 'height', 'guardian_name', 'guardian_telephone', 'source', 'arena'], 'required', 'message' => '{attribute}ห้ามเป็นค่าว่าง'],
       ['email', 'email', 'message' => 'รูปแบบอีเมล์ไม่ถูกต้อง'],
       [['pp', 'ppa', 'team'], 'safe'],
-      [['identity_card_no', 'age', 'year', 'telephone', 'guardian_telephone'], 'integer', 'message' => '{attribute}ต้องเป็นตัวเลขเท่านั้น'],
+      [['identity_card_no', 'age', 'telephone', 'guardian_telephone'], 'integer', 'message' => '{attribute}ต้องเป็นตัวเลขเท่านั้น'],
       ['identity_card_no', 'string', 'min'=>13, 'max'=>13, 'tooShort'=>'ต้องมีจำนวน 13 หลักเท่านั้น', 'tooLong'=>'ต้องมีจำนวน 13 หลักเท่านั้น'],
       [['identity_card_file'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png,jpg', 'message'=>'กรุณาอัปโหลดไฟล์']
     ];
