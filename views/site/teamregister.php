@@ -7,6 +7,7 @@ use app\components\PlayerHelper;
 
 // Register JS file
 $this->registerJsFile(Yii::getAlias('@web') . '/js/teamregistration.js');
+$this->registerMetaTag(['name'=>'viewport', 'content'=>'width=device-width, initial-scale=1.0']);
 ?>
 
 <section id="registration-content">

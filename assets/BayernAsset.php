@@ -10,7 +10,7 @@ class BayernAsset extends AssetBundle {
   public $css = [
     "css/base.css",
     "css/bayern.css",
-    // "css/responsive.css"
+    "css/responsive.css"
   ];
   public $js = [
     "js/bayern.js"
