@@ -7,6 +7,7 @@ use app\components\PlayerHelper;
 
 // Register JS file with ClientScript (Call differently from Yii1)
 $this->registerJsFile(Yii::getAlias('@web') . '/js/registration.js');
+// $this->registerCssFile(Yii::getAlias('@web') . '/css/responsive.css');
 ?>
 <div id="main-content" class="auto">
   <section id="registration-content">
