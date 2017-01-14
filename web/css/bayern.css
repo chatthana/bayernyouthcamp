@@ -1173,7 +1173,7 @@ section#regulations table tr td, section#regulations table tr th {
   }
 
   header nav {
-    display:none;
+    /*display:none;*/
     float:none;
     width:100%;
     text-align:center;
