@@ -10,6 +10,7 @@ $this->beginPage();
 <html lang="<?= Yii::$app->language; ?>">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta property="og:url" content="http://www.fcbayernyouthcupthailand.com" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="FC Bayern Youth Cup 2017 by Sport Thai Bavaria" />
