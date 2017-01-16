@@ -30,10 +30,10 @@ class Arenas extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['code', 'text', 'reg_date', 'last_reg_date', 'region_id'], 'required'],
+            [['code', 'text', 'reg_date', 'last_reg_date', 'region_id', 'active'], 'required'],
             [['text'], 'string'],
             [['reg_date', 'last_reg_date'], 'safe'],
-            [['region_id'], 'integer'],
+            [['region_id', 'active'], 'integer'],
             [['code'], 'string', 'max' => 255],
         ];
     }
@@ -50,6 +50,7 @@ class Arenas extends \yii\db\ActiveRecord
             'reg_date' => 'Reg Date',
             'last_reg_date' => 'Last Reg Date',
             'region_id' => 'Region ID',
+            'active' => 'Active'
         ];
     }
 }

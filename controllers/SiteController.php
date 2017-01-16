@@ -372,7 +372,7 @@ class SiteController extends Controller
     public function actionRegister() {
 
       $model = new RegistrationForm();
-      $arenas = Arenas::find()->all();
+      $arenas = Arenas::find()->where(['>=', 'last_reg_date', date('Y-m-d')])->all();
 
       if (Yii::$app->request->post()) {
         $model->load(Yii::$app->request->post());
@@ -416,7 +416,7 @@ class SiteController extends Controller
 
     public function actionRegisterteam() {
 
-      $arenas = Arenas::find()->all();
+      $arenas = Arenas::find()->where(['>=', 'last_reg_date', date('Y-m-d')])->all();
 
       // Instantiate the coach model. We need only one coach per team
       $coachModel = new CoachRegistrationForm();
