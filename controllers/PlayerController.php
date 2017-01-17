@@ -158,6 +158,40 @@ class PlayerController extends Controller
       return $this->redirect(['view', 'id'=>$player->id]);
     }
 
+    public function actionViewpdf($id) {
+        $player = Players::findOne($id);
+        $content = $this->renderPartial('/site/_pdf', ['model'=>$player]);
+
+        $pdf = new Pdf([
+            'mode'=>'utf-8',
+            'format'=>Pdf::FORMAT_A4,
+            'orientation'=>Pdf::ORIENT_PORTRAIT,
+            'filename'=>$player->unique_id . '.pdf',
+            'destination'=>Pdf::DEST_BROWSER,
+            'content'=>$content,
+            'cssFile'=>'@webroot/css/pdf.css'
+        ]);
+
+        $pdf->render();
+    }
+
+    public function actionDownloadpdf($id) {
+        $player = Players::findOne($id);
+        $content = $this->renderPartial('/site/_pdf', ['model'=>$player]);
+
+        $pdf = new Pdf([
+            'mode'=>'utf-8',
+            'format'=>Pdf::FORMAT_A4,
+            'orientation'=>Pdf::ORIENT_PORTRAIT,
+            'filename'=>$player->unique_id . '.pdf',
+            'destination'=>Pdf::DEST_DOWNLOAD,
+            'content'=>$content,
+            'cssFile'=>'@webroot/css/pdf.css'
+        ]);
+
+        $pdf->render();
+    }
+
     /**
      * Finds the Players model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.

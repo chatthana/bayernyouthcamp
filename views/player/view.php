@@ -29,7 +29,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 'method' => 'post',
             ],
         ]) ?>
-        <?= Html::a('Resend PDF', ['resendpdf', 'id' => $model->id], ['class'=>'btn btn-warning']) ?>
+        <?= Html::a('Resend PDF', ['resendpdf', 'id' => $model->id], ['class'=>'btn btn-warning']); ?>
+        <?= Html::a('View PDF', ['viewpdf', 'id' => $model->id], ['class'=>'btn btn-info']); ?>
+        <?= Html::a('Download PDF', ['downloadpdf', 'id'=>$model->id], ['class'=>'btn btn-danger']); ?>
     </p>
 
     <?= DetailView::widget([
