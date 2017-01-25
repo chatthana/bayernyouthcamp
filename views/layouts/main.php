@@ -48,7 +48,7 @@ $this->beginPage();
         <ul class="clearfix">
           <li><a href="<?php echo Yii::$app->urlManager->createUrl(['site/index']); ?>">Home</a></li>
           <li><a href="<?php echo Yii::$app->urlManager->createUrl(['site/news']); ?>">News & Updates</a></li>
-          <li><a href="#">Youth Cups</a></li>
+          <li><a href="<?php echo Yii::$app->urlManager->createUrl(['site/youthcup']); ?>">Youth Cups</a></li>
           <li>
             <a href="#">Register</a>
             <div class="dropdown">

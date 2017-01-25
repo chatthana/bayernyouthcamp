@@ -950,3 +950,47 @@ section#regulations table tr td, section#regulations table tr th {
   margin:10px 0;
   text-align:center;
 }
+
+.flexslider {
+  max-width:100%;;
+  margin:0 auto;
+}
+
+/* GALLERY STYLING */
+
+/*.flex-direction-nav a {
+  opacity:1 !important;
+}*/
+
+.active-album {
+  position:relative;
+  width:100%;
+  margin:40px 0;
+  /*height:720px;*/
+  /*overflow:hidden;*/
+}
+
+
+.active-album img {
+  width:100%;
+  height:auto;
+}
+
+.album-list {
+  position:relative;
+  padding:20px 0;
+}
+.album-list .album-box {
+  position:relative;
+  width:25%;
+  float:left;
+}
+
+.album-list .album-box .img-container {
+  position:relative;
+  width:100%;
+}
+
+.album-list .album-box .img-container img {
+  width:100%;
+}

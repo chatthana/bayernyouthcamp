@@ -15,6 +15,8 @@ use app\models\Teams;
 use app\models\Players;
 use app\models\Coaches;
 use app\models\Arenas;
+use app\models\GalleryAlbums;
+use app\models\GalleryImages;
 use app\models\Regions;
 use yii\web\UploadedFile;
 use yii\helpers\ArrayHelper;
@@ -148,6 +150,11 @@ class SiteController extends Controller
     public function actionAbout()
     {
         return $this->render('about');
+    }
+
+    public function actionYouthcup() {
+      $albums = GalleryAlbums::find()->all();
+      return $this->render('youthcup', ['albums'=>$albums]);
     }
 
     public function actionConfirm() {
