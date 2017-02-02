@@ -17,6 +17,8 @@ use app\models\Coaches;
 use app\models\Arenas;
 use app\models\GalleryAlbums;
 use app\models\GalleryImages;
+use app\models\GalleryCategories;
+use app\models\GalleryCategoryMapping;
 use app\models\Regions;
 use yii\web\UploadedFile;
 use yii\helpers\ArrayHelper;
@@ -153,8 +155,9 @@ class SiteController extends Controller
     }
 
     public function actionYouthcup() {
-      $albums = GalleryAlbums::find()->all();
-      return $this->render('youthcup', ['albums'=>$albums]);
+      die('Coming Soon ...');
+      $categories = GalleryCategories::find()->all();
+      return $this->render('youthcup', ['categories'=>$categories]);
     }
 
     public function actionConfirm() {
@@ -379,7 +382,7 @@ class SiteController extends Controller
     public function actionRegister() {
 
       $model = new RegistrationForm();
-      $arenas = Arenas::find()->where(['>=', 'last_reg_date', date('Y-m-d')])->all();
+      $arenas = Arenas::find()->where(['>=', 'last_reg_date', date('Y-m-d')])->andWhere(['active'=>1])->all();
 
       if (Yii::$app->request->post()) {
         $model->load(Yii::$app->request->post());
@@ -423,7 +426,7 @@ class SiteController extends Controller
 
     public function actionRegisterteam() {
 
-      $arenas = Arenas::find()->where(['>=', 'last_reg_date', date('Y-m-d')])->all();
+      $arenas = Arenas::find()->where(['>=', 'last_reg_date', date('Y-m-d')])->andWhere(['active'=>1])->all();
 
       // Instantiate the coach model. We need only one coach per team
       $coachModel = new CoachRegistrationForm();

@@ -1,4 +1,5 @@
 <div id="main-content" class="auto">
+    <?php var_dump($categories[0]->maps[0]->albums[0]->images); die(); ?>
     <div class="wrapper">
         <div class="active-album">
             <h3><?php echo $albums[0]->name; ?></h3>

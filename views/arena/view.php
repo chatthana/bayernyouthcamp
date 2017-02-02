@@ -34,6 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'reg_date',
             'last_reg_date',
             'region_id',
+            'active'
         ],
     ]) ?>
 
