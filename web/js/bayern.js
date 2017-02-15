@@ -7,10 +7,10 @@ $(document).ready(function() {
 
   // $('.datepicker').datepicker();
 
-  $('.flexslider').flexslider({
-    animation:'slide',
-    directionNav:true
-    // controlNav:'thumbnails'
-  });
+  // $('.flexslider').flexslider({
+  //   animation:'slide',
+  //   directionNav:true
+  //   // controlNav:'thumbnails'
+  // });
 
 });
