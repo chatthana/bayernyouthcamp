@@ -158,12 +158,13 @@ class SiteController extends Controller
       // If the gallery id is requested, check for the information parsed in the query string
       $selected = Yii::$app->request->get('gid');
 
-      $albums = GalleryAlbums::find()->orderBy('id DESC')->all();
+      $albums = GalleryAlbums::find()->where(['active'=>1])->orderBy('id DESC')->all();
 
       // If the selected album (gallery) is not null, find it and store the object in the variable
       // If not, use the first object in the album array (latest one) as the active album
       if ($selected !== null) {
-        $active_album = GalleryAlbums::findOne($selected);
+        $active_album = GalleryAlbums::findOne(['id'=>$selected, 'active'=>1]);
+        $active_album = $active_album !== null ? $active_album : $albums[0];
       } else {
         $active_album = $albums[0];
       }

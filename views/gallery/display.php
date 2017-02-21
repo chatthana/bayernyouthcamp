@@ -4,6 +4,11 @@ use yii\helpers\Html;
 
 <div class="row">
   <div class="col-md-12">
+    <?php foreach (Yii::$app->session->getAllFlashes() as $type => $message) : ?>
+      <div class="alert alert-<?php echo $type; ?>">
+        <p><?php echo $message; ?></p>
+      </div>
+    <?php endforeach; ?>
     <h1><?php echo $gallery->name; ?></h1>
     <h4><?php echo $gallery->remark; ?></h4>
     <div class="image-list row">

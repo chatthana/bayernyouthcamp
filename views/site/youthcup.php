@@ -1,6 +1,12 @@
 <?php $this->registerJsFile('@web/js/youthcup.js'); ?>
 <div id="main-content" class="auto">
     <div class="wrapper">
+      <?php if ($active_album === null && count($albums) === 0) : ?>
+        <div style="padding:300px 0;  text-align:center;">
+          <h5 style="font-weight:300;">ไม่พบอัลบั้มภาพ</h5>
+          <p>กรุณารออัพเดทจากทีมงาน FC Bayern Youthcup Thailand</p>
+        </div>
+      <?php else : ?>
         <div class="active-album">
             <h3><?php echo $active_album->name; ?></h3>
             <p><?php echo $active_album->remark; ?></p>
@@ -23,5 +29,6 @@
             </a>
             <?php endforeach; ?>
         </a>
-    </div>
+      </div>
+    <?php endif; ?>
 </div>

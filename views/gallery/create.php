@@ -8,7 +8,7 @@ use yii\bootstrap\ActiveForm;
     <?php $form = ActiveForm::begin(); ?>
       <?php echo $form->field($album, 'name'); ?>
       <?php echo $form->field($album, 'remark'); ?>
-      <?php echo $form->field($album, 'active'); ?>
+      <?php echo $form->field($album, 'active')->hiddenInput(['value'=>1])->label(false); ?>
       <?php echo Html::submitButton('Create Album', ['class'=>'btn btn-primary']); ?>
     <?php ActiveForm::end(); ?>
   </div>

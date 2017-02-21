@@ -12,6 +12,6 @@ use yii\bootstrap\ActiveForm;
       <?= $form->field($formModel, 'imageFiles[]')->fileInput(['multiple'=>true, 'accept'=>'image/*']) ?>
       <?= Html::submitButton('Upload Images', ['class'=>'btn btn-primary']); ?>
     <?php ActiveForm::end(); ?>
-    <p style="color:red; margin:10px 0;">* The maximum number of files is 100 files per upload</p>
+    <p style="color:red; margin:10px 0;">* The maximum number of files is 300 files per upload and the total upload size must not exceed 1 Gigabyte</p>
   </div>
 </div>

@@ -21,8 +21,12 @@ class GalleryController extends Controller {
 
     if (Yii::$app->request->isPost) {
       if ($album->load(Yii::$app->request->post())) {
-        $album->save();
-        die('kuay');
+        if ($album->save()) {
+          Yii::$app->session->setFlash('success', 'Successfully saved the new album');
+        } else {
+          Yii::$app->session->setFlash('danger', 'Failed to save the new album, please try again');
+        }
+        return $this->redirect(['index']);
       }
     }
 
@@ -37,10 +41,11 @@ class GalleryController extends Controller {
       // Retrieve the uploaded files first
       $formModel->imageFiles = UploadedFile::getInstances($formModel, 'imageFiles');
       if ($formModel->upload(Yii::$app->request->get('id'))) {
-        return $this->redirect(['display', 'id'=>Yii::$app->request->get('id')]);
+        Yii::$app->session->setFlash('success', 'Successfully saved ' . count($formModel->imageFiles) . ' files to the server');
       } else {
-        die('HEE');
+        Yii::$app->session->setFlash('danger', 'Failed to save images, please try again');
       }
+      return $this->redirect(['display', 'id'=>Yii::$app->request->get('id')]);
     }
 
     return $this->render('add', ['baseModel' => $baseModel, 'formModel' => $formModel]);
