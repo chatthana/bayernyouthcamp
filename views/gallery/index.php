@@ -47,7 +47,7 @@ $this->registerJs('
         <?php endforeach; ?>
       </table>
     <?php else : ?>
-      <h1>No gallery found</h1>
+      <h3 style="font-weight:300; text-align:center;">No gallery found</h3>
     <?php endif; ?>
 
   </div>
