@@ -1,25 +1,25 @@
+<?php $this->registerJsFile('@web/js/youthcup.js'); ?>
 <div id="main-content" class="auto">
-    <?php var_dump($categories[0]->maps[0]->albums[0]->images); die(); ?>
     <div class="wrapper">
         <div class="active-album">
-            <h3><?php echo $albums[0]->name; ?></h3>
+            <h3><?php echo $active_album->name; ?></h3>
             <div class="flexslider">
                 <ul class="slides">
-                    <?php foreach ($albums[0]->images as $img) : ?>
-                        <li><img src="<?php echo $img->path; ?>" /></li>
+                    <?php foreach ($active_album->images as $img) : ?>
+                        <li><img src="<?php echo Yii::getAlias('@web') . $img->path; ?>" /></li>
                     <?php endforeach; ?>
                 </ul>
             </div>
         </div>
         <div class="album-list clearfix">
             <?php foreach ($albums as $album) : ?>
-            <div class="album-box">
+            <a class="album-box" href="<?php Yii::$app->urlManager->createUrl('site/youthcup', ['gid' => $album->id]); ?>">
                 <div class="img-container">
-                    <img src="<?php echo $album->images[0]->path ?>" />
+                    <img src="<?php echo Yii::getAlias('@web') . $album->images[0]->path ?>" />
                 </div>
                 <p><?php echo $album->name; ?></p>
             </div>
             <?php endforeach; ?>
-        </div>
+        </a>
     </div>
 </div>

@@ -41,6 +41,7 @@ AppAsset::register($this);
             ['label' => 'จัดการผู้เล่น', 'url' => ['/player/index']],
             ['label' => 'ระบบทีม', 'url' => ['/team/index']],
             ['label' => 'ระบบจัดการโค้ช', 'url' => ['/coach/index']],
+            ['label' => 'จัดการรูปภาพ', 'url' => ['/gallery/index']],
             Yii::$app->user->isGuest ? (
                 ['label' => 'เข้าสู่ระบบ', 'url' => ['/site/login']]
             ) : (

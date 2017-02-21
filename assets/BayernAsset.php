@@ -29,13 +29,13 @@ class RequiredAsset extends AssetBundle {
     "css-reset/reset.min.css",
     "jquery-ui/themes/smoothness/jquery-ui.min.css",
     "font-awesome/css/font-awesome.min.css",
-    // "flexslider/flexslider.css"
+    "flexslider/flexslider.css"
   ];
   public $js = [
     "jquery/dist/jquery.min.js",
     "jquery-ui/jquery-ui.min.js",
     "jquery-ui/ui/widgets/datepicker.js",
-    // "flexslider/jquery.flexslider-min.js"
+    "flexslider/jquery.flexslider-min.js"
     // "scrollreveal/dist/scrollreveal.min.js"
   ];
   public $jsOptions = ["position" => \yii\web\View::POS_HEAD];

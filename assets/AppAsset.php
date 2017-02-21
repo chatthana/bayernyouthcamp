@@ -25,6 +25,14 @@ class AppAsset extends AssetBundle
     public $depends = [
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',
+        'app\assets\AdmiNRequiredAssets'
     ];
     public $jsOptions = ["position" => \yii\web\View::POS_HEAD];
+}
+
+class AdminRequiredAssets extends AssetBundle {
+  public $sourcePath = '@bower';
+  public $css = [
+    'font-awesome/css/font-awesome.min.css'
+  ];
 }

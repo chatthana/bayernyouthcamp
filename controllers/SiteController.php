@@ -155,9 +155,21 @@ class SiteController extends Controller
     }
 
     public function actionYouthcup() {
-      die('Coming Soon ...');
-      $categories = GalleryCategories::find()->all();
-      return $this->render('youthcup', ['categories'=>$categories]);
+      // If the gallery id is requested, check for the information parsed in the query string
+      $selected = Yii::$app->request->get('gid');
+
+      $albums = GalleryAlbums::find()->orderBy('id DESC')->all();
+
+      // If the selected album (gallery) is not null, find it and store the object in the variable
+      // If not, use the first object in the album array (latest one) as the active album
+      if ($selected !== null) {
+        $active_album = GalleryAlbums::findOne($selected);
+      } else {
+        $active_album = $albums[0];
+      }
+
+      // Then we are now ready to render the page
+      return $this->render('youthcup', ['albums'=>$albums, 'active_album'=>$active_album]);
     }
 
     public function actionConfirm() {
