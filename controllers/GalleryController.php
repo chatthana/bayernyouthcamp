@@ -37,7 +37,7 @@ class GalleryController extends Controller {
       // Retrieve the uploaded files first
       $formModel->imageFiles = UploadedFile::getInstances($formModel, 'imageFiles');
       if ($formModel->upload(Yii::$app->request->get('id'))) {
-        die('KUAY');
+        return $this->redirect(['display', 'id'=>Yii::$app->request->get('id')]);
       } else {
         die('HEE');
       }
@@ -63,7 +63,8 @@ class GalleryController extends Controller {
   }
 
   public function actionDelete() {
-
+    GalleryAlbums::findOne(Yii::$app->request->get('id'))->delete();
+    return $this->redirect(['index']);
   }
 }
 

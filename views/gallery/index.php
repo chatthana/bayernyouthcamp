@@ -25,8 +25,7 @@
           <td><?php echo $gallery->active; ?></td>
           <td>
             <a href="<?php echo Yii::$app->urlManager->createUrl(['gallery/display', 'id' => $gallery->id]); ?>" class="fa fa-search"></a>
-            <a href="#" class="fa fa-pencil"></a>
-            <a href="#" class="fa fa-trash"></a>
+            <a href="<?php echo Yii::$app->urlManager->createUrl(['gallery/delete', 'id'=> $gallery->id]); ?>" class="fa fa-trash"></a>
           </td>
         </tr>
       <?php endforeach; ?>

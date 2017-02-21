@@ -143,10 +143,15 @@ a.desc:after {
 .image-list .img-container {
   position:relative;
   width:100%;
-  max-height:170px;
+  height:170px;
   overflow:hidden;
 }
 
 .image-list .img-container img {
   width:100%;
+}
+
+.operations {
+  position:relative;
+  margin:10px 0;
 }

@@ -970,6 +970,9 @@ section#regulations table tr td, section#regulations table tr th {
   /*overflow:hidden;*/
 }
 
+.active-album h3 {
+  font-weight:300;
+}
 
 .active-album img {
   width:100%;
@@ -980,15 +983,25 @@ section#regulations table tr td, section#regulations table tr th {
   position:relative;
   padding:20px 0;
 }
+
+.album-list h3 {
+  font-weight:300;
+  padding-bottom:7px;
+  border-bottom:1px solid #515151;
+}
+
 .album-list .album-box {
   position:relative;
   width:25%;
+  padding:0 10px;
   float:left;
 }
 
 .album-list .album-box .img-container {
   position:relative;
   width:100%;
+  max-height:167px;
+  overflow-y:hidden;
 }
 
 .album-list .album-box .img-container img {
