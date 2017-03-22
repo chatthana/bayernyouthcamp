@@ -71,19 +71,19 @@ $this->beginPage();
 
 
   <footer>
-    <!-- <div class="wrapper">
+    <div class="wrapper">
       <div id="sponsors">
         <div class="sponsor-img">
-          <img src="<?php echo Yii::getAlias('@web'); ?>/images/stb.png" alt="Sponsor" />
+          <img src="<?php echo Yii::getAlias('@web'); ?>/images/stbheader.png" alt="Sponsor" />
         </div>
         <div class="sponsor-img">
           <img src="<?php echo Yii::getAlias('@web'); ?>/images/footer_logo.png" alt="Sponsor" />
         </div>
         <div class="sponsor-img">
-          <img src="<?php echo Yii::getAlias('@web'); ?>/images/wangkanai.png" alt="Sponsor" />
+          <img src="<?php echo Yii::getAlias('@web'); ?>/images/wangkanai_black.png" alt="Sponsor" />
         </div>
       </div>
-    </div> -->
+    </div>
   </footer>
   <?php $this->endBody(); ?>
   </body>

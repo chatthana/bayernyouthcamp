@@ -247,7 +247,7 @@ header nav ul > li .dropdown ul > li {
 
 footer {
   position:relative;
-  /*padding:10px 0;*/
+  padding:10px 0;
   /*background-color:#005f9a;*/
   border-top:3px solid #005f9a;
   z-index:10;
