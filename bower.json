@@ -1,0 +1,26 @@
+{
+  "name": "bayern",
+  "homepage": "https://github.com/chatthana/bayernyouthcamp",
+  "authors": [
+    "Chatthana Janethanakarn <chatthana@mol.com>"
+  ],
+  "description": "Bayern Youthcup Thailand website",
+  "main": "",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor/bower",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "font-awesome": "^4.7.0",
+    "css-reset": "^2.5.1",
+    "jquery": "^3.1.1",
+    "reset-css": "^2.2.0"
+  }
+}
