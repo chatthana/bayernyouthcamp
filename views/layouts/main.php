@@ -51,13 +51,13 @@ $this->beginPage();
           <li><a href="<?php echo Yii::$app->urlManager->createUrl(['site/youthcup']); ?>">Youth Cups</a></li>
           <li>
             <a href="#">Register</a>
-            <div class="dropdown">
+            <!-- <div class="dropdown">
               <ul>
-                <li><?= Html::a('สมัครในนามบุคคล', Yii::$app->urlManager->createUrl(['site/preregister', 'type'=>'individual'])); ?></li>
-                <li><?= Html::a('สมัครในนามทีม', Yii::$app->urlManager->createUrl(['site/preregister', 'type'=>'team'])); ?></li>
-                <li><?= Html::a('สมัครในนามผู้รักษาประตู', Yii::$app->urlManager->createUrl(['site/preregister', 'regtype'=>'goalkeeper'])); ?></li>
+                <li><?php // echo Html::a('สมัครในนามบุคคล', Yii::$app->urlManager->createUrl(['site/preregister', 'type'=>'individual'])); ?></li>
+                <li><?php // echo Html::a('สมัครในนามทีม', Yii::$app->urlManager->createUrl(['site/preregister', 'type'=>'team'])); ?></li>
+                <li><?php // echo Html::a('สมัครในนามผู้รักษาประตู', Yii::$app->urlManager->createUrl(['site/preregister', 'regtype'=>'goalkeeper'])); ?></li>
               </ul>
-            </div>
+            </div> -->
           </li>
           <li><a href="<?php echo Yii::$app->urlManager->createUrl(['site/contact']); ?>">Contact</a></li>
         </ul>
