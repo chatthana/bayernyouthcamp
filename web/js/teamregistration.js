@@ -58,7 +58,6 @@ $('.birthdate-date-selector, .birthdate-month-selector, .birthdate-year-selector
 });
 
 $('.registration-form-arenas input[type=radio]').change(function() {
-  console.log($(this).val());
   $('.registration-form-arenas ul > div .radio-label-input-group').removeClass('checked');
   $('.registration-form-arenas ul > div label + label').css('color', 'inherit');
   $(this).parent().addClass('checked');

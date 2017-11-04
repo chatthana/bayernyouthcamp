@@ -123,6 +123,10 @@
   margin:0 auto;
 }
 
+#registration-content #registration-form-container #main-registration-form {
+  display:none;
+}
+
 .registration-form-header {
   position:relative;
   background-color:#005f9a;
@@ -545,6 +549,11 @@ h1.form-super-header {
   border-radius:30px;
   background-color:#005f9a;
   cursor:pointer;
+}
+
+#registration-arena-selector-container {
+  position:relative;
+  margin:30px 0;
 }
 
 /** TEAM REGISTRATION **/
@@ -1006,4 +1015,22 @@ section#regulations table tr td, section#regulations table tr th {
 
 .album-list .album-box .img-container img {
   width:100%;
+}
+
+/** Utilities **/
+
+.error-summary {
+  position:relative;
+  margin:20px 0;
+}
+
+.error-summary ul > li {
+  position: relative;
+  margin: 7px 0;
+  padding: 11px;
+  background-color: #ffefef;
+  color: #ca6b6b;
+  border: 1px solid #eac1c1;
+  border-radius: 3px;
+  font-size: 0.85em;
 }

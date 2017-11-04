@@ -47,4 +47,10 @@ $('select[name=birthdate], select[name=birthmonth], select[name=birthyear]').cha
     return true;
   }
   return false;
+});$('#arena-selector-container .submit-button-container button').on('click', function(e) {
+  e.preventDefault();
+  if ($('#registrationform-arena').val()) {
+    $(this).parent().parent().hide();
+    $('#main-registration-form').fadeIn();
+  }
 });
