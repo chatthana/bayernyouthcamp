@@ -28,6 +28,7 @@ $this->registerMetaTag(['name'=>'viewport', 'content'=>'width=device-width, init
       <div id="registration-form-container">
         <?php $form = ActiveForm::begin([
             "id"=>"registration-form",
+            "enableClientValidation" => false
           ]); ?>
         <?php echo $form->errorSummary($model); ?>
         <div id="arena-selector-container">
@@ -100,8 +101,9 @@ $this->registerMetaTag(['name'=>'viewport', 'content'=>'width=device-width, init
               <?php echo ($model->ppa == 'gk') ? '' : $form->field($model, 'ppa', ['inputOptions' => ['placeholder' => $model->getAttributeLabel('ppa')]])->dropDownList(PlayerHelper::getAllPositions(['gk']), ['prompt'=>'--- ตำแหน่งที่ถนัด ---', 'options'=>['template'=>'<div></div>']])->label(false); ?>
             </li>
             <li class="col-3 clearfix">
-              <?php echo $form->field($model, 'weight', ['inputOptions' => ['placeholder'=>$model->getAttributeLabel('weight')]])->label(false); ?>
-              <?php echo $form->field($model, 'height', ['inputOptions' => ['placeholder'=>$model->getAttributeLabel('height')]])->label(false); ?>
+              <?php // echo $form->field($model, 'weight', ['inputOptions' => ['placeholder'=>$model->getAttributeLabel('weight')]])->label(false); ?>
+              <?php echo $form->field($model, 'weight')->dropDownList(PlayerHelper::getWeights(40, 100, "kg"), ["prompt" => "--- เลือกน้ำหนัก ---"])->label(false); ?>
+              <?php echo $form->field($model, 'height')->dropDownList(PlayerHelper::getHeights(130, 200, "cm"), ["prompt" => "--- เลือกส่วนสูง ---"])->label(false); ?>
               <?php echo $form->field($model, 'team', ['inputOptions' => ['placeholder'=>$model->getAttributeLabel('team')]])->label(false); ?>
             </li>
             <li class="col-3 clearfix">

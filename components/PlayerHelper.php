@@ -40,5 +40,23 @@ class PlayerHelper extends Component {
     return self::$sources;
   }
 
+  public static function getHeights($min, $max, $unit) {
+    $heights = [];
+
+    for($i=$min; $i < $max; $i++) {
+      $heights[$i] = $i . " " . $unit;  
+    }
+
+    return $heights;
+  }
+
+  public static function getWeights($min, $max, $unit) {
+    $weights = [];
+    for($i=$min; $i <= $max; $i++) {
+      $weights[$i] = $i . " " . $unit;
+    }
+    return $weights;
+  }
+
 }
 ?>

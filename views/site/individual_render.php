@@ -21,7 +21,7 @@ $this->registerJsFile(Yii::getAlias('@web') . '/js/preconfirm.js');
     <div class="registration-information">
       <div class="row">
         <div class="img-container">
-          <img src="<?php echo Yii::getAlias('@web') . '/uploads/identity_cards/' . $filename . '.' . $model->identity_card_file->extension ?>" alt="" />
+          <img src="<?php // echo Yii::getAlias('@web') . '/uploads/identity_cards/' . $filename . '.' . $model->identity_card_file->extension ?>" alt="" />
         </div>
       </div>
       <div class="row clearfix">
@@ -67,7 +67,11 @@ $this->registerJsFile(Yii::getAlias('@web') . '/js/preconfirm.js');
     </div>
   </div>
   <div id="presubmit-operation-container" class="row" style="text-align:center; margin-top:35px;">
-    <?php echo Html::a('ยืนยันการสมัคร', Yii::$app->urlManager->createUrl(['site/confirm', 'filename'=>$filename]), ['class'=>'button blue', 'id'=>'submit-confirm']); ?>
+    <?php if ($model->arena !== "BA") : ?>
+      <?php echo Html::a('ยืนยันการสมัคร', Yii::$app->urlManager->createUrl(['site/confirm', 'filename'=> $filename]), ['class'=>'button blue', 'id'=>'submit-confirm']); ?>
+    <?php else : ?>
+      <?php echo Html::a('ยืนยันการสมัคร', Yii::$app->urlManager->createUrl(['site/confirm']), ['class' => 'button blue', 'id' => 'submit-confirm']); ?>
+    <?php endif; ?>
   </div>
 </div>
 </section>

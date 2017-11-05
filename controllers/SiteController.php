@@ -299,7 +299,8 @@ class SiteController extends Controller
 
       }
 
-      $checkExistence = Players::findOne(['identity_card_no'=>$model->identity_card_no, 'arena'=>$model->arena]);
+
+      // $checkExistence = Players::findOne(['identity_card_no'=>$model->identity_card_no, 'arena'=>$model->arena]);
 
       $model = Yii::$app->session->get('data');
       $filename = Yii::$app->request->get('filename');
@@ -319,7 +320,8 @@ class SiteController extends Controller
       $player->birthdate = $model->birthdate;
       $player->age = $model->age;
       $player->identity_card_no = $model->identity_card_no;
-      $player->identity_card_path = '/uploads/identity_cards/' . $filename . '.' . $model->identity_card_file->extension;
+      if ($model->arena !== "NT")
+        $player->identity_card_path = '/uploads/identity_cards/' . $filename . '.' . $model->identity_card_file->extension;
       $player->school = $model->school;
       $player->year = $model->year;
       $player->address = $model->address;
@@ -408,11 +410,18 @@ class SiteController extends Controller
           return $this->redirect(['site/error']);
         }
 
-        $model->identity_card_file = UploadedFile::getInstance($model, 'identity_card_file');
-        $_pfilename = \app\components\KeyGenerator::getUniqueName();
-        $model->upload($_pfilename);
+        if($model->arena !== "BA") {
+          $model->identity_card_file = UploadedFile::getInstance($model, 'identity_card_file');
+          $_pfilename = \app\components\KeyGenerator::getUniqueName();
+          $model->upload($_pfilename);
+        }
         Yii::$app->session->set('data', $model);
-        return $this->render('individual_render', ['model'=>$model, 'filename'=>$_pfilename]);
+
+        // Conditional render for some stadiums
+        if($model->arena !== "BA")
+          return $this->render('individual_render', ['model'=>$model, 'filename'=>$_pfilename]);
+        
+        return $this->render('individual_render', ['model' => $model]);
       }
 
       if (Yii::$app->request->get('requesttype') == 'edit') {
