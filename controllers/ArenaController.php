@@ -99,6 +99,8 @@ class ArenaController extends Controller
      */
     public function actionUpdate($id)
     {
+        // var_dump(Yii::$app->request->post());
+        // die();
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {

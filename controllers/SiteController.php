@@ -320,7 +320,8 @@ class SiteController extends Controller
       $player->birthdate = $model->birthdate;
       $player->age = $model->age;
       $player->identity_card_no = $model->identity_card_no;
-      if ($model->arena !== "NT")
+      // If the identity card is requires for this arena, let's record its path
+      if ($model->arena->requires_id_photocopy)
         $player->identity_card_path = '/uploads/identity_cards/' . $filename . '.' . $model->identity_card_file->extension;
       $player->school = $model->school;
       $player->year = $model->year;

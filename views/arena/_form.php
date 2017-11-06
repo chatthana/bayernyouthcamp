@@ -25,6 +25,10 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'active')->dropDownList(['1'=>'on', '0'=>'off']) ?>
 
     <div class="form-group">
+        <?= $form->field($model, 'requires_id_photocopy')->checkbox(); ?>
+    </div>
+
+    <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
