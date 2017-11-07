@@ -67,7 +67,7 @@ $this->registerJsFile(Yii::getAlias('@web') . '/js/preconfirm.js');
     </div>
   </div>
   <div id="presubmit-operation-container" class="row" style="text-align:center; margin-top:35px;">
-    <?php if ($model->arena !== "BA") : ?>
+    <?php if ($arena->requires_id_photocopy) : ?>
       <?php echo Html::a('ยืนยันการสมัคร', Yii::$app->urlManager->createUrl(['site/confirm', 'filename'=> $filename]), ['class'=>'button blue', 'id'=>'submit-confirm']); ?>
     <?php else : ?>
       <?php echo Html::a('ยืนยันการสมัคร', Yii::$app->urlManager->createUrl(['site/confirm']), ['class' => 'button blue', 'id' => 'submit-confirm']); ?>

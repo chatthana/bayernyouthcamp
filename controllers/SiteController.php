@@ -303,6 +303,7 @@ class SiteController extends Controller
       // $checkExistence = Players::findOne(['identity_card_no'=>$model->identity_card_no, 'arena'=>$model->arena]);
 
       $model = Yii::$app->session->get('data');
+      $arena = Arenas::findOne(['code' => $model->arena]);
       $filename = Yii::$app->request->get('filename');
 
       // Recheck the user's existence to assure the valid information stored in the database
@@ -321,7 +322,7 @@ class SiteController extends Controller
       $player->age = $model->age;
       $player->identity_card_no = $model->identity_card_no;
       // If the identity card is requires for this arena, let's record its path
-      if ($model->arena->requires_id_photocopy)
+      if ($arena->requires_id_photocopy)
         $player->identity_card_path = '/uploads/identity_cards/' . $filename . '.' . $model->identity_card_file->extension;
       $player->school = $model->school;
       $player->year = $model->year;
@@ -403,6 +404,9 @@ class SiteController extends Controller
       if (Yii::$app->request->post()) {
         $model->load(Yii::$app->request->post());
 
+        // Get requested arena data
+        $arena = Arenas::findOne(['code' => $model->arena]);
+
         // Check whether the user already exists in the database or not
         // If yes, redirect and notify the user
         $checkExistence = Players::findOne(['identity_card_no'=>$model->identity_card_no, 'arena'=>$model->arena]);
@@ -411,18 +415,18 @@ class SiteController extends Controller
           return $this->redirect(['site/error']);
         }
 
-        if($model->arena !== "BA") {
+        if($arena->requires_id_photocopy) {
           $model->identity_card_file = UploadedFile::getInstance($model, 'identity_card_file');
           $_pfilename = \app\components\KeyGenerator::getUniqueName();
           $model->upload($_pfilename);
         }
         Yii::$app->session->set('data', $model);
 
-        // Conditional render for some stadiums
-        if($model->arena !== "BA")
-          return $this->render('individual_render', ['model'=>$model, 'filename'=>$_pfilename]);
+        // Conditional render for some stadiums that require the existence of identity card file
+        if($arena->requires_id_photocopy)
+          return $this->render('individual_render', ['model'=>$model, 'filename'=>$_pfilename, 'arena' => $arena]);
         
-        return $this->render('individual_render', ['model' => $model]);
+        return $this->render('individual_render', ['model' => $model, 'arena' => $arena]);
       }
 
       if (Yii::$app->request->get('requesttype') == 'edit') {
