@@ -8,6 +8,10 @@ use yii\widgets\ActiveForm;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
+<div class="alert alert-info">
+    <p><strong>หมายเหตุ :</strong> หากต้องการให้ผู้ใช้อัพโหลดรูปภาพบัตรประชาชนในการสมัคร กรุณาเลือก Require photocopy of the identity card</p>
+</div>
+
 <div class="arenas-form">
 
     <?php $form = ActiveForm::begin(); ?>
