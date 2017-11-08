@@ -30,8 +30,12 @@ $('.registration-form-arenas input[type=radio]').change(function() {
   $(this).parent().parent().next().css('color', '#005f9a');
 });
 
-$('#registration-form input[type=file]').change(function(e) {
-  $('#id-card-uploader').css('background-color', '#dadada');
+// $('#registration-form input[type=file]').change(function(e) {
+//   $('#id-card-uploader').css('background-color', '#dadada');
+// });
+$('.id-card-uploader input[type=file]').change(function(e) {
+  $(this).parent().addClass('attached');
+  $('.arrow-container').hide();
 });
 
 $('.acceptance input[type=radio]').change(function(e) {
@@ -47,10 +51,17 @@ $('select[name=birthdate], select[name=birthmonth], select[name=birthyear]').cha
     return true;
   }
   return false;
-});$('#arena-selector-container .submit-button-container button').on('click', function(e) {
+});
+
+$('#arena-selector-container .submit-button-container button').on('click', function(e) {
   e.preventDefault();
   if ($('#registrationform-arena').val()) {
     $(this).parent().parent().hide();
+    $.get('/api/checkarenaidrequirement', {code: $('#registrationform-arena').val()}, function(response) {
+      if (response == false) $('li[role=id_uploader]').hide();
+    });
     $('#main-registration-form').fadeIn();
+  } else {
+    return false;
   }
 });

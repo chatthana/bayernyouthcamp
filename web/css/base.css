@@ -14,6 +14,10 @@ html,body {
   -o-box-sizing:border-box;
 }
 
+select {
+  /*-webkit-appearance: none;*/
+}
+
 .wrapper {
   position:relative;
   width:1080px;

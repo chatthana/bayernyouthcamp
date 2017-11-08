@@ -275,6 +275,11 @@ h1.form-super-header {
   width:50%;
 }
 
+.team-information {
+  position:relative;
+  margin:30px 0;
+}
+
 /** ========================== **/
 
 #registration-content #registration-form-container #registration-form .form-group.span-1-6 {
@@ -324,7 +329,7 @@ h1.form-super-header {
 
 #registration-content #registration-form-container #registration-form .id-card-uploader.attached,
 .id-card-uploader.attached {
-  background-color:#dadada;
+  background-color:#74d474;
   color:#fff;
 }
 
@@ -551,7 +556,9 @@ h1.form-super-header {
   cursor:pointer;
 }
 
-#registration-arena-selector-container {
+#registration-arena-selector-container,
+#team-arena-selector-container
+{
   position:relative;
   margin:30px 0;
 }
@@ -560,6 +567,10 @@ h1.form-super-header {
 #team-registration-form-container {
   position:relative;
   padding:50px 0 100px;
+}
+
+#team-main-registration-form {
+  display:none;
 }
 
 #team-registration-form-container #form-navigation-container {
@@ -694,7 +705,7 @@ h1.form-super-header {
 
 .registration-render {
   position:relative;
-  padding:50px 0 0;
+  padding:0;
 }
 
 .registration-render .header {

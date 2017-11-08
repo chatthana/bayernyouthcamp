@@ -28,7 +28,7 @@ $this->registerMetaTag(['name'=>'viewport', 'content'=>'width=device-width, init
       <div id="registration-form-container">
         <?php $form = ActiveForm::begin([
             "id"=>"registration-form",
-            "enableClientValidation" => false
+            "enableClientValidation" => true
           ]); ?>
         <?php echo $form->errorSummary($model); ?>
         <div id="arena-selector-container">
@@ -43,7 +43,7 @@ $this->registerMetaTag(['name'=>'viewport', 'content'=>'width=device-width, init
         </div>
         <div id="main-registration-form">
           <ul>
-            <li class="clearfix make-center">
+            <li class="clearfix make-center" role="id_uploader">
               <div class="arrow-container">
                 <?php echo Html::img('@web/images/right.png', ['class'=>'pulse']); ?>
               </div>
@@ -78,7 +78,7 @@ $this->registerMetaTag(['name'=>'viewport', 'content'=>'width=device-width, init
               <?php echo $form->field($model, 'age', ['options'=>['class'=>'span-3'], 'inputOptions' => ['placeholder'=>$model->getAttributeLabel('age'), 'readonly'=>true]])->label(false); ?>
             </li>
             <li class="full clearfix">
-              <?php echo $form->field($model, 'identity_card_no', ['inputOptions' => ['placeholder'=>$model->getAttributeLabel('identity_card_no')]])->label(false); ?>
+              <?php echo $form->field($model, 'identity_card_no', ['inputOptions' => ['placeholder'=>$model->getAttributeLabel('identity_card_no'), 'maxlength' => '13']])->label(false); ?>
             </li>
             <li class="col-2 clearfix">
               <?php echo $form->field($model, 'school', ['inputOptions' => ['placeholder'=>$model->getAttributeLabel('school')]])->label(false); ?>
@@ -150,7 +150,7 @@ $this->registerMetaTag(['name'=>'viewport', 'content'=>'width=device-width, init
           </div>
         </div>
 
-        
+
 
         <?php ActiveForm::end(); ?>
 

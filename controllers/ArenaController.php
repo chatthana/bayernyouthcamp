@@ -81,12 +81,14 @@ class ArenaController extends Controller
     public function actionCreate()
     {
         $model = new Arenas();
+        $regionFilter = ArrayHelper::map(Regions::find()->all(), 'id', 'name');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'regionFilter' => $regionFilter,
             ]);
         }
     }

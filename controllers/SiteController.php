@@ -176,9 +176,12 @@ class SiteController extends Controller
     public function actionConfirm() {
 
       if (Yii::$app->request->get('confirmtype') == 'team') {
+
         $teamData = Yii::$app->session->get('teamdata');
         $coachModel = $teamData['coach']['models'];
         $models = $teamData['players']['models'];
+
+        $arena = Arenas::findOne(['code' => $coachModel->arena]);
 
         // Pre-compose the email with existing information
         $sendMail = Yii::$app->mailer->compose('@app/mail/layouts/test')
@@ -205,7 +208,8 @@ class SiteController extends Controller
         $coach->email = $coachModel->email;
         $coach->school = $coachModel->school;
         $coach->address = $coachModel->address;
-        $coach->identity_card_path = '/uploads/identity_cards/' . $teamData['coach']['filenames'] . '.' . $coachModel->identity_card_file->extension;
+        if ($arena->requires_id_photocopy)
+          $coach->identity_card_path = '/uploads/identity_cards/' . $teamData['coach']['filenames'] . '.' . $coachModel->identity_card_file->extension;
         $coach->virtual_team = $team->id;
         $coach->source = $coachModel->source;
         $coach->created = date('Y-m-d H:i:s');
@@ -240,8 +244,9 @@ class SiteController extends Controller
           $player->nickname = $model->nickname;
           $player->birthdate = $model->birthdate;
           $player->age = $model->age;
-          $player->identity_card_no = substr($model->identity_card_no, 0, 12);
-          $player->identity_card_path = '/uploads/identity_cards/' . $_pfilename . $teamData['players']['filenames'][$index] . '.' . $model->identity_card_file->extension;
+          $player->identity_card_no = $model->identity_card_no;
+          if ($arena->requires_id_photocopy)
+            $player->identity_card_path = '/uploads/identity_cards/' . $teamData['players']['filenames'][$index] . '.' . $model->identity_card_file->extension;
           $player->school = $model->school;
           $player->year = $model->year;
           $player->address = $model->address;
@@ -425,7 +430,7 @@ class SiteController extends Controller
         // Conditional render for some stadiums that require the existence of identity card file
         if($arena->requires_id_photocopy)
           return $this->render('individual_render', ['model'=>$model, 'filename'=>$_pfilename, 'arena' => $arena]);
-        
+
         return $this->render('individual_render', ['model' => $model, 'arena' => $arena]);
       }
 
@@ -459,7 +464,7 @@ class SiteController extends Controller
       $coachModel = new CoachRegistrationForm();
 
       // We need 7 members per team, so iterate and create array of models here
-      for ($i=0; $i < 7; $i++) {
+      for ($i=0; $i < 2; $i++) {
         $models[] = new RegistrationForm();
       }
 
@@ -471,24 +476,37 @@ class SiteController extends Controller
 
         //Assign the post values for coach model
         $coachModel->load(Yii::$app->request->post());
-
-        // Get instance of the uploaded identity card file
-        $coachModel->identity_card_file = UploadedFile::getInstance($coachModel, 'identity_card_file');
-
-        // Finally call upload method to save the image with unique file name
-        $_cfilename = \app\components\KeyGenerator::getUniqueName();
-        $coachModel->upload($_cfilename);
-        Yii::$app->session['teamdata']['coach']['filenames'] = $_cfilename;
-
         // Assign multiple players to the form model
         \yii\base\Model::loadMultiple($models, Yii::$app->request->post());
 
-        // Upload files first
-        foreach ($models as $index => $model) {
-          $model->identity_card_file = UploadedFile::getInstance($model, '[' . $index . ']identity_card_file');
-          $_pfilename = \app\components\KeyGenerator::getUniqueName();
-          $model->upload($_pfilename);
-          Yii::$app->session['teamdata']['players']['filenames'][] = $_pfilename;
+        $selectedArena = Arenas::findOne(['code' => $coachModel->arena]);
+
+        // Get instance of the uploaded identity card file
+        if ($selectedArena->requires_id_photocopy) {
+
+          $coachModel->identity_card_file = UploadedFile::getInstance($coachModel, 'identity_card_file');
+
+          // Finally call upload method to save the image with unique file name
+          $_cfilename = \app\components\KeyGenerator::getUniqueName();
+          $coachModel->upload($_cfilename);
+          Yii::$app->session['teamdata']['coach']['filenames'] = $_cfilename;
+
+          // Upload files first
+          foreach ($models as $index => $model) {
+            $model->identity_card_file = UploadedFile::getInstance($model, '[' . $index . ']identity_card_file');
+            $_pfilename = \app\components\KeyGenerator::getUniqueName();
+            $model->upload($_pfilename);
+            Yii::$app->session['teamdata']['players']['filenames'][] = $_pfilename;
+          }
+
+        }
+
+        foreach ($models as $model) {
+          $checkDuplicate = Players::findOne(['identity_card_no' => $model->identity_card_no, 'arena' => $coachModel->arena]);
+          if ($checkDuplicate !== null) {
+            Yii::$app->session->setFlash('error', 'คุณ ' . $checkDuplicate->name . ' ได้ทำการสมัคร ณ สนามนี้ไปแล้ว จึงไม่สามารถสมัครได้อีก');
+            return $this->redirect(['site/error']);
+          }
         }
 
         // Store models in the session

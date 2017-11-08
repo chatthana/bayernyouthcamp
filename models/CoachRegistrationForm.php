@@ -24,7 +24,7 @@ class CoachRegistrationForm extends Model {
       [['name', 'name_en', 'identity_card_no', 'age', 'telephone', 'email', 'school', 'address', 'source', 'arena'], 'required', 'message' => '{attribute}ห้ามเป็นค่าว่าง'],
       // ['name', 'required'],
       [['identity_card_no', 'age', 'telephone'], 'integer', 'message' => '{attribute}ต้องเป็นตัวเลขเท่านั้น'],
-      [['identity_card_file'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png,jpg']
+      [['identity_card_file'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png,jpg']
     ];
   }
 

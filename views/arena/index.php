@@ -27,8 +27,22 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'code',
             'text:ntext',
-            'reg_date',
-            'last_reg_date',
+            // 'reg_date',
+            [
+              'attribute' => 'reg_date',
+              'label' => 'Registration Date',
+              'value' => function($model, $key, $index, $widget) {
+                return date('F jS, Y', strtotime($model->reg_date));
+              }
+            ],
+            // 'last_reg_date',
+            [
+              'attribute' => 'last_reg_date',
+              'label' => 'Last Date of Registration',
+              'value' => function($model, $key, $index, $widget) {
+                return date('F jS, Y', strtotime($model->last_reg_date));
+              }
+            ],
             // 'region_id',
             [
               'attribute' => 'region_id',

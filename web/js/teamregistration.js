@@ -36,6 +36,7 @@ $('.each-form[data-sequence=1]').show();
 
 $('.id-card-uploader input[type=file]').change(function(e) {
   $(this).parent().addClass('attached');
+  $('.arrow-container').hide();
 });
 
 $('.each-form a, a.form-navigator').click(function(e) {
@@ -62,4 +63,19 @@ $('.registration-form-arenas input[type=radio]').change(function() {
   $('.registration-form-arenas ul > div label + label').css('color', 'inherit');
   $(this).parent().addClass('checked');
   $(this).parent().parent().next().css('color', '#005f9a');
+});
+
+$('#team-arena-selector-container .submit-button-container button').on('click', function(e) {
+  e.preventDefault();
+  if ($('#coachregistrationform-arena').val()) {
+    $(this).parent().parent().hide();
+    $.get('/api/checkarenaidrequirement', {code: $('#coachregistrationform-arena').val()}, function(response) {
+      if (response == false) {
+        $('.upload-button-container').hide();
+      }
+    });
+    $('#team-main-registration-form').fadeIn();
+  } else {
+    return false;
+  }
 });

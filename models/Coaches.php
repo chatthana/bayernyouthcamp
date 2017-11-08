@@ -37,10 +37,10 @@ class Coaches extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'name_en', 'identity_card_no', 'identity_card_path', 'age', 'telephone', 'email', 'school', 'address', 'virtual_team', 'source', 'created'], 'required'],
+            [['name', 'name_en', 'identity_card_no', 'age', 'telephone', 'email', 'school', 'address', 'virtual_team', 'source', 'created'], 'required'],
             [['identity_card_path', 'school', 'address'], 'string'],
             [['age', 'virtual_team'], 'integer'],
-            [['created'], 'safe'],
+            [['created', 'identity_card_path'], 'safe'],
             [['name', 'name_en', 'email'], 'string', 'max' => 255],
             ['identity_card_no', 'string', 'min'=>13, 'max'=>13, 'tooShort'=>'ต้องมีจำนวน 13 หลักเท่านั้น', 'tooLong'=>'ต้องมีจำนวน 13 หลักเท่านั้น'],
             [['telephone'], 'string', 'max' => 10],

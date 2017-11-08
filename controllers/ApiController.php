@@ -12,15 +12,17 @@ class ApiController extends Controller {
   }
 
   public function actionSavesingleform() {
-    if (Yii::$app->request->isPost) {
-      echo "Fuck";
-    } else {
-      echo "Not Fucked";
-    }
+    // Not implemented yet
+  }
+
+  public function actionCheckarenaidrequirement() {
+    $arenaCode = Yii::$app->request->get('code');
+    $arenaObject = \app\models\Arenas::findOne(['code' => $arenaCode]);
+    echo $arenaObject->requires_id_photocopy;
   }
 
   public function actionSaveteam() {
-
+    // Not implemented yet
   }
 }
 ?>

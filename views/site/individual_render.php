@@ -20,9 +20,11 @@ $this->registerJsFile(Yii::getAlias('@web') . '/js/preconfirm.js');
     </div>
     <div class="registration-information">
       <div class="row">
-        <div class="img-container">
-          <img src="<?php // echo Yii::getAlias('@web') . '/uploads/identity_cards/' . $filename . '.' . $model->identity_card_file->extension ?>" alt="" />
-        </div>
+        <?php if ($arena->requires_id_photocopy): ?>
+          <div class="img-container">
+              <img src="<?php echo Yii::getAlias('@web') . '/uploads/identity_cards/' . $filename . '.' . $model->identity_card_file->extension ?>" alt="" />
+          </div>
+        <?php endif; ?>
       </div>
       <div class="row clearfix">
         <p class="col-2"><span>ชื่อ - นามสกุล : </span><?= $model->name ?></p>
