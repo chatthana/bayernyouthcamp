@@ -10,7 +10,7 @@ use app\components\ArenaHelper;
   <?php echo Html::img('@web/images/registration_wkn.png'); ?>
   <div class="header">
     <h3>ใบสมัครเข้าร่วมกิจกรรม</h3>
-    <h3>FC Bayern Youth Cup 2017</h1>
+    <h3>FC Bayern Youth Cup 2018</h1>
   </div>
 </section>
 <section class="content">
