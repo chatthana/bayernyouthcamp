@@ -134,7 +134,7 @@ $this->registerMetaTag(['name'=>'viewport', 'content'=>'width=device-width, init
                   <?php echo Html::dropDownList('birthmonth', null, ThaiDateHelper::getMonths(), ['prompt'=>'--- เดือน ---', 'class'=>'birthdate-month-selector']); ?>
                 </div>
                 <div class="form-group span-1" data-seq-ref="<?= $index ?>">
-                  <?php echo Html::dropDownList('birthyear', null, ThaiDateHelper::getYears(), ['prompt'=>'--- ปี ---', 'class'=>'birthdate-year-selector']); ?>
+                  <?php echo Html::dropDownList('birthyear', null, ThaiDateHelper::getYears(2002, 2003), ['prompt'=>'--- ปี ---', 'class'=>'birthdate-year-selector']); ?>
                 </div>
                 <?php echo $form->field($model, '[' . $index . ']age', ['options'=>['class'=>'span-3'], 'inputOptions' => ['placeholder'=>$model->getAttributeLabel('age'), 'readonly'=>true]])->label(false); ?>
               </li>
