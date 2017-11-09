@@ -15,7 +15,7 @@ $this->beginPage();
     <meta property="og:type" content="website" />
     <meta property="og:title" content="FC Bayern Youth Cup 2018 by Sport Thai Bavaria" />
     <meta property="og:description" content="FC Bayern Youth Cup Thailand 2018 เปิดรับคัดเลือกเยาวชนชายจากทั่วประเทศ เพื่อตามหาเยาวชนที่มีฝีเท้าดีที่สุด 10 คน เข้าฝึกและแข่งขันรอบ World Finals ที่เมืองมิวนิคประเทศเยอมนี" />
-    <meta property="og:image" content="http://www.fcbayernyouthcupthailand.com/images/facebook_sharing.jpg" />
+    <meta property="og:image" content="http://www.fcbayernyouthcupthailand.com/images/facebook_cover_2018.jpg" />
     <title>FC Bayern Youth Cup 2018 - Sport Thai Bavaria</title>
     <link rel="icon" type="image/png" href="<?php echo Yii::getAlias('@web'); ?>/images/bayern_favicon.png" />
     <?= Html::csrfMetaTags(); ?>
