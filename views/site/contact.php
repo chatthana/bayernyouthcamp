@@ -10,7 +10,7 @@
           </div>
           <p class="contact-company-name">Sport Thai Bavaria Co.Ltd.</p>
           <p>1034 Petchburi-Tadmai Rd., Bangkapi<br/> Huakwang, Bangkok 10310</p>
-          <p><i class="fa fa-mobile fa-lg"></i> 02-716-1790 , 097-192-2421</p>
+          <p><i class="fa fa-mobile fa-lg"></i> 02-716-1790 , 091-786-2258</p>
         </div>
         <div class="social-icon-container">
           <a href="https://th-th.facebook.com/fcbyouthcupthailand/" class="social-icon">
