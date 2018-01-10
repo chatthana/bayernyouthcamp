@@ -6,7 +6,7 @@ use app\components\ArenaHelper;
 ?>
 <section class="global-sponsored-header">
   <?php echo Html::img('@web/images/registration_stb.png'); ?>
-  <?php echo Html::img('@web/images/vertical_logo_2.png'); ?>
+  <?php echo Html::img('@web/images/logo2018.png'); ?>
   <?php echo Html::img('@web/images/registration_wkn.png'); ?>
   <div class="header">
     <h3>ใบสมัครเข้าร่วมกิจกรรม</h3>
