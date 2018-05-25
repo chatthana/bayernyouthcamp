@@ -12,7 +12,7 @@ class GalleryController extends Controller {
   public $layout = 'bootstrap';
 
   public function actionIndex() {
-    $galleries = GalleryAlbums::find()->all();
+    $galleries = GalleryAlbums::find()->orderBy(['pos' => SORT_ASC])->all();
     return $this->render('index', ['galleries' => $galleries]);
   }
 
@@ -30,7 +30,7 @@ class GalleryController extends Controller {
       }
     }
 
-    return $this->render('create', ['album'=>$album, ]);
+    return $this->render('create', ['album'=>$album]);
   }
 
   public function actionAdd() {
