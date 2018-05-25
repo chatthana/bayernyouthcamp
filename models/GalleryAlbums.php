@@ -29,6 +29,7 @@ class GalleryAlbums extends \yii\db\ActiveRecord
     {
         return [
             [['name', 'remark', 'active'], 'required'],
+            [['pos'], 'safe'],
             [['remark'], 'string'],
             [['active'], 'integer'],
             [['name'], 'string', 'max' => 128],
@@ -45,6 +46,7 @@ class GalleryAlbums extends \yii\db\ActiveRecord
             'name' => 'Name',
             'remark' => 'Remark',
             'active' => 'Active',
+            'pos' => 'Position'
         ];
     }
 

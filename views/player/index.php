@@ -33,7 +33,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'name_en',
             // 'nickname',
             'birthdate',
-            'age',
+            // 'age',
+            [
+              'attribute' => 'age',
+              'label' => 'Age',
+              'filter' => ['14'=> 14, '15' => 15, '16' => 16]
+            ],
             'identity_card_no',
             // 'identity_card_path:ntext',
             // 'school:ntext',
