@@ -82,7 +82,8 @@ $this->registerMetaTag(['name'=>'viewport', 'content'=>'width=device-width, init
             </li>
             <li class="col-2 clearfix">
               <?php echo $form->field($model, 'school', ['inputOptions' => ['placeholder'=>$model->getAttributeLabel('school')]])->label(false); ?>
-              <?php echo $form->field($model, 'year', ['inputOptions' => ['placeholder'=>$model->getAttributeLabel('year')]])->label(false); ?>
+              <?php // echo $form->field($model, 'year', ['inputOptions' => ['placeholder'=>$model->getAttributeLabel('year')]])->label(false); ?>
+              <?php echo $form->field($model, 'year')->dropDownList(PlayerHelper::getSchoolYears(), ['prompt' => '--- ระดับชั้นการศึกษา ---'])->label(false); ?>
             </li>
             <li class="full clearfix">
               <?php echo $form->field($model, 'address', ['inputOptions' => ['placeholder'=>$model->getAttributeLabel('address')]])->label(false); ?>

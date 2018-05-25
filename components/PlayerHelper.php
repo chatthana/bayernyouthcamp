@@ -36,6 +36,13 @@ class PlayerHelper extends Component {
     return self::$positions;
   }
 
+  public static function getSchoolYears() {
+    for($i=1; $i <= 6; $i++) {
+      $years[$i] = 'ชั้นมัธยมศึกษาปีที่ ' . $i;
+    }
+    return $years;
+  }
+
   public static function getSources() {
     return self::$sources;
   }
@@ -44,7 +51,7 @@ class PlayerHelper extends Component {
     $heights = [];
 
     for($i=$min; $i < $max; $i++) {
-      $heights[$i] = $i . " " . $unit;  
+      $heights[$i] = $i . " " . $unit;
     }
 
     return $heights;
