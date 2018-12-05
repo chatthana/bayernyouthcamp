@@ -823,7 +823,7 @@ section#regulations .list ol {
   padding:0 20px;
 }
 
-section#regulations .list ol > li {
+section#regulations .list ol > li, section#regulations .list ul > li {
   margin-top:10px;
   line-height:22px;
 }
